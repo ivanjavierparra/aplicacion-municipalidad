@@ -25,7 +25,19 @@ exports.add = function(req, res) {
  var client = new Client({
  name: req.body.name,
  email: req.body.email,
- genre: req.body.genre
+ genre: req.body.genre,
+ paciente : {
+    dni : 12123321,
+    name : "paciente",
+    nacionalidad : "argentino"
+},
+medico : {
+    name : "medico",
+    matricula : 12345
+}
+ //name: req.param('name'),
+ //email: req.param('email'),
+ //genre: req.param('genre')
  });
  client.save(function(err, client) {
  if(err) return res.send(500, err.message);
@@ -33,6 +45,8 @@ exports.add = function(req, res) {
  });
 };
 
+/* PAGINASS */
+//http://mongoosejs.com/docs/schematypes.html
 
 /*exports.add = function(params) {
    console.log('POST');
@@ -75,3 +89,5 @@ exports.delete = function(req, res) {
  });
  });
 };
+
+//https://www.w3schools.com/nodejs/nodejs_mongodb_find.asp
