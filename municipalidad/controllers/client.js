@@ -2,12 +2,27 @@ var mongoose = require('mongoose');
 var Client = mongoose.model('Client');
 
 //GET - Return all registers
-exports.findAll = function(req, res) {
+/*exports.findAll = function(req, res) {
       Client.find((err, clients) => {
          if(err) res.send(500, err.message);
          res.status(200).jsonp(clients);
      });
-};
+};*/
+
+
+
+exports.findAll = function (req, res) {
+    Client.find().exec(function (err, clientes) {
+      if (err) {
+        res.send(500, err.message);
+      } else {
+        res.json(clientes);
+      }
+    });
+  };
+
+
+
 
 //GET - Return a register with specified ID
 exports.findById = function(req, res) {
@@ -41,7 +56,7 @@ medico : {
  });
  client.save(function(err, client) {
  if(err) return res.send(500, err.message);
- res.status(200).jsonp(client);
+ res.json(client);
  });
 };
 
