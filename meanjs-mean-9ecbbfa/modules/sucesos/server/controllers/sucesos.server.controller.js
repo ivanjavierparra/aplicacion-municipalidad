@@ -5,67 +5,62 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
-  Paciente = mongoose.model('Paciente'),
+  Suceso = mongoose.model('Suceso'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 /**
- * Create a Paciente
+ * Create a Suceso
  */
 exports.create = function (req, res) {
-  var paciente = new Paciente({
-    dni: req.body.dni,
+  var suceso = new Suceso({
     nombre: req.body.nombre,
-    apellido: req.body.apellido,
-    nacionalidad: req.body.nacionalidad, 
-    fechaNacimiento: req.body.fecha,
-    sexo: req.body.sexo
+    id_suceso: req.body.id_suceso
   });
 
-  paciente.save(function (err) {
+  suceso.save(function (err) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(paciente);
+      res.json(suceso);
     }
   });
-
 };
 
 /**
- * Show the current Paciente
+ * Show the current Suceso
  */
 exports.read = function (req, res) {
 
 };
 
 /**
- * Update a Paciente
+ * Update a Suceso
  */
 exports.update = function (req, res) {
 
 };
 
 /**
- * Delete an Paciente
+ * Delete an Suceso
  */
 exports.delete = function (req, res) {
 
 };
 
 /**
- * List of Pacientes
+ * List of Sucesos
  */
 exports.list = function (req, res) {
-  Paciente.find().exec(function (err, clientes) {
+  Suceso.find().exec(function (err, sucesos) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(clientes);
+      res.json(sucesos);
     }
   });
 };

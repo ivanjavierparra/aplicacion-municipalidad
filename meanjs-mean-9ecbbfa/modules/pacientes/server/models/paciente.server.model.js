@@ -34,6 +34,9 @@ var PacienteSchema = new Schema({
   fechaNacimiento: {
     type: Date,
     default: Date.now()
+  },
+  sexo:{
+     type: String, enum: ['masculino', 'femenino'] 
   }
 });
 
