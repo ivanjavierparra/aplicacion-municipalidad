@@ -38,13 +38,34 @@ exports.create = function (req, res) {
  * Show the current Paciente
  */
 exports.read = function (req, res) {
-
+      Paciente.findOne({ dni: req.params.pacienteId }, function (err, paciente){
+          return res.json(paciente);
+      });
 };
 
 /**
  * Update a Paciente
  */
 exports.update = function (req, res) {
+    
+
+    Paciente.findOne({ dni: req.params.pacienteId }, function (err, paciente){
+      if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+      } else {
+          if(req.body.nombre) paciente.nombre = req.body.nombre;
+          if(req.body.apellido) paciente.apellido = req.body.apellido;
+          if(req.body.nacionalidad) paciente.nacionalidad = req.body.nacionalidad;
+          if(req.body.fecha) paciente.fechaNacimiento = req.body.fecha;
+          if(req.body.sexo) paciente.sexo = req.body.sexo;
+          paciente.save();
+      }
+      return res.json(paciente);
+    });
+
+
 
 };
 
@@ -52,7 +73,17 @@ exports.update = function (req, res) {
  * Delete an Paciente
  */
 exports.delete = function (req, res) {
+    Paciente.find({dni:req.params.pacienteId}).remove().exec(function (err, paciente) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        //res.json(paciente);
+      return res.json({ message: "Paciente removido exitosamente" });
 
+      }
+    });
 };
 
 /**

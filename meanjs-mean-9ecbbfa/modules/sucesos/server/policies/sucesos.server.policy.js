@@ -18,26 +18,26 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/sucesos',
       permissions: '*'
     }, {
-      resources: '/api/sucesos/:sucesosId',
+      resources: '/api/sucesos/:sucesoId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
       resources: '/api/sucesos',
-      permissions: ['get']
+      permissions: '*'
     }, {
-      resources: '/api/sucesos/:sucesosId',
-      permissions: ['get']
+      resources: '/api/sucesos/:sucesoId',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/sucesos',
-      permissions: ['get']
+      permissions: '*'
     }, {
-      resources: '/api/sucesos/:sucesosId',
-      permissions: ['get']
+      resources: '/api/sucesos/:sucesoId',
+      permissions: '*'
     }]
   }]);
 };

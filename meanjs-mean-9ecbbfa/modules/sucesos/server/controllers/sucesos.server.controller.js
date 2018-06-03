@@ -33,21 +33,50 @@ exports.create = function (req, res) {
  * Show the current Suceso
  */
 exports.read = function (req, res) {
-
+    Suceso.findOne({ id_suceso: req.params.sucesoId }, function (err, suceso){
+      return res.json(suceso);
+    });
 };
 
 /**
  * Update a Suceso
  */
 exports.update = function (req, res) {
+    if(!req.body.nombre) {
+      return res.status(400).send({
+          message: "El nombre no puede estar vacio."
+      });
+    }
 
+    Suceso.findOne({ id_suceso: req.params.sucesoId }, function (err, suceso){
+      if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+      } else {
+          suceso.nombre = req.body.nombre;
+          suceso.save();
+      }
+      return res.json(suceso);
+    });
 };
 
 /**
  * Delete an Suceso
  */
 exports.delete = function (req, res) {
+      
+      Suceso.find({id_suceso:req.params.sucesoId}).remove().exec(function (err, suceso) {
+        if (err) {
+          return res.status(422).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } else {
+          //res.json(suceso);
+        return res.json({ message: "Suceso removido exitosamente" });
 
+        }
+      });
 };
 
 /**

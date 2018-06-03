@@ -28,7 +28,7 @@ exports.create = function (req, res) {
 
     atencion.save(function (err) {
       if (err) {
-        return res.status(422).send({
+        return res.json({
           message: errorHandler.getErrorMessage(err)
         });
       } else {
@@ -41,20 +41,99 @@ exports.create = function (req, res) {
  * Show the current Atencione
  */
 exports.read = function (req, res) {
-
+  Atencion.findOne({ id_atencion: req.params.atencionId }, function (err, paciente){
+      return res.json(paciente);
+  });
 };
 
 /**
  * Update a Atencione
  */
 exports.update = function (req, res) {
+  Atencion.findOne({ id_atencion: req.params.atencionId }, function (err, atencion){
+    if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+        if(!atencion) return res.json([]); //no encontro el objeto atenciond
+        if(req.body.fecha) atencion.fecha = req.body.fecha;
+        if(req.body.paciente) atencion.paciente = req.body.paciente;
+        if(req.body.doctor) atencion.doctor = req.body.doctor;
+        if(req.body.lugar) atencion.lugar = req.body.lugar;
+        if(req.body.descripcion) atencion.descripcion = req.body.descripcion;
+        if(req.body.muerto) atencion.muerto = req.body.muerto;
+        if(req.body.suceso) atencion.suceso = req.body.suceso;
+        if(req.body.problema) atencion.problema = req.body.problema;
+        atencion.save();
+    }
+    return res.json(atencion);
+  });
+
+
+     /* Atencion.findOneAndUpdate({ id_atencion: req.params.atencionId })
+      .then(atencion => {
+        console.log("Buenas" + atencion.paciente + " " + atencion.fecha)
+        if(req.body.fecha) atencion.fecha = req.body.fecha;
+        if(req.body.paciente) atencion.paciente = req.body.paciente;
+        if(req.body.doctor) atencion.doctor = req.body.doctor;
+        if(req.body.lugar) atencion.lugar = req.body.lugar;
+        if(req.body.descripcion) atencion.descripcion = req.body.descripcion;
+        if(req.body.muerto) atencion.muerto = req.body.muerto;
+        if(req.body.suceso) atencion.suceso = req.body.suceso;
+        if(req.body.problema) atencion.problema = req.body.problema;
+        atencion.save();
+        return res.json(atencion);
+      })
+      .catch(err => {
+        return res.json(err);
+      });*/
+
+
+
+
 
 };
 
 /**
- * Delete an Atencione
+ * Delete an Atenciones
  */
 exports.delete = function (req, res) {
+  /*Atencion.find({id_atencion:req.params.atencionId}).remove().exec(function (err, atencion) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      //res.json(atencion);
+      console.log("Atencion a borrar: " + atencion);
+    return res.json({ message: "Atencion removido exitosamente" });
+
+    }
+  });*/
+
+
+  /*Atencion.findOne({ id_atencion: req.params.atencionId }).remove( function (err, atencion){
+    if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+        
+        console.log("buenas " + atencion[0] + "/" + atencion[1])
+        return res.json(atencion);
+    }
+    
+  });*/
+
+    Atencion.findOneAndRemove({ id_atencion: req.params.atencionId })
+    .then(atencion => {
+      return res.json(atencion);
+    })
+    .catch(err => {
+      return res.json(err);
+    });
+
 
 };
 
@@ -64,7 +143,7 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
     Atencion.find().exec(function (err, atenciones) {
       if (err) {
-        return res.status(422).send({
+        return res.json({
           message: errorHandler.getErrorMessage(err)
         });
       } else {

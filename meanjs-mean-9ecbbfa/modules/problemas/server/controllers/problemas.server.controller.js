@@ -33,46 +33,61 @@ exports.create = function (req, res) {
  * Show the current Problema
  */
 exports.read = function (req, res) {
-
+  Problema.findOne({ id_problema: req.params.problemaId }, function (err, problema){
+    return res.json(problema);
+  });
 };
 
 /**
  * Update a Problema
  */
 exports.update = function (req, res) {
+  
+  
 
+  if(!req.body.nombre) {
+    return res.status(400).send({
+        message: "El nombre no puede estar vacio."
+    });
+  }
+
+  Problema.findOne({ id_problema: req.params.problemaId }, function (err, problema){
+    if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+    } else {
+        problema.nombre = req.body.nombre;
+        problema.save();
+    }
+    return res.json(problema);
+  });
+
+
+  
 };
 
 /**
  * Delete an Problema
+ *   
  */
 exports.delete = function (req, res) {
-  var problema = req.params.problemaId;
-  
-  console.log("Buenas:" + problema);
+        
+      
+    
+        Problema.find({id_problema:req.params.problemaId}).remove().exec(function (err, problema) {
+          if (err) {
+            return res.status(422).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            //res.json(problema);
+          return res.json({ message: "Problema removido exitosamente" });
 
- /* Problema.findByIdAndRemove(req.params.problemaId, (err, problema) => {  
-    // As always, handle any potential errors:
-    if (err) return res.status(500).send(err);
-    // We'll create a simple object to send back with a message and the id of the document that was removed
-    // You can really do this however you want, though.
-    const response = {
-        message: "Problema successfully deleted",
-        id: problema._id
-    };
-    return res.status(200).send(response);
-});*/
+          }
+        });
+      
   
-Problema.find({id_problema:req.params.problemaId}).remove().exec(function (err, problemas) {
-  if (err) {
-    return res.status(422).send({
-      message: errorHandler.getErrorMessage(err)
-    });
-  } else {
-    res.json(problemas);
-  }
-});
-
 };
 
 /**

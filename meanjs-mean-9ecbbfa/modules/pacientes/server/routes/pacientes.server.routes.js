@@ -11,7 +11,7 @@ module.exports = function(app) {
     .post(pacientes.create);
 
   // Single article routes
-  app.route('/api/pacientes/:articleId').all(pacientesPolicy.isAllowed)
+  app.route('/api/pacientes/:pacienteId').all(pacientesPolicy.isAllowed)
     .get(pacientes.read)
     .put(pacientes.update)
     .delete(pacientes.delete);
