@@ -73,7 +73,7 @@ exports.update = function (req, res) {
  * Delete an Paciente
  */
 exports.delete = function (req, res) {
-    Paciente.find({dni:req.params.pacienteId}).remove().exec(function (err, paciente) {
+    /*Paciente.find({dni:req.params.pacienteId}).remove().exec(function (err, paciente) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
@@ -83,6 +83,13 @@ exports.delete = function (req, res) {
       return res.json({ message: "Paciente removido exitosamente" });
 
       }
+    });*/
+    Paciente.findOneAndRemove({ dni: req.params.pacienteId })
+    .then(paciente => {
+      return res.json(paciente);
+    })
+    .catch(err => {
+      return res.json(err);
     });
 };
 
@@ -92,7 +99,7 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
   Paciente.find().exec(function (err, clientes) {
     if (err) {
-      return res.status(422).send({
+      return res.json({
         message: errorHandler.getErrorMessage(err)
       });
     } else {

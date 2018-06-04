@@ -75,7 +75,7 @@ exports.delete = function (req, res) {
         
       
     
-        Problema.find({id_problema:req.params.problemaId}).remove().exec(function (err, problema) {
+        /*Problema.find({id_problema:req.params.problemaId}).remove().exec(function (err, problema) {
           if (err) {
             return res.status(422).send({
               message: errorHandler.getErrorMessage(err)
@@ -85,6 +85,14 @@ exports.delete = function (req, res) {
           return res.json({ message: "Problema removido exitosamente" });
 
           }
+        });*/
+
+        Problema.findOneAndRemove({ id_problema: req.params.problemaId })
+        .then(problema => {
+          return res.json(problema);
+        })
+        .catch(err => {
+          return res.json(err);
         });
       
   
@@ -96,7 +104,7 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
   Problema.find().exec(function (err, problemas) {
     if (err) {
-      return res.status(422).send({
+      return res.json({
         message: errorHandler.getErrorMessage(err)
       });
     } else {

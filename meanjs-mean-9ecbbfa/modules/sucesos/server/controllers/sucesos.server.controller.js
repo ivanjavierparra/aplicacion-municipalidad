@@ -66,7 +66,7 @@ exports.update = function (req, res) {
  */
 exports.delete = function (req, res) {
       
-      Suceso.find({id_suceso:req.params.sucesoId}).remove().exec(function (err, suceso) {
+      /*Suceso.find({id_suceso:req.params.sucesoId}).remove().exec(function (err, suceso) {
         if (err) {
           return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
@@ -76,6 +76,13 @@ exports.delete = function (req, res) {
         return res.json({ message: "Suceso removido exitosamente" });
 
         }
+      });*/
+      Suceso.findOneAndRemove({ id_suceso: req.params.sucesoId })
+      .then(suceso => {
+        return res.json(suceso);
+      })
+      .catch(err => {
+        return res.json(err);
       });
 };
 
@@ -85,7 +92,7 @@ exports.delete = function (req, res) {
 exports.list = function (req, res) {
   Suceso.find().exec(function (err, sucesos) {
     if (err) {
-      return res.status(422).send({
+      return res.json({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
