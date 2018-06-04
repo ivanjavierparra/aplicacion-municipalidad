@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('api/nacionalidades', 'NacionalidadController@index');
+Route::post('api/nacionalidades', 'NacionalidadController@store');
+
+Route::get('api/nacionalidades/{id?}', 'NacionalidadController@show');
+Route::put('api/nacionalidades/{id?}', 'NacionalidadController@update');
+Route::delete('api/nacionalidades/{id?}', 'NacionalidadController@destroy');
