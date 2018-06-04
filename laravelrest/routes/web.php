@@ -46,3 +46,27 @@ Route::post('api/estadias', 'EstadiaController@store');
 Route::get('api/estadias/{id?}', 'EstadiaController@show');
 Route::put('api/estadias/{id?}', 'EstadiaController@update');
 Route::delete('api/estadias/{id?}', 'EstadiaController@destroy');
+
+/*     APIS DE INFRACTORES   */
+Route::get('api/infractores', 'InfractorController@index');
+Route::post('api/infractores', 'InfractorController@store');
+
+Route::get('api/infractores/{id?}', 'InfractorController@show');
+Route::put('api/infractores/{id?}', 'InfractorController@update');
+Route::delete('api/infractores/{id?}', 'InfractorController@destroy');
+
+/*     APIS DE TIPOS DE INFRACCIONES   */
+Route::get('api/tipo_infracciones', 'TipoInfraccionController@index');
+Route::post('api/tipo_infracciones', 'TipoInfraccionController@store');
+
+Route::get('api/tipo_infracciones/{id?}', 'TipoInfraccionController@show');
+Route::put('api/tipo_infracciones/{id?}', 'TipoInfraccionController@update');
+Route::delete('api/tipo_infracciones/{id?}', 'TipoInfraccionController@destroy');
+
+/*     APIS DE INFRACCIONES   */
+Route::get('api/infracciones', 'InfraccionController@index');
+Route::post('api/infracciones', 'InfraccionController@store');
+
+Route::get('api/infracciones/{id?}', 'InfraccionController@show');
+Route::put('api/infracciones/{id?}', 'InfraccionController@update');
+Route::delete('api/infracciones/{id?}', 'InfraccionController@destroy');
