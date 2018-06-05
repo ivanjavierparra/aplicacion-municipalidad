@@ -89,8 +89,93 @@
 
   <div ng-controller="AtencionesController">
     <p>The ID is {{saludo}}</p>
-    <p>The ID is {{atenciones}}</p>
+    <p>The ID is {{datos1}}</p>
+    <p>The ID is {{prob}}</p>
     <p>The ID is {{problemas}}</p>
-    
   </div>
+  
+
+  <!--grafico 1: cantidad problemas-->
+  <h1>SALUD - GRAFICO 1</h1>
+  <p>The button has been clicked {{id}} times.</p>
+  <div ng-app ng-controller="AtencionesController">
+    <div ng-repeat="(key,value) in graficos">
+      
+      <p>Problema: {{key}}</p>
+      <p>Cantidad: {{value}}</p>
+             
+      
+    </div>
+  </div>
+
+
+  <div ng-controller="ProblemasController">
+    
+    <p>The button has been clicked {{id}} times.</p>
+</div>
+
+
+
+<!--grafico 2: problema por año -->
+<h1>SALUD - GRAFICO 2</h1>
+<div ng-controller="ProblemasController">
+      <select>
+      <option id="combo" ng-repeat="p in problemas" value="{{p.id}}">{{p.nombre}}</option>
+      </select>
+
+      <button id="1" ng-click="hola()">Buscar</button>
+      <h1>You selected: {{grafico}}</h1>
+</div>
+
+
+
+<!--grafico 3: muertes por violencia de generro por año vs denuncias pr violencia de genero  -->
+<h1>SALUD - GRAFICO 3</h1>
+<div ng-controller="SucesosController">
+  {{grafico}}
+</div>
+
+
+
+
+<h1>INFRACCIONES - GRAFICO 1</h1>
+<div ng-controller="InfraccionesController">
+  {{graficos}}
+  <br>
+  fecha desde <input type="date" id="exampleInput" name="input" ng-model="example.value"
+       placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
+  <br>
+  fecha hasta <input type="date" id="exampleInput" name="input" ng-model="example.value"
+       placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
+  <br>
+  <button id="1" ng-click="hola()">Filtrar</button>
+</div>
+
+
+
+
+<h1>INFRACCIONES - GRAFICO 2</h1>
+<div ng-controller="SexoInfraccionesController">
+  {{graficos}}
+
+</div>
+
+
+
+<h1>INFRACCIONES - GRAFICO 3</h1>
+<div ng-controller="CrecimientoInfraccionesController">
+  {{graficos}}
+
+</div>
+
+
+
+
+<h1>TURISMO - ALOJAMIENTO - GRAFICO 1</h1>
+<div ng-controller="TiposAlojamientosController">
+  {{graficos}}
+
+</div>
+
 </section>
+

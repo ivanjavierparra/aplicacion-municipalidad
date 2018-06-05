@@ -3,17 +3,12 @@
 
   angular
     .module('core')
-    .controller('AtencionesController', AtencionesController);
+    .controller('InfraccionesController', InfraccionesController);
 
-  /*function HelloController($scope, $http) {
-    $http.get('http://rest-service.guides.spring.io/greeting').
-    then(function(response) {
-        $scope.greeting = response.data;
-    });
-  }*/
+  
 
-  function AtencionesController($scope, $http) {
-    $http.get('http://localhost:3000/api/atenciones').
+  function InfraccionesController($scope, $http) {
+    $http.get('http://localhost:8000/api/infracciones').
     then(function(response) {
         var longitud = Object.keys(response.data).length;
         var dict = {};
@@ -21,25 +16,29 @@
         var len;
         var datos = response.data;
 
-        $http.get('http://localhost:3000/api/problemas').
+        $http.get('http://localhost:8000/api/tipo_infracciones').
         then(function(response) {
             len = Object.keys(response.data).length;
             //dict = new Array(len);
+
+            //creo un diccionario: clave=id del tipo de infraccion ; valor = 0
             for(var i=0;i<len;i++){
-              key = parseInt(response.data[i].id_problema);
+              key = parseInt(response.data[i].id);
               dict[key] = 0 ;
             }
 
+            //recorro mis infracciones, y las acumulo en mi diccionario
             for(var j=0;j<longitud;j++){
-              key = parseInt(datos[j].problema);
+              key = parseInt(datos[j].tipo_id);
               dict[key] = dict[key] + 1;
             }
 
+            //creo un nuevo diccionario, clave = nombre del tipo de infraccion ;  valor= valor del diccionario anterior
             var resultado = {};
             for (key in dict) {
               // Hacer algo con la clave key
               for(var i=0;i<len;i++){
-                if(response.data[i].id_problema==key){
+                if(response.data[i].id==key){
                   resultado[response.data[i].nombre] = dict[key];
                 }
               }
@@ -50,21 +49,15 @@
             for (key in dict) {
               // Hacer algo con la clave key
               for(var i=0;i<len;i++){
-                if(response.data[i].id_problema==key){
+                if(response.data[i].id==key){
                   $scope.graficos[response.data[i].nombre] = dict[key];
                 }
               }
             }
             
-           // for (var i = 0, l = $scope.datos.length; i < l; i++) {
-             // $scope.telephone[i.toString()] = $scope.phone[i];
-           // }
-
+          
             
-            $scope.saludo = "Hola Mundo!";
-            $scope.datos1= datos[0].problema;
-            $scope.prob = resultado;
-            
+           
 
         });
 

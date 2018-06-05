@@ -151,3 +151,34 @@ exports.list = function (req, res) {
       }
     });
 };
+
+/**
+ * List of Atenciones
+ */
+exports.readproblema = function (req, res) {
+  Atencion.find({problema : req.params.problemaId}).exec(function (err, atenciones) {
+    if (err) {
+      return res.json({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(atenciones);
+    }
+  });
+};
+
+
+/**
+ * List of Atenciones
+ */
+exports.readsuceso = function (req, res) {
+  Atencion.find({suceso : req.params.sucesoId}).exec(function (err, atenciones) {
+    if (err) {
+      return res.json({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(atenciones);
+    }
+  });
+};

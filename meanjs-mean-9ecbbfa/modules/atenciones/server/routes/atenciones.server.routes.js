@@ -16,6 +16,12 @@ module.exports = function(app) {
     .put(atenciones.update)
     .delete(atenciones.delete);
 
+  app.route('/api/atenciones/problemas/:problemaId')
+    .get(atenciones.readproblema)
+  
+  app.route('/api/atenciones/sucesos/:sucesoId')
+    .get(atenciones.readsuceso)
+
   // Finish by binding the article middleware
   //app.param('pacienteId', pacientes.articleByID);
 };

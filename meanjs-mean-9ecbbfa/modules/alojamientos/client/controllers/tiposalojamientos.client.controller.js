@@ -3,17 +3,12 @@
 
   angular
     .module('core')
-    .controller('AtencionesController', AtencionesController);
+    .controller('TiposAlojamientosController', TiposAlojamientosController);
 
-  /*function HelloController($scope, $http) {
-    $http.get('http://rest-service.guides.spring.io/greeting').
-    then(function(response) {
-        $scope.greeting = response.data;
-    });
-  }*/
+  
 
-  function AtencionesController($scope, $http) {
-    $http.get('http://localhost:3000/api/atenciones').
+  function TiposAlojamientosController($scope, $http) {
+    $http.get('http://localhost:8000/api/estadias').
     then(function(response) {
         var longitud = Object.keys(response.data).length;
         var dict = {};
@@ -21,37 +16,45 @@
         var len;
         var datos = response.data;
 
-        $http.get('http://localhost:3000/api/problemas').
+        $http.get('http://localhost:8000/api/alojamientos').
         then(function(response) {
             len = Object.keys(response.data).length;
-            //dict = new Array(len);
+            
+
+
+            //creo mi diccionario de categorias de estadias
             for(var i=0;i<len;i++){
-              key = parseInt(response.data[i].id_problema);
+              key = parseInt(response.data[i].id);
               dict[key] = 0 ;
             }
 
+
+            //recorro mis estadias
             for(var j=0;j<longitud;j++){
-              key = parseInt(datos[j].problema);
+              key = parseInt(datos[j].alojamiento_id);
               dict[key] = dict[key] + 1;
             }
 
+
+            //cambio la clave por el nombre de la categoria
             var resultado = {};
             for (key in dict) {
               // Hacer algo con la clave key
               for(var i=0;i<len;i++){
-                if(response.data[i].id_problema==key){
-                  resultado[response.data[i].nombre] = dict[key];
+                if(response.data[i].id==key){
+                  resultado[response.data[i].categoria] = dict[key];
                 }
               }
             }
+
 
 
             $scope.graficos = {};
             for (key in dict) {
               // Hacer algo con la clave key
               for(var i=0;i<len;i++){
-                if(response.data[i].id_problema==key){
-                  $scope.graficos[response.data[i].nombre] = dict[key];
+                if(response.data[i].id==key){
+                  $scope.graficos[response.data[i].categoria] = dict[key];
                 }
               }
             }
