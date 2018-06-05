@@ -5,9 +5,13 @@
     .module('core')
     .controller('ProblemasController', ProblemasController);
 
+  function ProblemasController($http, $scope) {
+    $scope.data = {};
+    $scope.hola = ($event) => {
+      console.log($scope);  
+      console.log($scope.data.problema);  
+    }
   
-
-  function ProblemasController($scope, $http) {
     $http.get('http://localhost:3000/api/atenciones').
     then(function(response) {
         var longitud = Object.keys(response.data).length;
@@ -42,7 +46,6 @@
         $scope.grafico["2017"] = 0;
         $scope.grafico["2018"] = 0;
 
-        
         for(var i=0;i<longitud;i++){
            var fecha = response.data[i].fecha.toString().substring(0,4);
            var año = parseInt(fecha);
@@ -50,26 +53,7 @@
              $scope.grafico[fecha] = $scope.grafico[fecha] + 1;
            }
         }
-
-        
     });
   }
-
-  function hola($scope, $http){
-    $scope.hola = false;
-    if($scope.hola)$scope.hola = false;
-    else $scope.hola = true;
-  }
-
-
-  
-
-  
-
-  
-
-  
-  
-
 }());
 

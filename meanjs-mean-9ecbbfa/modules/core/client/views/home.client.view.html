@@ -114,17 +114,15 @@
     <p>The button has been clicked {{id}} times.</p>
 </div>
 
-
-
 <!--grafico 2: problema por año -->
 <h1>SALUD - GRAFICO 2</h1>
 <div ng-controller="ProblemasController">
-      <select>
-      <option id="combo" ng-repeat="p in problemas" value="{{p.id}}">{{p.nombre}}</option>
+      <select ng-model="data.problema">
+        <option id="combo" ng-repeat="problema in problemas" ng-value="problema.id_problema">{{problema.nombre}}</option>
       </select>
 
-      <button id="1" ng-click="hola()">Buscar</button>
-      <h1>You selected: {{grafico}}</h1>
+        <button id="1" ng-click="hola($event)">Buscar</button>
+      <p>You selected: {{grafico}}</p>
 </div>
 
 
@@ -142,13 +140,13 @@
 <div ng-controller="InfraccionesController">
   {{graficos}}
   <br>
-  fecha desde <input type="date" id="exampleInput" name="input" ng-model="example.value"
+  fecha desde <input type="date" id="fdesde" name="input" ng-model="data.fdesde"
+       placeholder="yyyy-MM-dd"  required />
+  <br>
+  fecha hasta <input type="date" id="fhasta" name="input" ng-model="data.fhasta"
        placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
   <br>
-  fecha hasta <input type="date" id="exampleInput" name="input" ng-model="example.value"
-       placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
-  <br>
-  <button id="1" ng-click="hola()">Filtrar</button>
+  <button id="1" ng-click="hola($event)">Filtrar</button>
 </div>
 
 

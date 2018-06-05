@@ -8,6 +8,14 @@
   
 
   function InfraccionesController($scope, $http) {
+    $scope.data = {};
+    $scope.hola = ($event) => {
+      console.log($scope);  
+      console.log($scope.data.fdesde.toISOString());  
+      console.log($scope.data.fhasta.toISOString());
+    }
+
+
     $http.get('http://localhost:8000/api/infracciones').
     then(function(response) {
         var longitud = Object.keys(response.data).length;
