@@ -33,6 +33,12 @@
         controller: 'HomeController',
         controllerAs: 'vm'
       })
+      .state('pepe', {
+        url: '/pepe',
+        templateUrl: '/modules/core/client/views/pepe.client.view.html',
+        controller: 'PepeController',
+        controllerAs: 'vm'
+      })
       .state('not-found', {
         url: '/not-found',
         templateUrl: '/modules/core/client/views/404.client.view.html',

@@ -7,9 +7,14 @@ module.exports = {
     lib: {
       css: [
         // bower:css
-        'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-        'public/lib/angular-ui-notification/dist/angular-ui-notification.css'
+        //'public/lib/bootstrap/dist/css/bootstrap.css',
+        //'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        //'public/lib/angular-ui-notification/dist/angular-ui-notification.css',
+        'public/assets/css/bootstrap.min.css',
+        'public/assets/css/animate.min.css',
+        'public/assets/css/light-bootstrap-dashboard.css',
+        'public/assets/css/demo.css',
+        'public/assets/css/pe-icon-7-stroke.css'
         // endbower
       ],
       js: [
@@ -24,6 +29,12 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/assets/js/jquery.3.2.1.min.js',
+        'public/assets/js/bootstrap.min.js',
+        'public/assets/js/chartist.min.js',
+        'public/assets/js/bootstrap-notify.js',
+        'public/assets/js/light-bootstrap-dashboard.js',
+        'public/assets/js/demo.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

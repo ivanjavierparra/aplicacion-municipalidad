@@ -30,6 +30,30 @@ exports.renderIndex = function (req, res) {
   });
 };
 
+exports.renderDashboard = function (req, res) {
+  var safeUserObject = null;
+  if (req.user) {
+    safeUserObject = {
+      displayName: validator.escape(req.user.displayName),
+      provider: validator.escape(req.user.provider),
+      username: validator.escape(req.user.username),
+      created: req.user.created.toString(),
+      roles: req.user.roles,
+      profileImageURL: req.user.profileImageURL,
+      email: validator.escape(req.user.email),
+      lastName: validator.escape(req.user.lastName),
+      firstName: validator.escape(req.user.firstName),
+      additionalProvidersData: req.user.additionalProvidersData
+    };
+  }
+
+  res.render('modules/core/server/views/dashboard', {
+    user: JSON.stringify(safeUserObject),
+    sharedConfig: JSON.stringify(config.shared)
+  });
+};
+
+
 /**
  * Render the server error page
  */
