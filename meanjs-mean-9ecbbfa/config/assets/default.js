@@ -20,6 +20,10 @@ module.exports = {
       js: [
         // bower:js
         'public/lib/angular/angular.js',
+        'public/lib/chart.js/dist/Chart.js',
+        'public/lib/chartjs/chart.js',
+        'public/lib/angular-chart.js/dist/angular-chart.min.js',
+        'public/lib/chart.js/dist/angular-chart.min.js',
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/ng-file-upload/ng-file-upload.js',
