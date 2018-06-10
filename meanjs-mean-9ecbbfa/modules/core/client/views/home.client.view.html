@@ -181,7 +181,7 @@
 
 <!--ACA ESTA EL GRAFICO:  el controlador esta en modules/atenciones/client/controllers/atenciones.client.controller.js -->
 <div class="row">
-    <div class="col-md-4" ng-controller="AtencionesController">
+    <div class="col-md-6" ng-controller="AtencionesController">
         <div class="card">
             <div class="header">
                 <h4 class="title">Grafico de Torta</h4>
@@ -190,7 +190,7 @@
             
                 <canvas id="pie" class="chart chart-pie"
                        chart-options="options" chart-data="data" chart-labels="labels"
-                        chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                        chart-click="changeData" chart-backgroundColor="backgroundColor" chart-borderColor="borderColor" chart-borderWidth="borderWidth">
                 </canvas>
             
         </div>      
