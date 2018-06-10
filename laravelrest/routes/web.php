@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 
 /*     APIS DE NACIONALIDADES  */
-Route::get('api/nacionalidades', 'NacionalidadController@index');
-Route::post('api/nacionalidades', 'NacionalidadController@store');
+Route::get('api/turistas/nacionalidades', 'NacionalidadController@index');
+Route::post('api/turistas/nacionalidades', 'NacionalidadController@store');
 
-Route::get('api/nacionalidades/{id?}', 'NacionalidadController@show');
-Route::put('api/nacionalidades/{id?}', 'NacionalidadController@update');
-Route::delete('api/nacionalidades/{id?}', 'NacionalidadController@destroy');
+Route::get('api/turistas/nacionalidades/{id?}', 'NacionalidadController@show');
+Route::put('api/turistas/nacionalidades/{id?}', 'NacionalidadController@update');
+Route::delete('api/turistas/nacionalidades/{id?}', 'NacionalidadController@destroy');
 
 /*     APIS DE TURISTAS   */
 Route::get('api/turistas', 'TuristaController@index');
@@ -56,12 +56,12 @@ Route::put('api/infractores/{id?}', 'InfractorController@update');
 Route::delete('api/infractores/{id?}', 'InfractorController@destroy');
 
 /*     APIS DE TIPOS DE INFRACCIONES   */
-Route::get('api/tipo_infracciones', 'TipoInfraccionController@index');
-Route::post('api/tipo_infracciones', 'TipoInfraccionController@store');
+Route::get('api/infracciones/tipos', 'TipoInfraccionController@index');
+Route::post('api/infracciones/tipos', 'TipoInfraccionController@store');
 
-Route::get('api/tipo_infracciones/{id?}', 'TipoInfraccionController@show');
-Route::put('api/tipo_infracciones/{id?}', 'TipoInfraccionController@update');
-Route::delete('api/tipo_infracciones/{id?}', 'TipoInfraccionController@destroy');
+Route::get('api/infracciones/tipos/{id?}', 'TipoInfraccionController@show');
+Route::put('api/infracciones/tipos/{id?}', 'TipoInfraccionController@update');
+Route::delete('api/infracciones/tipos/{id?}', 'TipoInfraccionController@destroy');
 
 /*     APIS DE INFRACCIONES   */
 Route::get('api/infracciones', 'InfraccionController@index');

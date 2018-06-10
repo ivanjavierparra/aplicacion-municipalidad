@@ -41,7 +41,7 @@ exports.create = function (req, res) {
  * Show the current Atencione
  */
 exports.read = function (req, res) {
-  Atencion.findOne({ id_atencion: req.params.atencionId }, function (err, paciente){
+  Atencion.findOne({ _id: req.params.atencionId }, function (err, paciente){
       return res.json(paciente);
   });
 };
@@ -50,7 +50,7 @@ exports.read = function (req, res) {
  * Update a Atencione
  */
 exports.update = function (req, res) {
-  Atencion.findOne({ id_atencion: req.params.atencionId }, function (err, atencion){
+  Atencion.findOne({ _id: req.params.atencionId }, function (err, atencion){
     if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
@@ -126,7 +126,7 @@ exports.delete = function (req, res) {
     
   });*/
 
-    Atencion.findOneAndRemove({ id_atencion: req.params.atencionId })
+    Atencion.findOneAndRemove({ _id: req.params.atencionId })
     .then(atencion => {
       return res.json(atencion);
     })

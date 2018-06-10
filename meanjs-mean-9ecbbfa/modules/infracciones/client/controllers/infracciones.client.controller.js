@@ -24,7 +24,7 @@
         var len;
         var datos = response.data;
 
-        $http.get('http://localhost:8000/api/tipo_infracciones').
+        $http.get('http://localhost:8000/api/infracciones/tipos').
         then(function(response) {
             len = Object.keys(response.data).length;
             //dict = new Array(len);

@@ -44,7 +44,7 @@ class TuristaController extends Controller
         $data = $request->all();
         
         $turista = new Turista;
-        $turista->nombre = $data['nombre_'];
+        $turista->nombre = $data['nombre'];
         $turista->apellido = $data['apellido'];
         $turista->nro_documento = $data['nro_documento'];
         $turista->nacionalidad_id = $data['nacionalidad_id'];
@@ -97,7 +97,7 @@ class TuristaController extends Controller
         $turista = Turista::find($id);
 
         if (!empty($turista)) {
-            $turista->nombre = $data['nombre_'];
+            $turista->nombre = $data['nombre'];
             $turista->apellido = $data['apellido'];
             //$turista->nro_documento = $data['nro_documento'];
             //$turista->nacionalidad_id = $data['nacionalidad_id'];

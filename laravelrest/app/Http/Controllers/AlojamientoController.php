@@ -41,9 +41,9 @@ class AlojamientoController extends Controller
     {
         //
         $data = $request->all();
-
+        
         $alojamiento = new Alojamiento;
-        $alojamiento->nombre = $data['nombre_'];
+        $alojamiento->nombre = $data['nombre'];
         $alojamiento->direccion = $data['direccion'];
         $alojamiento->categoria = $data['categoria'];
         $alojamiento->cantidad_habitaciones = $data['cantidad_habitaciones'];
@@ -93,7 +93,7 @@ class AlojamientoController extends Controller
         $alojamiento = Alojamiento::find($id);
 
         if (!empty($alojamiento)) {
-            $alojamiento->nombre = $data['nombre_'];
+            $alojamiento->nombre = $data['nombre'];
             //$alojamiento->direccion = $data['direccion'];
             $alojamiento->categoria = $data['categoria'];
             //$alojamiento->cantidad_habitaciones = $data['cantidad_habitaciones'];

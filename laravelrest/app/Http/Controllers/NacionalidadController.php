@@ -42,7 +42,7 @@ class NacionalidadController extends Controller
         $data = $request->all();
 
         $nacionalidad = new Nacionalidad;
-        $nacionalidad->nombre = $data['nombre_'];
+        $nacionalidad->nombre = $data['nombre'];
         $nacionalidad->save();
 
         return response()->json(
@@ -103,7 +103,7 @@ class NacionalidadController extends Controller
         $nacionalidad = Nacionalidad::find($id);
 
         if (!empty($nacionalidad)) {
-            $nacionalidad->nombre = $data['nombre_'];
+            $nacionalidad->nombre = $data['nombre'];
             $nacionalidad->update();
         }
         return response()->json(

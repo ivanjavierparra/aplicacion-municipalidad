@@ -33,7 +33,7 @@ exports.create = function (req, res) {
  * Show the current Problema
  */
 exports.read = function (req, res) {
-  Problema.findOne({ id_problema: req.params.problemaId }, function (err, problema){
+  Problema.findOne({ _id: req.params.problemaId }, function (err, problema){
     return res.json(problema);
   });
 };
@@ -51,7 +51,7 @@ exports.update = function (req, res) {
     });
   }
 
-  Problema.findOne({ id_problema: req.params.problemaId }, function (err, problema){
+  Problema.findOne({ _id: req.params.problemaId }, function (err, problema){
     if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
@@ -87,7 +87,7 @@ exports.delete = function (req, res) {
           }
         });*/
 
-        Problema.findOneAndRemove({ id_problema: req.params.problemaId })
+        Problema.findOneAndRemove({ _id: req.params.problemaId })
         .then(problema => {
           return res.json(problema);
         })

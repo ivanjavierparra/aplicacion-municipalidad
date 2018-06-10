@@ -33,7 +33,7 @@ exports.create = function (req, res) {
  * Show the current Suceso
  */
 exports.read = function (req, res) {
-    Suceso.findOne({ id_suceso: req.params.sucesoId }, function (err, suceso){
+    Suceso.findOne({ _id: req.params.sucesoId }, function (err, suceso){
       return res.json(suceso);
     });
 };
@@ -48,13 +48,14 @@ exports.update = function (req, res) {
       });
     }
 
-    Suceso.findOne({ id_suceso: req.params.sucesoId }, function (err, suceso){
+    Suceso.findOne({ _id: req.params.sucesoId }, function (err, suceso){
       if (err) {
           return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
           });
       } else {
           suceso.nombre = req.body.nombre;
+          suceso.id_suceso = req.body.id_suceso;
           suceso.save();
       }
       return res.json(suceso);
@@ -77,7 +78,7 @@ exports.delete = function (req, res) {
 
         }
       });*/
-      Suceso.findOneAndRemove({ id_suceso: req.params.sucesoId })
+      Suceso.findOneAndRemove({ _id: req.params.sucesoId })
       .then(suceso => {
         return res.json(suceso);
       })

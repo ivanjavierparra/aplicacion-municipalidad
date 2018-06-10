@@ -18,7 +18,7 @@ exports.create = function (req, res) {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     nacionalidad: req.body.nacionalidad, 
-    fechaNacimiento: req.body.fecha,
+    fechaNacimiento: req.body.fechaNacimiento,
     sexo: req.body.sexo
   });
 
@@ -38,7 +38,7 @@ exports.create = function (req, res) {
  * Show the current Paciente
  */
 exports.read = function (req, res) {
-      Paciente.findOne({ dni: req.params.pacienteId }, function (err, paciente){
+      Paciente.findOne({ _id: req.params.pacienteId }, function (err, paciente){
           return res.json(paciente);
       });
 };
@@ -49,7 +49,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
     
 
-    Paciente.findOne({ dni: req.params.pacienteId }, function (err, paciente){
+    Paciente.findOne({ _id: req.params.pacienteId }, function (err, paciente){
       if (err) {
           return res.status(422).send({
             message: errorHandler.getErrorMessage(err)
@@ -58,7 +58,7 @@ exports.update = function (req, res) {
           if(req.body.nombre) paciente.nombre = req.body.nombre;
           if(req.body.apellido) paciente.apellido = req.body.apellido;
           if(req.body.nacionalidad) paciente.nacionalidad = req.body.nacionalidad;
-          if(req.body.fecha) paciente.fechaNacimiento = req.body.fecha;
+          if(req.body.fecha) paciente.fechaNacimiento = req.body.fechaNacimiento;
           if(req.body.sexo) paciente.sexo = req.body.sexo;
           paciente.save();
       }
@@ -84,7 +84,7 @@ exports.delete = function (req, res) {
 
       }
     });*/
-    Paciente.findOneAndRemove({ dni: req.params.pacienteId })
+    Paciente.findOneAndRemove({ _id: req.params.pacienteId })
     .then(paciente => {
       return res.json(paciente);
     })
