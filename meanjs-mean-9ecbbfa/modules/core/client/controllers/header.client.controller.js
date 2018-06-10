@@ -20,6 +20,11 @@
     function stateChangeSuccess() {
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
+      /*if(vm.isCollapsed){
+        vm.isCollapsed = false;
+      }else{
+        vm.isCollapsed = true;
+      }*/
     }
   }
 }());

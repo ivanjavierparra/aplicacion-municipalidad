@@ -6,7 +6,21 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a ui-sref="home" class="navbar-brand">MEAN.JS</a>
+    
+    <a ui-sref="home" class="navbar-brand">
+        <!--<img alt="MEAN.JS" class="img-responsive text-center" src="/public/assets/img/homero.png" />  -->
+        <!--<img ng-src="/modules/users/client/img/profile/homero.png" height="42" width="42" alt="mean mean" class="header-profile-image" src="/modules/users/client/img/profile/default.png">-->
+        <div>
+            <p style="float: left;"><img ng-src="/modules/users/client/img/profile/homero.png" height="42" width="42" alt="mean mean" class="header-profile-image" src="/modules/users/client/img/profile/default.png"></p>
+            <p style="float: right;">MUNICIPALIDAD DE SPRINGFIELD</p>
+        </div>
+              
+    </a>
+
+
+    
+
+
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
