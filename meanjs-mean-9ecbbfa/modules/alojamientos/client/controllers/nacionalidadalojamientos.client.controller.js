@@ -35,10 +35,10 @@
                     var longitud_turistas = Object.keys(response.data).length;
                     var turistas = response.data;
 
-                    console.log("entre a turistas...");
+                    //console.log("entre a turistas...");
                     $http.get('http://localhost:8000/api/estadias')
                         .then(function(response) {
-                          console.log("entre a estadias...");
+                         // console.log("entre a estadias...");
                                 var longitud_estadias = Object.keys(response.data).length;
                                 var estadias = response.data;
                                 for(var i=0;i<longitud_estadias;i++){
@@ -49,7 +49,7 @@
                                   //console.log("año: " + año);
                       
                                   if((year>2009)&&(year<2019)){
-                                        console.log("entre");
+                                        //console.log("entre");
                                         // recorro los turistas para obtener nacionalidad_id
                                         for(var j=0;j<longitud_turistas;j++){
                                               if(turista_id==turistas[j].id){
@@ -58,7 +58,7 @@
                                                         if(turistas[j].nacionalidad_id==nacionalidades[k].id){
                                                             var nombre = nacionalidades[k].nombre;
                                                             dict[nombre] = dict[nombre] + 1;// aca sumo cantidad_turistas_alojados
-                                                            console.log("nombre: " + nombre);
+                                                            //console.log("nombre: " + nombre);
                                                             break;
                                                         }
                                                     }

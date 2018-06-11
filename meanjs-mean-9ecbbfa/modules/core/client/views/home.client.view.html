@@ -548,6 +548,21 @@
       <button id="1" ng-click="filtrar($event)">Filtrar</button>
     </div>
 
+    
+    <h1>TURISMO - ALOJAMIENTO - GRAFICO 2</h1>
+    <div ng-controller="TiposExcursionesController">
+     
+        {{grafico}}
+      <br>
+      fecha desde <input id="bday-month" type="month" name="bday-month"
+      min="2010-01" max="2018-12" ng-model="data.fdesde">
+      <br>
+      fecha hasta <input id="bday-month" type="month" name="bday-month"
+      min="2010-01" max="2018-12" ng-model="data.fhasta">
+      <br>
+      <button id="1" ng-click="filtrar($event)">Filtrar</button>
+    </div>
+
 
 
     <h1>TURISMO - ALOJAMIENTO - GRAFICO 3</h1>
@@ -565,6 +580,23 @@
         {{graficos}}
       
     </div>
+
+
+
+
+    <h1>DENUNCIAS - GRAFICO 1</h1>
+    <div ng-controller="DenunciasController">
+      {{graficos}}
+      <br>
+      fecha desde <input id="bday-month" type="month" name="bday-month"
+      min="2010-01" max="2018-12" ng-model="data.fdesde">
+      <br>
+      fecha hasta <input id="bday-month" type="month" name="bday-month"
+      min="2010-01" max="2018-12" ng-model="data.fhasta">
+      <br>
+      <button id="1" ng-click="filtrar($event)">Filtrar</button>
+    </div>
+
 <!-- FIN DATOS DE PRUEBA-->
 
 </section>
