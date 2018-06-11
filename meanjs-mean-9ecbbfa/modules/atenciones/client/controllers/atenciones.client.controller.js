@@ -13,16 +13,16 @@
   }*/
 
   function AtencionesController($scope, $http) {
-    $http.get('http://localhost:3000/api/atenciones').
-    then(function(response) {
+    $http.get('http://localhost:3000/api/atenciones')
+    .then(function(response) {
         var longitud = Object.keys(response.data).length;
         var dict = {};
         var key;
         var len;
         var datos = response.data;
 
-        $http.get('http://localhost:3000/api/problemas').
-        then(function(response) {
+        $http.get('http://localhost:3000/api/problemas')
+        .then(function(response) {
             len = Object.keys(response.data).length;
             //dict = new Array(len);
             for(var i=0;i<len;i++){

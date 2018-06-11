@@ -8,8 +8,8 @@
   
 
   function SucesosController($scope, $http) {
-    $http.get('http://localhost:3000/api/atenciones').
-    then(function(response) {
+    $http.get('http://localhost:3000/api/atenciones')
+    .then(function(response) {
         var longitud = Object.keys(response.data).length;
         var dict = {};
         var key;
@@ -38,15 +38,16 @@
         
         $scope.longitud = longitud;
         for(var i=0;i<longitud;i++){
-           var fecha = response.data[i].fecha.toString().substring(0,4);
-           var year = parseInt(fecha);
-
-             if((year>2009)&&(year<2019)){
-             if(response.data[i].muerto){
-                $scope.grafico[fecha] = $scope.grafico[fecha] + 1;
-             }
-             
-           }
+            if(response.data[i].suceso == 1){//el 2 es violencia de genero
+                var fecha = response.data[i].fecha.toString().substring(0,4);
+                var year = parseInt(fecha);
+    
+                if((year>2009)&&(year<2019)){
+                    if(response.data[i].muerto){
+                        $scope.grafico[fecha] = $scope.grafico[fecha] + 1;
+                    }
+                }
+            }
         }
 
         
