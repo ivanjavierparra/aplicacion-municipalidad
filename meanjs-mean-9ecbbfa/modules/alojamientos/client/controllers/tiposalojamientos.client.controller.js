@@ -8,75 +8,64 @@
   
 
   function TiposAlojamientosController($scope, $http) {
-    $http.get('http://localhost:8000/api/estadias').
-    then(function(response) {
-        var longitud = Object.keys(response.data).length;
-        var dict = {};
-        var key;
-        var len;
-        var datos = response.data;
+    $scope.data = {};
+    $scope.filtrar = ($event) => {
+      //console.log($scope);  
+      //console.log($scope.data.fdesde);
+      //console.log($scope.data.fhasta);
+      if((!$scope.data.fdesde) || (!$scope.data.fhasta)){
+        console.log("no ingreso fecha");
+        return;
+      }
+      var fdesde = $scope.data.fdesde.getTime();
+      var fhasta = $scope.data.fhasta.getTime();
 
-        $http.get('http://localhost:8000/api/alojamientos').
-        then(function(response) {
-            len = Object.keys(response.data).length;
-            
+      $http.get('http://localhost:8000/api/estadias')
+        .then(function(response) {
+            var longitud = Object.keys(response.data).length;
+            var dict = {};
+            var key;
+            var len;
+            var datos = response.data;
 
+            $http.get('http://localhost:8000/api/alojamientos')
+                .then(function(response) {
+                    len = Object.keys(response.data).length;
+                    
+                    $scope.grafico = {};
+                    $scope.grafico["5 Estrellas"] = 0;
+                    $scope.grafico["4 Estrellas"] = 0;
+                    $scope.grafico["3 Estrellas"] = 0;
+                    $scope.grafico["2 Estrellas"] = 0;
+                    $scope.grafico["1 Estrellas"] = 0;
+                    $scope.grafico["Apart Hotel"] = 0;
+                    $scope.grafico["Motel"] = 0;
 
-            //creo mi diccionario de categorias de estadias
-            for(var i=0;i<len;i++){
-              key = parseInt(response.data[i].id);
-              dict[key] = 0 ;
-            }
+                    //recorro las estadias
+                    for(var i=0;i<longitud;i++){
+                        //console.log(datos[i].fecha_desde);
+                        var fecha_estadia = datos[i].fecha_desde;
+                        fecha_estadia = new Date(fecha_estadia);
+                        fecha_estadia = fecha_estadia.getTime();
+                        if((fecha_estadia>=fdesde)&&(fecha_estadia<=fhasta)){
+                          var id_alojamiento = datos[i].alojamiento_id;
+                          //recorro los alojamientos
+                          for(var j=0;j<len;j++){
+                              if(response.data[j].id==id_alojamiento){
+                                  var categoria = response.data[j].categoria;
+                                  $scope.grafico[categoria] = $scope.grafico[categoria] + 1; //aca: si son varios turistas, aca sumo la cant de turistas.
+                              }
+                          }
+                        }
+                        
+                    }
+                });//fin get alojamientos
 
+        });//fin get estadias
 
-            //recorro mis estadias
-            for(var j=0;j<longitud;j++){
-              key = parseInt(datos[j].alojamiento_id);
-              dict[key] = dict[key] + 1;
-            }
-
-
-            //cambio la clave por el nombre de la categoria
-            var resultado = {};
-            for (key in dict) {
-              // Hacer algo con la clave key
-              for(var i=0;i<len;i++){
-                if(response.data[i].id==key){
-                  resultado[response.data[i].categoria] = dict[key];
-                }
-              }
-            }
-
-
-
-            $scope.graficos = {};
-            for (key in dict) {
-              // Hacer algo con la clave key
-              for(var i=0;i<len;i++){
-                if(response.data[i].id==key){
-                  $scope.graficos[response.data[i].categoria] = dict[key];
-                }
-              }
-            }
-            
-           // for (var i = 0, l = $scope.datos.length; i < l; i++) {
-             // $scope.telephone[i.toString()] = $scope.phone[i];
-           // }
-
-            
-            $scope.saludo = "Hola Mundo!";
-            $scope.datos1= datos[0].problema;
-            $scope.prob = resultado;
-            
-
-        });
-
-        
-
-
-        
-    });
-  }
+    }//fin filtrar
+    
+  }//fin tipoalojamientoscontroller
 
   
 

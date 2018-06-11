@@ -8,8 +8,8 @@
   
 
   function CrecimientoInfraccionesController($scope, $http) {
-    $http.get('http://localhost:8000/api/infracciones').
-    then(function(response) {
+    $http.get('http://localhost:8000/api/infracciones')
+    .then(function(response) {
         var longitud = Object.keys(response.data).length;
         var dict = {};
         var key;

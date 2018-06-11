@@ -8,16 +8,16 @@
   
 
   function SexoInfraccionesController($scope, $http) {
-    $http.get('http://localhost:8000/api/infracciones').
-    then(function(response) {
+    $http.get('http://localhost:8000/api/infracciones')
+    .then(function(response) {
         var longitud = Object.keys(response.data).length;
         var dict = {};
         var key;
         var len;
         var datos = response.data;//infracciones
 
-        $http.get('http://localhost:8000/api/infractores').
-        then(function(response) {
+        $http.get('http://localhost:8000/api/infractores')
+        .then(function(response) {
             len = Object.keys(response.data).length;
             //dict = new Array(len);
 
