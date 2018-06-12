@@ -28,7 +28,7 @@
         //fdesde = new Date(fdesde);
         //fhasta = fhasta.substring(0,10);
 
-        $http.get('http://localhost:8080/api/excursiones/tipos/')
+        $http.get('http://127.0.0.1:8080/api/excursiones/tipos/')
             .then(function(response) {
                 var longitud_tipos_de_excursion = Object.keys(response.data).length;
                 var dict = {};
@@ -44,7 +44,7 @@
                 }
                 
 
-                $http.get('http://localhost:8080/api/excursiones/')
+                $http.get('http://127.0.0.1:8080/api/excursiones/')
                     .then(function(response) {
                         var longitud_excursiones = Object.keys(response.data).length;
                         var excursiones = response.data;
