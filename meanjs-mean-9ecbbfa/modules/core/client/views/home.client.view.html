@@ -495,9 +495,11 @@
     <!--grafico 3: muertes por violencia de generro por año vs denuncias pr violencia de genero  -->
     <h1>SALUD - GRAFICO 3</h1>
     <div ng-controller="SucesosController">
-      {{grafico}}
+      Muertes por violencia de genero: {{grafico}}
     </div>
-    
+    <div ng-controller="ViolenciasDenunciasController">
+      Denuncias por violencia de genero:  {{grafico}}
+    </div>
     
     
     
@@ -519,8 +521,9 @@
     
     <h1>INFRACCIONES - GRAFICO 2</h1>
     <div ng-controller="SexoInfraccionesController">
-      {{graficos}}
-    
+    total: {{graficos}} <br>
+    total masculino: {{graficosMasculino}} <br>
+    total femenino: {{graficosFemenino}} <br>
     </div>
     
     
@@ -588,13 +591,6 @@
     <div ng-controller="DenunciasController">
       {{graficos}}
       <br>
-      fecha desde <input id="bday-month" type="month" name="bday-month"
-      min="2010-01" max="2018-12" ng-model="data.fdesde">
-      <br>
-      fecha hasta <input id="bday-month" type="month" name="bday-month"
-      min="2010-01" max="2018-12" ng-model="data.fhasta">
-      <br>
-      <button id="1" ng-click="filtrar($event)">Filtrar</button>
     </div>
 
 <!-- FIN DATOS DE PRUEBA-->
