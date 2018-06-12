@@ -62,7 +62,7 @@
 
             
             $scope.saludo = "Hola Mundo!";
-            $scope.datos1= datos[0].problema;
+            //$scope.datos1= datos[0].problema;
             $scope.prob = resultado;
 
             $scope.labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];

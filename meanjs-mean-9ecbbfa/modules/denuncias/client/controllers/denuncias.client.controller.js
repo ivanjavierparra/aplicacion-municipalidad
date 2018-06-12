@@ -10,7 +10,7 @@
   function DenunciasController($scope, $http) {
     
 
-        $http.get('http://localhost:8080/api/denuncias/tipos/')
+        $http.get('http://127.0.0.1:8080/api/denuncias/tipos/')
             .then(function(response) {
                 var longitud_tipos_denuncias = Object.keys(response.data).length;
                 var dict = {};
@@ -25,7 +25,7 @@
                 }
 
 
-                $http.get('http://localhost:8080/api/denuncias/')
+                $http.get('http://127.0.0.1:8080/api/denuncias/')
                 .then(function(response) {
                     var longitud_denuncias = Object.keys(response.data).length;
                     var denuncias = response.data;

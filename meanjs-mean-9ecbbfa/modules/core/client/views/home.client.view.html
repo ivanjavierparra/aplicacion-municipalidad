@@ -14,7 +14,7 @@
 <!--ACA ESTA EL GRAFICO:  el controlador esta en modules/atenciones/client/controllers/atenciones.client.controller.js -->
 <div class="row">
     <!--GRAFICO 1-->
-    <div class="col-md-4 col-centered text-center" ng-controller="AtencionesController">
+    <div class="col-md-4 col-centered text-center" ng-controller="InfraccionesController">
         <div class="card">
             <div class="header">
                 <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
@@ -23,36 +23,25 @@
                     <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
                     placeholder="yyyy-MM-dd"  required />-->
                     <input id="bday-month" type="month" name="bday-month"
-                    min="1900-01" max="1999-12" ng-model="data.fdesde">
+                    min="2009-01" max="2020-12" ng-model="data.fdesde">
                 </p>
                 <br>
                 <p class="category">Fecha Hasta 
                   <!--<input type="date" id="fhasta" name="input" ng-model="data.fhasta"
                   placeholder="yyyy-MM-dd" required />-->
                   <input id="bday-month" type="month" name="bday-month"
-                    min="1900-01" max="1999-12" ng-model="data.fhasta">
+                    min="2009-01" max="2020-12" ng-model="data.fhasta">
                 </p>
                 <br>
-                <center><button type="button" class="btn btn-default">Filtrar</button></center>
+                <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
             </div>
             <div class="content">
                 
                 <canvas id="pie" class="chart chart-pie"
-                chart-options="options" chart-data="data" chart-labels="labels"
+                chart-options="options" chart-data="datos_label" chart-labels="labels"
                 chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                 </canvas>
 
-                <div class="footer">
-                    <div class="legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Bounce
-                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -69,26 +58,18 @@
             <div class="content">
                 
                 <canvas id="pie" class="chart chart-bar"
-                chart-options="options" chart-data="data" chart-labels="labels"
+                chart-options="options" chart-data="" chart-labels=""
                 chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                 </canvas>
 
                 <div class="footer">
-                    <div class="legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Bounce
-                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
     <!--GRAFICO 3-->
-    <div class="col-md-4 text-center" ng-controller="AtencionesController">
+    <div class="col-md-4 text-center" ng-controller="CrecimientoInfraccionesController">
         <div class="card">
             <div class="header">
                 <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
@@ -101,20 +82,12 @@
             <div class="content">
                 
                 <canvas id="pie" class="chart chart-line"
-                chart-options="options" chart-data="data" chart-labels="labels"
+                chart-options="options" chart-data="datos_label" chart-labels="labels"
                 chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                 </canvas>
 
                 <div class="footer">
-                    <div class="legend">
-                        <i class="fa fa-circle text-info"></i> Open
-                        <i class="fa fa-circle text-danger"></i> Bounce
-                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                    </div>
-                    <hr>
-                    <div class="stats">
-                        <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -514,6 +487,8 @@
       min="2010-01" max="2018-12" ng-model="data.fhasta">
       <br>
       <button id="1" ng-click="filtrar($event)">Filtrar</button>
+      {{labels}}
+      {{datos_label}}
     </div>
     
     
