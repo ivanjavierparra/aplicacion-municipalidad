@@ -552,7 +552,7 @@
     </div>
 
     
-    <h1>TURISMO - ALOJAMIENTO - GRAFICO 2</h1>
+    <h1>TURISMO - EXCURSIONES - GRAFICO 2</h1>
     <div ng-controller="TiposExcursionesController">
      
         {{grafico}}
@@ -571,19 +571,27 @@
     <h1>TURISMO - ALOJAMIENTO - GRAFICO 3</h1>
     <div ng-controller="CrecimientoAlojamientosController">
      
-        {{graficos}}
+      Crecimiento Alojamientos:  {{graficos}}
       
     </div>
-
+    <div ng-controller="CrecimientoExcursionesController">
+     
+      Crecimiento Excursiones:  {{graficos}}
+      
+    </div>
     
     
     <h1>TURISMO - ALOJAMIENTO - GRAFICO 4</h1>
     <div ng-controller="NacionalidadAlojamientosController">
      
-        {{graficos}}
+        Alojamientos por nacionalidad:   {{graficos}}
       
     </div>
-
+    <div ng-controller="NacionalidadExcursionesController">
+     
+        Excursiones por nacionalidad: {{graficos}}
+      
+    </div>
 
 
 
