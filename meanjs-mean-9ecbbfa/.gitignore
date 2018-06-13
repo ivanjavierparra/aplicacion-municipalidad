@@ -81,3 +81,4 @@ mongod
 *.sln
 
 djangorest/db.sqlite3
+*.orig
