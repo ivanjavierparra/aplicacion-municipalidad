@@ -41,7 +41,8 @@ module.exports = {
         'public/assets/js/chartist.min.js',
         'public/assets/js/bootstrap-notify.js',
         'public/assets/js/light-bootstrap-dashboard.js',
-        'public/assets/js/demo.js'
+        'public/assets/js/demo.js',
+        'public/assets/js/ui-bootstrap.min.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

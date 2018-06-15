@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Atencion = mongoose.model('Atencion'),
+  Paciente = mongoose.model('Paciente'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -156,7 +157,7 @@ exports.list = function (req, res) {
  * List of Atenciones
  */
 exports.readproblema = function (req, res) {
-  Atencion.find({problema : req.params.problemaId}).exec(function (err, atenciones) {
+  Atencion.find({ problema : req.params.problemaId }).exec(function (err, atenciones) {
     if (err) {
       return res.json({
         message: errorHandler.getErrorMessage(err)
@@ -172,7 +173,7 @@ exports.readproblema = function (req, res) {
  * List of Atenciones
  */
 exports.readsuceso = function (req, res) {
-  Atencion.find({suceso : req.params.sucesoId}).exec(function (err, atenciones) {
+  Atencion.find({ suceso : req.params.sucesoId }).exec(function (err, atenciones) {
     if (err) {
       return res.json({
         message: errorHandler.getErrorMessage(err)
@@ -182,3 +183,41 @@ exports.readsuceso = function (req, res) {
     }
   });
 };
+
+exports.readpaciente = function (req, res) {
+  Atencion.find({ paciente : req.params.pacienteId}).exec(function (err, atenciones) {
+    if (err) {
+      return res.json({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(atenciones);
+    }
+  });
+};
+
+/*
+exports.readPacienteAtendido = function (req, res) {
+  Atencion.find({ _id : req.params.atencionId }).exec(function (err, atenciones) {
+    if (err) {
+      return res.json({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+        console.log("################## "  +  atenciones );
+        
+        
+
+        Paciente.find({ _id : atenciones.paciente }).exec(function (err, pacientes) {
+            if (err) {
+              return res.json({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              res.json(pacientes);
+            }  
+        
+        });
+    }
+  });
+};*/
