@@ -1,0 +1,14 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.atencion.fecha"></h1>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span ng-bind="vm.atencion.doctor"></span>
+      by
+      <span ng-bind="vm.atencion.user.descripcion"></span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.atencion.lugar"></p>
+</section>

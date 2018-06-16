@@ -196,11 +196,11 @@ exports.readpaciente = function (req, res) {
   });
 };
 
-/*
+
 exports.readPacienteAtendido = function (req, res) {
   Atencion.find({ _id : req.params.atencionId }).exec(function (err, atenciones) {
     if (err) {
-      return res.json({
+      res.json({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
@@ -210,14 +210,15 @@ exports.readPacienteAtendido = function (req, res) {
 
         Paciente.find({ _id : atenciones.paciente }).exec(function (err, pacientes) {
             if (err) {
-              return res.json({
+              res.json({
                 message: errorHandler.getErrorMessage(err)
               });
             } else {
+              console.log("################## "  +  pacientes );
               res.json(pacientes);
             }  
         
         });
     }
   });
-};*/
+};

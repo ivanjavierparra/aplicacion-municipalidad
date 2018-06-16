@@ -1,0 +1,17 @@
+<section>
+  <div class="page-header">
+    <h1>Pacientes</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="paciente in vm.pacientes" ui-sref="pacientes.view({ pacienteId: paciente._id })" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="paciente.nombre"></span>
+        by
+        <span ng-bind="paciente.fechaNacimiento"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="paciente.dni"></h4>
+      <p class="list-group-item-text" ng-bind="paciente.nacionalidad"></p>
+    </a>
+  </div>
+</section>

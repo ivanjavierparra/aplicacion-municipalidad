@@ -25,8 +25,8 @@ module.exports = function(app) {
   app.route('/api/atenciones/pacientes/:pacienteId')
     .get(atenciones.readpaciente)
   
-  //app.route('/api/atenciones/:atencionId/pacientes')
-    //.get(atenciones.readPacienteAtendido)
+  app.route('/api/atenciones/:atencionId/pacientes')
+    .get(atenciones.readPacienteAtendido)
   
   // Finish by binding the article middleware
   //app.param('pacienteId', pacientes.articleByID);
