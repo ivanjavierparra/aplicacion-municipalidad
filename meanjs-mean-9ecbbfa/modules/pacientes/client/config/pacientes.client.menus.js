@@ -17,7 +17,7 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'pacientes', {
-      title: 'List Pacientes',
+      title: 'Listar Pacientes',
       state: 'pacientes.list',
       roles: ['*']
     });

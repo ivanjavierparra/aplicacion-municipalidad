@@ -10,7 +10,7 @@
 
   function menuConfig(Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Pacientes',
+      title: 'Gestionar Pacientes',
       state: 'admin.pacientes.list'
     });
   }

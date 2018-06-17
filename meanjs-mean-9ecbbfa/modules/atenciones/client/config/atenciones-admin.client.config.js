@@ -10,7 +10,7 @@
 
   function menuConfig(Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Atenciones',
+      title: 'Gestionar Atenciones',
       state: 'admin.atenciones.list'
     });
   }

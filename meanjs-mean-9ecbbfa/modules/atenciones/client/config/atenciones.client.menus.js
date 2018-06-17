@@ -17,7 +17,7 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'atenciones', {
-      title: 'List Atenciones',
+      title: 'Listar Atenciones',
       state: 'atenciones.list',
       roles: ['*']
     });

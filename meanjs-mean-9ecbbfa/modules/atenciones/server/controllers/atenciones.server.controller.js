@@ -33,7 +33,7 @@ exports.create = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       } else {
-        res.json(atencion);
+        return res.json(atencion);
       }
     });
 };
@@ -163,7 +163,7 @@ exports.readproblema = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(atenciones);
+      return res.json(atenciones);
     }
   });
 };
@@ -179,7 +179,7 @@ exports.readsuceso = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(atenciones);
+      return res.json(atenciones);
     }
   });
 };
@@ -191,7 +191,7 @@ exports.readpaciente = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(atenciones);
+     return res.json(atenciones);
     }
   });
 };
@@ -205,7 +205,7 @@ exports.readPacienteAtendido = function (req, res) {
       });
     } else {
         console.log("################## "  +  atenciones );
-        
+        console.log("################## "  +  atenciones.paciente );
         
 
         Paciente.find({ _id : atenciones.paciente }).exec(function (err, pacientes) {
