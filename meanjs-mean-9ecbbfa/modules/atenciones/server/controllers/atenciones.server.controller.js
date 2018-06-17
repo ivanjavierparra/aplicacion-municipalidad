@@ -154,7 +154,7 @@ exports.list = function (req, res) {
 };
 
 /**
- * List of Atenciones
+ * Devuelve todas las atenciones de un problema.
  */
 exports.readproblema = function (req, res) {
   Atencion.find({ problema : req.params.problemaId }).exec(function (err, atenciones) {
@@ -170,7 +170,7 @@ exports.readproblema = function (req, res) {
 
 
 /**
- * List of Atenciones
+ * Devuelve todas las atenciones de un suceso.
  */
 exports.readsuceso = function (req, res) {
   Atencion.find({ suceso : req.params.sucesoId }).exec(function (err, atenciones) {
@@ -184,6 +184,12 @@ exports.readsuceso = function (req, res) {
   });
 };
 
+
+/**
+ * Devuelve todas las atenciones de un paciente.
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.readpaciente = function (req, res) {
   Atencion.find({ paciente : req.params.pacienteId}).exec(function (err, atenciones) {
     if (err) {
@@ -196,7 +202,11 @@ exports.readpaciente = function (req, res) {
   });
 };
 
-
+/**
+ * Dada una atencion medica, devuelvo el paciente atendido.
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.readPacienteAtendido = function (req, res) {
   Atencion.find({ _id : req.params.atencionId }).exec(function (err, atenciones) {
     if (err) {
@@ -204,11 +214,17 @@ exports.readPacienteAtendido = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-        console.log("################## "  +  atenciones );
-        console.log("################## "  +  atenciones.paciente );
+        console.log("################## "  + typeof atenciones );
+        //console.log("################## "  +  JSON.stringify(atenciones) );
+        atenciones = JSON.stringify(atenciones);
+        atenciones = JSON.parse(atenciones);
+        console.log("################## "  + atenciones[0].paciente );
+        
+        
+        
         
 
-        Paciente.find({ _id : atenciones.paciente }).exec(function (err, pacientes) {
+        Paciente.find({ _id : atenciones[0].paciente }).exec(function (err, pacientes) {
             if (err) {
               res.json({
                 message: errorHandler.getErrorMessage(err)

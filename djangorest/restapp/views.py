@@ -247,6 +247,22 @@ def excursion_detail(request, id):
         excursion.delete()
         return HttpResponse(status=204)
 
+@csrf_exempt
+def excursion_tipos(request, id):
+    """
+    Devuelve, todas las excursion de un tipo determinado.
+    """
+    try:
+        excursiones = Excursion.objects.all().filter(tipo=id)
+        
+    except Excursion.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = ExcursionSerializer(excursiones, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    
 
 ################################### Tipo Denuncia ###################################
 
@@ -390,3 +406,57 @@ def denuncia_detail(request, id):
     elif request.method == 'DELETE':
         denuncia.delete()
         return HttpResponse(status=204)
+
+@csrf_exempt
+def denuncia_detail_denunciantes(request, id):
+    """
+    Devuelve el denunciante de una denuncia.
+    """
+    
+    try:
+        denuncia = Denuncia.objects.get(id=id)
+        if request.method == 'GET':
+            print("############################")
+            print(denuncia.denunciante.id)
+            print("############################")
+            denunciante = Denunciante.objects.get(id=denuncia.denunciante.id)
+            print("############################")
+            print(denunciante)
+            print("############################")
+            serializer = DenuncianteSerializer(denunciante)
+            return JsonResponse(serializer.data)
+    except Denuncia.DoesNotExist:
+        return HttpResponse(status=404)
+
+
+@csrf_exempt
+def denuncia_denunciante(request, id):
+    """
+    Devuelve todas las denuncias de un denunciante.
+    """
+    try:
+        denuncias = Denuncia.objects.all().filter(denunciante=id)
+        
+    except Denuncia.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = DenunciaSerializer(denuncias, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+   
+@csrf_exempt
+def denuncia_tipos(request, id):
+    """
+    Devuelve todas las denuncias de un tipo determinado.
+    """
+    try:
+        denuncias = Denuncia.objects.all().filter(tipo_denuncia=id)
+        
+    except Denuncia.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = DenunciaSerializer(denuncias, many=True)
+        return JsonResponse(serializer.data, safe=False)
+    

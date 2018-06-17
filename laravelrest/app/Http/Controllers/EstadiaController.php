@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Estadia;
+use App\Alojamiento;
+use App\Turista;
 use Illuminate\Http\Request;
 
 class EstadiaController extends Controller
@@ -125,4 +127,58 @@ class EstadiaController extends Controller
             $resultado
         );
     }
+
+    
+    /**
+     * Retorna todas las estadias de un determinado alojamiento.
+     */
+    public function readAlojamientos($id)
+    {
+        return response()->json(
+            Estadia::where('alojamiento_id','=',$id)->get()
+        );
+    }
+
+    /**
+     * Retorna el alojamiento de una estadia.
+     */
+    public function readAlojamiento($id)
+    {
+
+        $estadia = Estadia::find($id);
+        if($estadia){
+            $alojamiento = Alojamiento::where('id','=',$estadia->alojamiento_id)->get(); 
+            return response()->json(
+                $alojamiento
+            );
+        }
+        else{
+            return response()->json(
+                $estadia
+            );
+        }
+        
+    }
+
+    /**
+     * Retorna el turista de una estadia.
+     */
+    public function readTurista($id)
+    {
+
+        $estadia = Estadia::find($id);
+        if($estadia){
+            $turista = Turista::where('id','=',$estadia->turista_id)->get(); 
+            return response()->json(
+                $turista
+            );
+        }
+        else{
+            return response()->json(
+                $estadia
+            );
+        }
+        
+    }
+
 }
