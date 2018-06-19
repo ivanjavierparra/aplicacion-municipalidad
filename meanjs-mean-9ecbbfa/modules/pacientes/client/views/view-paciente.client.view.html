@@ -104,26 +104,51 @@
                 <!-- Aca van los graficos y tablas -->
                 <div class="content">
                         <div class="container-fluid">
+                            <div class="row">
             
                                 
                                
                                 <div class="page-header">
-                                        <center><h1> Paciente </h1> </center>
-                                       
+                                       <center><header style="font-size: 50px"><span> Paciente: </span><span class="list-group-item-heading" ng-bind="vm.paciente.nombre"></span><span> </span><span class="list-group-item-heading" ng-bind="vm.paciente.apellido"></span></header></center>
                                 </div>
-                                <p class="lead" ng-bind="vm.paciente.nombre"></p>
-                                <p class="lead" ng-bind="vm.paciente.apellido"></p>
-                                <p class="lead" ng-bind="vm.paciente.dni"></p>
-                                      <p class="lead" ng-bind="vm.paciente.nacionalidad"></p>
-                                      <p class="lead" ng-bind="vm.paciente.fechaNacimiento"></p>
+                                
                             
+                                      <div class="row">
+                                            <div class="col-md-8">
+                                              <div class="row">
+                                                <div class="col-md-3"><strong>Nombre</strong></div>
+                                                <div class="col-md-6" ng-bind="vm.paciente.nombre"></div>
+                                              </div>
+                                              <hr/>
+                                              <div class="row">
+                                                <div class="col-md-3"><strong>Apellido</strong></div>
+                                                <div class="col-md-6" ng-bind="vm.paciente.apellido"></div>
+                                              </div>
+                                              <hr/>
+                                              <div class="row">
+                                                <div class="col-md-3"><strong>DNI</strong></div>
+                                                <div class="col-md-6" ng-bind="vm.paciente.dni"></div>
+                                              </div>
+                                              <hr/>
+                                              <div class="row">
+                                                <div class="col-md-3"><strong>Nacionalidad</strong></div>
+                                                <div class="col-md-6" ng-bind="vm.paciente.nacionalidad"></div>
+                                              </div>
+                                              <hr/>
+                                              <div class="row">
+                                                <div class="col-md-3"><strong>Fecha de Nacimiento</strong></div>
+                                                <div class="col-md-6" ng-bind="vm.paciente.fechaNacimiento | date:'MM/dd/yyyy'"></div>
+                                              </div>
+                                              <hr/>
+                                            </div>
+                                          </div>
             
             
             
             
             
             
-            
+                                </div>
                         </div> <!--fin container fluid-->
                 </div><!--fin content-->
         

@@ -119,14 +119,14 @@
                                 </div>
                                 <div class="list-group">
                                         <a data-ng-repeat="atencion in vm.atenciones" data-ui-sref="admin.atenciones.edit({atencionId: atencion._id})" class="list-group-item">
-                                          <small class="list-group-item-text">
-                                            Atendido por
-                                            <span data-ng-bind="atencion.doctor"></span>
-                                            el día
-                                            <span ng-bind="atencion.fecha"></span>
-                                          </small>
-                                          <h4 class="list-group-item-heading" data-ng-bind="atencion.descripcion"></h4>
-                                          <p class="list-group-item-text" data-ng-bind="atencion.lugar"></p>
+                                                <small class="list-group-item-text">
+                                                        Atendido por el Dr.
+                                                        <span ng-bind="atencion.doctor"></span>
+                                                        el día
+                                                        <span ng-bind="atencion.fecha | date:'MM/dd/yyyy'"></span>
+                                                      </small>
+                                                      <p class="list-group-item-text" ng-bind="atencion.lugar"></p>
+                                                    </a>
                                         </a>
                                       </div>
                                       <div class="alert alert-warning text-center" data-ng-if="vm.atenciones.$resolved && !vm.atenciones.length">

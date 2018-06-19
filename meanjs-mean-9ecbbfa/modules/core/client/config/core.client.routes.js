@@ -73,6 +73,27 @@
         data: {
           ignoreState: true
         }
+      })
+      .state('infracciones', {
+        url: '/#',
+        templateUrl: '/modules/core/client/views/infracciones.client.view.html'
+      })
+      .state('denuncias', {
+        url: '/#',
+        templateUrl: '/modules/core/client/views/denuncias.client.view.html'
+      })
+      .state('salud', {
+        url: '/#',
+        templateUrl: '/modules/core/client/views/salud.client.view.html'
+      })
+      .state('turismo', {
+        url: '/#',
+        templateUrl: '/modules/core/client/views/turismo.client.view.html'
+      })
+      .state('acercade', {
+        url: '/#',
+        templateUrl: '/modules/core/client/views/acercade.client.view.html'
       });
+
   }
 }());

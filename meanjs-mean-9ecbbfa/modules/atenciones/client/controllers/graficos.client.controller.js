@@ -4,7 +4,7 @@
   angular
     .module('core')
     .controller('GraficosController', GraficosController);
-
+    
   /*function HelloController($scope, $http) {
     $http.get('http://rest-service.guides.spring.io/greeting').
     then(function(response) {

@@ -113,12 +113,11 @@
                                       <div class="list-group">
                                         <a ng-repeat="atencion in vm.atenciones" ui-sref="atenciones.view({ atencionId: atencion._id })" class="list-group-item">
                                           <small class="list-group-item-text">
-                                            Atendido por
+                                            Atendido por el Dr.
                                             <span ng-bind="atencion.doctor"></span>
                                             el día
-                                            <span ng-bind="atencion.fecha"></span>
+                                            <span ng-bind="atencion.fecha | date:'MM/dd/yyyy'"></span>
                                           </small>
-                                          <h4 class="list-group-item-heading" ng-bind="atencion.descripción"></h4>
                                           <p class="list-group-item-text" ng-bind="atencion.lugar"></p>
                                         </a>
                                 </div>

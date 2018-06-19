@@ -107,31 +107,58 @@
                             
                                 
                                
-                                <div class="page-header">
-                                        <h1 ng-bind="vm.atencion.descripcion"></h1>
-                                </div>
-                                <p>
-                                        <em class="text-muted">
-                                          Atendido por
-                                          <span ng-bind="vm.atencion.doctor"></span>
-                                          el día
-                                          <span ng-bind="vm.atencion.fecha"></span>
-                                        </em>
-                                </p>
                                 
-                                      Paciente
-                                      <p class="lead" ng-bind="vm.atencion.paciente"></p>
-                                      Lugar:  
-                                      <p class="lead" ng-bind="vm.atencion.lugar"></p>
-                                      Problema:
-                                      <p class="lead" ng-bind="vm.atencion.problema"></p>
-                                      Suceso:
-                                      <p class="lead" ng-bind="vm.atencion.suceso"></p>
-                                      Muerto:
-                                      <p class="lead" ng-bind="vm.atencion.muerto"></p>
-                                      
                             
             
+                                      <div class="page-header">
+                                            <center><h1>Atención Médica</h1></center>
+                                     </div>
+                                     
+                                 
+                                           <div class="row">
+                                                 <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-3"><strong>Fecha de Atención</strong></div>
+                                                        <div class="col-md-6" ng-bind="vm.atencion.fecha | date:'MM/dd/yyyy'"></div>
+                                                    </div>
+                                                    <hr/>
+                                                    <div class="row">
+                                                            <div class="col-md-3"><strong>Doctor</strong></div>
+                                                            <div class="col-md-6" ng-bind="vm.atencion.doctor"></div>
+                                                        </div>
+                                                        <hr/>
+                                                   <div class="row">
+                                                     <div class="col-md-3"><strong>Paciente</strong></div>
+                                                     <div class="col-md-6" ng-bind="vm.atencion.paciente"></div>
+                                                   </div>
+                                                   <hr/>
+                                                   <div class="row">
+                                                        <div class="col-md-3"><strong>Descripción</strong></div>
+                                                        <div class="col-md-6" ng-bind="vm.atencion.descripcion"></div>
+                                                      </div>
+                                                      <hr/>
+                                                   <div class="row">
+                                                     <div class="col-md-3"><strong>Lugar</strong></div>
+                                                     <div class="col-md-6" ng-bind="vm.atencion.lugar"></div>
+                                                   </div>
+                                                   <hr/>
+                                                   <div class="row">
+                                                     <div class="col-md-3"><strong>Problema</strong></div>
+                                                     <div class="col-md-6" ng-bind="vm.atencion.problema"></div>
+                                                   </div>
+                                                   <hr/>
+                                                   <div class="row">
+                                                     <div class="col-md-3"><strong>Suceso</strong></div>
+                                                     <div class="col-md-6" ng-bind="vm.atencion.suceso"></div>
+                                                   </div>
+                                                   <hr/>
+                                                   <div class="row">
+                                                     <div class="col-md-3"><strong>Muerto</strong></div>
+                                                     <div class="col-md-6" ng-bind="vm.atencion.muerto"></div>
+                                                   </div>
+                                                   <hr/>
+                                                 </div>
+                                               </div>
             
             
             

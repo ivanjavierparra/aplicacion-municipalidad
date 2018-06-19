@@ -113,18 +113,14 @@
                                 <div class="list-group">
                                         <a ng-repeat="paciente in vm.pacientes" ui-sref="pacientes.view({ pacienteId: paciente._id })" class="list-group-item">
                                           <small class="list-group-item-text">
-                                            El DNI del Paciente "
-                                            <span ng-bind="paciente.nombre"></span>
-                                            <span ng-bind="paciente.apellido"></span>
-                                            " es
-                                            <span ng-bind="paciente.dni"></span>
-                                          </small>
-                                          <h4 class="list-group-item-heading" ng-bind="paciente.nacionalidad"></h4>
-                                          <p class="list-group-item-text" ng-bind="paciente.fechaNacimiento"></p>
+                                            Nacido el día: 
+                                            <span ng-bind="paciente.fechaNacimiento | date:'MM/dd/yyyy'"></span>
+                                            </small>
+                                          <header style="font-size: 24px"><span> Paciente: </span><span class="list-group-item-heading" ng-bind="paciente.nombre"></span><span> </span><span class="list-group-item-heading" ng-bind="paciente.apellido"></span></header>
                                         </a>
                                 </div>
                             
-            
+                                
             
             
             
