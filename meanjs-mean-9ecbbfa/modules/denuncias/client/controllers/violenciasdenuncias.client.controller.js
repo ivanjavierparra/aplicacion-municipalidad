@@ -96,6 +96,8 @@
             for (i in $scope.muertes){
               $scope.datos_muertes.push($scope.muertes[i]);
             }
+
+            $scope.series = ["Muertes","Denuncias"];
     
 
         });

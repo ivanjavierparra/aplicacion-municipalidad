@@ -109,7 +109,7 @@
               $scope.datos_label_f.push($scope.graficosFemenino[label_f]);
             }
 
-
+            $scope.series = ["Masculino", "Femenino"];
            
 
         });

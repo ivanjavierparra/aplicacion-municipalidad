@@ -17,6 +17,7 @@
                 .then(function(response) {
                       var longitud = Object.keys(response.data).length;
                       var id_problema_seleccionado = response.data.id_problema;
+                      $scope.series = response.data.nombre;
 
                       $http.get('http://localhost:3000/api/atenciones')
                           .then(function(response) {

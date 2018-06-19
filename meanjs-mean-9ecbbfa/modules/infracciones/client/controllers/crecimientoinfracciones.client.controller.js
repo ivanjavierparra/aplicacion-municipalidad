@@ -59,7 +59,8 @@
           $scope.datos_label.push($scope.graficos[label]);
         }
 
-        
+        $scope.series = ["Infracciones"];
+
     });
   }
 
