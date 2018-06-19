@@ -68,6 +68,16 @@
                         
                         $scope.grafico = dict;
 
+                        $scope.labels = [];
+                        $scope.datos_label = [];
+                        
+                        var label;
+                        
+                        for (label in $scope.grafico){
+                          $scope.labels.push(label);
+                          $scope.datos_label.push($scope.grafico[label]);
+                        }
+
                         
 
                         

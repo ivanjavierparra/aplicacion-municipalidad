@@ -8,8 +8,6 @@
   function ProblemasController($http, $scope) {
       $scope.data = {};
       $scope.filtrar = ($event) => {
-          console.log($scope);  
-          console.log($scope.data.problema);
           if(!$scope.data.problema){
               console.log("no se ha ingresado nada en el combo");
           }
@@ -18,8 +16,6 @@
               $http.get(cadena)
                 .then(function(response) {
                       var longitud = Object.keys(response.data).length;
-                      console.log(angular.toJson(response.data));
-                      console.log(response.data.id_problema);
                       var id_problema_seleccionado = response.data.id_problema;
 
                       $http.get('http://localhost:3000/api/atenciones')
@@ -52,10 +48,18 @@
                                     }
                                 }
                               }
-                          });
 
-                    
-                      
+                              $scope.labels = [];
+                              $scope.datos_label = [];
+                              
+                              var label;
+                              
+                              for (label in $scope.grafico){
+                                $scope.labels.push(label);
+                                $scope.datos_label.push($scope.grafico[label]);
+                              }
+
+                          });
                 });
           }
     }

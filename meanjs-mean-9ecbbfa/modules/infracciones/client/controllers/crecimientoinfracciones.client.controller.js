@@ -55,7 +55,6 @@
         var label;
         
         for (label in $scope.graficos){
-          console.log("label " + label);
           $scope.labels.push(label);
           $scope.datos_label.push($scope.graficos[label]);
         }

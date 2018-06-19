@@ -67,21 +67,25 @@
                                     }
                                 }
                   
-                      });//fin get estadias
+                      });//fin get excursiones
 
               
-
+              
               $scope.graficos = dict;
+
+              $scope.labels = [];
+              $scope.datos_label = [];
+              
+              var label;
+              
+              for (label in $scope.graficos){
+                $scope.labels.push(label);
+                $scope.datos_label.push($scope.graficos[label]);
+              }
+  
             
         });//fin get nacionalidades
     
   }//fin tipoalojamientoscontroller
-
-  
-
-  
-
-  
-  
 
 }());

@@ -13,106 +13,126 @@
   }*/
 
   function AtencionesController($scope, $http) {
-    $http.get('http://localhost:3000/api/atenciones')
-    .then(function(response) {
-        var longitud = Object.keys(response.data).length;
-        var dict = {};
-        var key;
-        var len;
-        var datos = response.data;
+    $scope.data = {};
+ 
+        $http.get('http://localhost:3000/api/problemas/')
+            .then(function(response) {
+                var longitud_problemas = Object.keys(response.data).length;
+                var dict = {};
+                var key;
+                var len;
+                var problemas = response.data;
 
-        $http.get('http://localhost:3000/api/problemas')
-        .then(function(response) {
-            len = Object.keys(response.data).length;
-            //dict = new Array(len);
-            for(var i=0;i<len;i++){
-              key = parseInt(response.data[i].id_problema);
-              dict[key] = 0 ;
-            }
-
-            for(var j=0;j<longitud;j++){
-              key = parseInt(datos[j].problema);
-              dict[key] = dict[key] + 1;
-            }
-
-            var resultado = {};
-            for (key in dict) {
-              // Hacer algo con la clave key
-              for(var i=0;i<len;i++){
-                if(response.data[i].id_problema==key){
-                  resultado[response.data[i].nombre] = dict[key];
+                //diccionario cuya clave son los nombres de los problemas
+                for(var i=0;i<longitud_problemas;i++){
+                    key = problemas[i].nombre;
+                    dict[key] = 0 ;
                 }
-              }
-            }
 
-
-            $scope.graficos = {};
-            for (key in dict) {
-              // Hacer algo con la clave key
-              for(var i=0;i<len;i++){
-                if(response.data[i].id_problema==key){
-                  $scope.graficos[response.data[i].nombre] = dict[key];
-                }
-              }
-            }
-            
-           // for (var i = 0, l = $scope.datos.length; i < l; i++) {
-             // $scope.telephone[i.toString()] = $scope.phone[i];
-           // }
-
-            
-            $scope.saludo = "Hola Mundo!";
-            //$scope.datos1= datos[0].problema;
-            $scope.prob = resultado;
-
-            $scope.labels = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"];
-            $scope.data = [12, 19, 3, 5, 2, 3];
-            $scope.backgroundColor = [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-          ];
-            $scope.borderColor =  [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-          ] ;
-            $scope.borderWidth = 1;
-            $scope.options = {
-              elements: {
-                arc: {
-                  borderWidth: 0
-                }
-              },
-              legend: {
-                display: true,
-                position: 'bottom',
-                labels: {
-                //  fontColor: layoutColors.defaultText
-                }
-              }
-            };
-
-        });
-
-        
-
-
-        
-    });
-  }
-
+                  $http.get('http://localhost:3000/api/atenciones/')
+                  .then(function(response) {
+                      var longitud_atenciones = Object.keys(response.data).length;
+                      var atenciones = response.data;
   
+                      //recorro las atenciones
+                      for(var i=0;i<longitud_atenciones;i++){
+                          var atencion_problema = atenciones[i].problema;
+                          
+                          //recorro los problemas
+                          for(var j=0;j<longitud_problemas;j++){
+                              var id = problemas[j].id_problema;
+                              if(atencion_problema==id){
+                                  var nombre = problemas[j].nombre;
+                                  dict[nombre] = dict[nombre] + 1;
+                                  break;
+                              }
+                          }
+                      }
 
+
+
+                    $scope.graficos = dict;
   
+                      
+                    $scope.labels = [];
+                    $scope.datos_label = [];
+                    
+                    var label;
+                    
+                    for (label in $scope.graficos){
+                    $scope.labels.push(label);
+                    $scope.datos_label.push($scope.graficos[label]);
+                    }
+                      
+                      
+                  }); //FIN TIPOS
+              }); //FIN INFRACCIONES
+  
+    
 
   
   
+      
+    }
+  
+  /*
+    $scope.data = {};
+ 
+        $http.get('http://localhost:3000/api/problemas/')
+            .then(function(response) {
+                var longitud_problemas = Object.keys(response.data).length;
+                var dict = {};
+                var key;
+                var len;
+                var problemas = response.data;
+
+                //diccionario cuya clave son los nombres de los problemas
+                for(var i=0;i<longitud_problemas;i++){
+                    key = problemas[i].nombre;
+                    dict[key] = 0 ;
+                }
+
+                  $http.get('http://localhost:3000/api/atenciones/')
+                  .then(function(response) {
+                      var longitud_atenciones = Object.keys(response.data).length;
+                      var atenciones = response.data;
+  
+                      //recorro las atenciones
+                      for(var i=0;i<longitud_atenciones;i++){
+                          var atencion_problema = atenciones[i].problema;
+                          
+                          //recorro los problemas
+                          for(var j=0;j<longitud_problemas;j++){
+                              var id = problemas[j].id_problema;
+                              if(atencion_problema==id){
+                                  var nombre = problemas[j].nombre;
+                                  dict[nombre] = dict[nombre] + 1;
+                                  break;
+                              }
+                          }
+                      }
+
+
+
+                    $scope.graficos = dict;
+  
+                      
+                    $scope.labels = [];
+                    $scope.datos_label = [];
+                    
+                    var label;
+                    
+                    for (label in $scope.graficos){
+                    console.log("label " + label);
+                    $scope.labels.push(label);
+                    $scope.datos_label.push($scope.graficos[label]);
+                    }
+                      
+                      
+                  }); //FIN TIPOS
+              }); //FIN INFRACCIONES
+      
+    }
+  */
 
 }());

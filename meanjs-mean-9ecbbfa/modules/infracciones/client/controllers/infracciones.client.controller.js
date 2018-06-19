@@ -9,6 +9,7 @@
 
   function InfraccionesController($scope, $http) {
     $scope.data = {};
+
     $scope.filtrar = ($event) => {
       //console.log($scope);  
       //obtengo las fechas desde la view
@@ -88,7 +89,6 @@
                     var label;
                     
                     for (label in $scope.graficos){
-                      console.log("label " + label);
                       $scope.labels.push(label);
                       $scope.datos_label.push($scope.graficos[label]);
                     }
