@@ -1,79 +1,15 @@
 <section style="margin-left: 20px;margin-right: 20px;">
   
-  
-  
-  <div class="wrapper">
-  
-                
-        <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
-    
-            <!--
-        
-                Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-                Tip 2: you can also add an image using data-image tag
-        
-            -->
-        
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                        <a href="http://www.creative-tim.com" class="simple-text">
-                            Creative Tim
-                        </a>
-                    </div>
-        
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="dashboard.html">
-                                <i class="pe-7s-graph"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="user.html">
-                                <i class="pe-7s-user"></i>
-                                <p>User Profile</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="pe-7s-note2"></i>
-                                <p>Table List</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="typography.html">
-                                <i class="pe-7s-news-paper"></i>
-                                <p>Typography</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="icons.html">
-                                <i class="pe-7s-science"></i>
-                                <p>Icons</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="maps.html">
-                                <i class="pe-7s-map-marker"></i>
-                                <p>Maps</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="notifications.html">
-                                <i class="pe-7s-bell"></i>
-                                <p>Notifications</p>
-                            </a>
-                        </li>
-                        <li class="active-pro">
-                            <a href="upgrade.html">
-                                <i class="pe-7s-rocket"></i>
-                                <p>Upgrade to PRO</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">   
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    Creative Tim
+                </a>
             </div>
-
+        </div>
+    </div>
             <div class="main-panel">
                 <div class="content">
                         <div class="container-fluid">
@@ -82,8 +18,6 @@
                             opacity: 0.9;">
                                 Infracciones de Tránsito
                             </h1>
-
-
                             <!--ACA ESTA EL GRAFICO:  el controlador esta en modules/atenciones/client/controllers/atenciones.client.controller.js -->
                             <div class="row">
                                 <!--GRAFICO 1-->
@@ -142,7 +76,7 @@
                                             <p class="category">Fecha
                                                 Desde 2010 Hasta 2018
                                             </p>
-                                        </div>11
+                                        </div>
                                        <div class="content">                                            
                                             <canvas id="bar" class="chart chart-bar" chart-options="options" chart-data="[datos_label_m, datos_label_f]" chart-labels="labels_f"
                                             chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
@@ -154,60 +88,61 @@
                                 </div>
 
                                 <!--GRAFICO 3-->
-                            <div class="col-md-4 text-center" ng-controller="CrecimientoInfraccionesController">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
-                                        <br>
-                                        <p align="center" class="category">
-                                            Desde 2010 Hasta 2018
-                                        </p>
-                                        <br>
+                                <div class="col-md-4 text-center" ng-controller="CrecimientoInfraccionesController">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
+                                            <br>
+                                            <p align="center" class="category">
+                                                Desde 2010 Hasta 2018
+                                            </p>
+                                            <br>
+                                        </div>
+                                        <div class="content">
+                                            
+                                            <canvas id="pie" class="chart chart-line"
+                                            chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                            </canvas>
+
+                                        <div class="footer">
+
+                                        </div>
                                     </div>
-                                    <div class="content">
-                                        
-                                        <canvas id="pie" class="chart chart-line"
+                                </div>
+                            </div>
+                        </div>
+
+            <div class="container-fluid">
+           
+  <h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
+  font-size: 24px; text-transform: uppercase;
+  opacity: 0.9;">
+  Denuncias
+  </h1>
+
+  <div class="row">
+    <!--GRAFICO 1-->
+    <div class="col-md-4 col-centered text-center" ng-controller="DenunciasController">
+        <div class="card">
+            <div class="header">
+                <h4 class="title" align="center">Tipos de Denuncias más Frecuentes</h4>
+            </div>
+            <div class="content">
+                
+                <canvas id="pie" class="chart chart-pie"
                 chart-options="options" chart-data="datos_label" chart-labels="labels"
                 chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                 </canvas>
 
                 <div class="footer">
-
+                   
                 </div>
             </div>
         </div>
     </div>
-</div><!--ROW-->
 
-  
 
-<h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-   font-size: 24px; text-transform: uppercase;
-  opacity: 0.9;">
-      Denuncias
-  </h1>
-
-  
-  <div class="row">
-      <!--GRAFICO 1-->
-      <div class="col-md-4 col-centered text-center" ng-controller="DenunciasController">
-          <div class="card">
-              <div class="header">
-                  <h4 class="title" align="center">Tipos de Denuncias más Frecuentes</h4>
-              </div>
-              <div class="content">
-                  
-                  <canvas id="pie" class="chart chart-pie"
-                  chart-options="options" chart-data="datos_label" chart-labels="labels"
-                  chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                  </canvas>
-  
-                  <div class="footer">
-                     
-                  </div>
-              </div>
-          </div>
-      </div>
       <!--GRAFICO 2-->
       <div class="col-md-4 col-centered text-center" ng-controller="ViolenciasDenunciasController">
           <div class="card">
@@ -263,8 +198,6 @@
                   chart-options="options" chart-data="datos_label" chart-labels="labels"
                   chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                   </canvas>
-                  {{labels}}
-                  {{datos_label}}
               </div>
           </div>
       </div>
@@ -382,9 +315,6 @@
                 chart-options="options" chart-data="[datos_label, datos_excursiones]" chart-labels="labels"
                 chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                 </canvas>
-                {{labels}}
-                {{datos_label}}
-                {{datos_excursiones}}
 
                 <div class="footer">
                     
@@ -410,11 +340,6 @@
                 chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                 </canvas>
 
-                
-                {{labels}}
-                {{datos_e}}
-                {{datos_a}}
-
                 <div class="footer">
                     
                 </div>
@@ -422,7 +347,6 @@
         </div>
     </div>
 </div><!--ROW-->
-
 
 
 <!--
@@ -614,6 +538,7 @@
                                 <p class="copyright pull-right">
                                     &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
                                 </p>
+                                
                             </div>
                         </footer> <!--fin footer--
             </div> <!--fin main panel --
