@@ -41,9 +41,9 @@
                       }
                   }
 
-                 console.log("dsadasdsadsds" + cantidad + " id_empresa: " + id_empresa + " id_tipo: " + id_tipo_excursion);
+                 //console.log("cantidad: " + cantidad + " id_empresa: " + id_empresa + " id_tipo: " + id_tipo_excursion);
                     
-                  
+                 
 
                   var nombre_empresa;
                   //obtengo el nombre de la empresa
@@ -54,6 +54,8 @@
                     }
                   }
 
+                 // console.log("nombre empresa: " + nombre_empresa);
+                  
                   var nombre_tipo_excursion;
                   //obtengo el nombre de tipo excursion
                   for(var z=0;z<longitud_tipos_excursiones;z++){
@@ -65,13 +67,18 @@
 
                   //controlo que no lo haya agregado
                   var bandera = false;
-                  var grafico;
-
-                  for(grafico in $scope.graficos){
-                      if((grafico.empresa==nombre_empresa)&&(grafico.tipo==nombre_tipo_excursion)){
+                  //console.log("tipo excursion: " + nombre_tipo_excursion);
+                  //console.log("lenght: " + $scope.graficos.length);
+                  
+                  for(var z=0;z<$scope.graficos.length;z++){
+                      //console.log("wqqweqwe: " + $scope.graficos[z].empresa)
+                      if(($scope.graficos[z].empresa==nombre_empresa)&&($scope.graficos[z].tipo==nombre_tipo_excursion)){
                         bandera = true;
+                        break;
                       }
                   }
+
+                 
 
                   if(!bandera){
                       var item = {
@@ -82,6 +89,9 @@
                       $scope.graficos.push(item);
                       bandera = false;
                   }
+
+                  //console.log("lenght: " + $scope.graficos[0].empresa);
+                 
               } 
           });
           
