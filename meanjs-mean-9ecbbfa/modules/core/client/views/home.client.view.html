@@ -142,40 +142,122 @@
                 <!--  #########  TABLAS BD INFRACCIONES #################  -->
                 <div class="content">
                         <div class="container-fluid">
-                <div class="row">
-                        <div ng-app ng-controller="TablainfraccionesController">
-                            <div class="container-fluid">
-                                <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title">Detalle de Infracciones</h4>
-                                            <p class="category">Desde 2010 a 2018</p>
+                            <div class="row">
+                                <div ng-app ng-controller="TablainfraccionesController">
+                                    <div class="container-fluid">
+                                        <!-- TABLA DE INFRACCIONES -->
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title">Detalle de Infracciones</h4>
+                                                    <p class="category">Desde 2010 a 2018</p>
+                                                </div>
+                                                <div class="content table-responsive table-full-width">
+                                                    <table class="table table-hover table-striped">
+                                                        <thead>
+                                                            <th class="text-center">ID</th>
+                                                            <th class="text-center">Año</th>
+                                                            <th class="text-center">Cantidad de Infracciones</th>
+                                                            <th class="text-center">Cantidad de Infracciones NO Pagadas</th>
+                                                        </thead>
+                                                        <tbody ng-repeat="grafico in graficos">
+                                                            <tr>
+                                                                <td align="center">{{$index+1}}</td>
+                                                                <td align="center">{{grafico.fecha}}</td>
+                                                                <td align="center">{{grafico.cantidad}}</td>
+                                                                <td align="center">Faltan Pagar: {{grafico.pagada}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                            
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="content table-responsive table-full-width">
-                                            <table class="table table-hover table-striped">
-                                                <thead>
-                                                    <th>ID</th>
-                                                    <th>Año</th>
-                                                    <th>Cantidad de Infracciones</th>
-                                                    <th>Cantidad de Infracciones NO Pagadas</th>
-                                                </thead>
-                                                <tbody ng-repeat="grafico in graficos">
-                                                    <tr>
-                                                        <td>{{$index+1}}</td>
-                                                        <td>{{grafico.fecha}}</td>
-                                                        <td>{{grafico.cantidad}}</td>
-                                                        <td>Faltan Pagar: {{grafico.pagada}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <!--GRAFICO 1-->
+                                        <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
+                                                    <br>
+                                                    <p class="category">Fecha Desde
+                                                        <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
+                                                        placeholder="yyyy-MM-dd"  required />-->
+                                                        <input id="bday-month" type="month" name="bday-month"
+                                                        min="2009-01" max="2020-12" ng-model="data.fdesde">
+                                                    </p>
+                                                    <br>
+                                                    <p class="category">Fecha Hasta 
+                                                        <!--<input type="date" id="fhasta" name="input" ng-model="data.fhasta"
+                                                        placeholder="yyyy-MM-dd" required />-->
+                                                        <input id="bday-month" type="month" name="bday-month"
+                                                        min="2009-01" max="2020-12" ng-model="data.fhasta">
+                                                    </p>
+                                                    <br>
+                                                    <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
+                                                </div>
+                                                <div class="content">
+                                                    
+                                                    <canvas id="pie" class="chart chart-pie"
+                                                    chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                    </canvas>
                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--row-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <!--GRAFICO 2-->
+                                    <div class="col-md-6 text-center" ng-controller="GraficosController">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title" align="center">Infracciones Masculino/Femenino</h4>
+                                                <br>
+                                                <p class="category">Fecha
+                                                    Desde 2010 Hasta 2018
+                                                </p>
+                                            </div>
+                                            <div class="content">
+                                                
+                                                <canvas id="pie" class="chart chart-bar"
+                                                chart-options="options" chart-data="" chart-labels=""
+                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                </canvas>
+                
+                                                <div class="footer">
+                
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div><!--row-->
+                                    <!--GRAFICO 3-->
+                                    <div class="col-md-6 text-center" ng-controller="CrecimientoInfraccionesController">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
+                                                <br>
+                                                <p align="center" class="category">
+                                                    Desde 2010 Hasta 2018
+                                                </p>
+                                                <br>
+                                            </div>
+                                            <div class="content">
+                                                
+                                                <canvas id="pie" class="chart chart-line"
+                                                chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                </canvas>
+                
+                                                <div class="footer">
+                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
-                </div>
-                </div>
                 </div>
         
         
@@ -191,113 +273,19 @@
         
         
         
-                <!-- Aca van los graficos y tablas -->
-                <div class="content">
-                        <div class="container-fluid">
-                <div class="row">
+                
                         
                                 
                                 
                                 
                                
-                            <h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-                            font-size: 24px; text-transform: uppercase;
-                            opacity: 0.9;">
-                                Infracciones de Tránsito
-                            </h1>
-            
-            
-                            <!--ACA ESTA EL GRAFICO:  el controlador esta en modules/atenciones/client/controllers/atenciones.client.controller.js -->
-                            <div class="row">
-                                <!--GRAFICO 1-->
-                                <div class="col-md-4 col-centered text-center" ng-controller="InfraccionesController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
-                                            <br>
-                                            <p class="category">Fecha Desde
-                                                <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
-                                                placeholder="yyyy-MM-dd"  required />-->
-                                                <input id="bday-month" type="month" name="bday-month"
-                                                min="2009-01" max="2020-12" ng-model="data.fdesde">
-                                            </p>
-                                            <br>
-                                            <p class="category">Fecha Hasta 
-                                                <!--<input type="date" id="fhasta" name="input" ng-model="data.fhasta"
-                                                placeholder="yyyy-MM-dd" required />-->
-                                                <input id="bday-month" type="month" name="bday-month"
-                                                min="2009-01" max="2020-12" ng-model="data.fhasta">
-                                            </p>
-                                            <br>
-                                            <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-pie"
-                                            chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--GRAFICO 2-->
-                                <div class="col-md-4 text-center" ng-controller="GraficosController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Infracciones Masculino/Femenino</h4>
-                                            <br>
-                                            <p class="category">Fecha
-                                                Desde 2010 Hasta 2018
-                                            </p>
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-bar"
-                                            chart-options="options" chart-data="" chart-labels=""
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                            <div class="footer">
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--GRAFICO 3-->
-                                <div class="col-md-4 text-center" ng-controller="CrecimientoInfraccionesController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
-                                            <br>
-                                            <p align="center" class="category">
-                                                Desde 2010 Hasta 2018
-                                            </p>
-                                            <br>
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-line"
-                                            chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                            <div class="footer">
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!--ROW-->
+                            
             
             
             
            
         
-                        
-                </div><!--fin content-->
-                </div>
-                </div>
+               
         
                 <footer class="footer">
                     <div class="container-fluid">

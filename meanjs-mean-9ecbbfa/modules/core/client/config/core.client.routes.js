@@ -76,7 +76,7 @@
       })
       .state('infracciones', {
         url: '/#',
-        templateUrl: '/modules/core/client/views/infracciones.client.view.html'
+        templateUrl: '/modules/core/client/views/home.client.view.html'
       })
       .state('denuncias', {
         url: '/#',

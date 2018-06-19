@@ -129,7 +129,7 @@
                     </div>
             </nav> <!-- Fin Menu -->
              
-            <br>
+          
            
            
             
@@ -145,224 +145,201 @@
     
     
     
-            <!--  #########  TABLAS BD ALOJAMIENTOS #################  -->
+            <!--  #########  TABLAS Y GRAFICOS #################  -->
             <div class="content">
                     <div class="container-fluid">
-            <div class="row">
-                    <div ng-app ng-controller="TablaalojamientosController">
-                        <div class="container-fluid">
-                            <div class="col-md-8">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title">Cantidad de Estadías por Hotel</h4>
-                                        <p class="category">Desde 2010 a 2018</p>
-                                    </div>
-                                    <div class="content table-responsive table-full-width">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                                <th>ID</th>
-                                                <th>Alojamiento</th>
-                                                <th>Categoría</th>
-                                                <th>Cantidad de Estadías</th>
-                                            </thead>
-                                            <tbody ng-repeat="grafico in graficos">
-                                                <tr>
-                                                    <td>{{$index+1}}</td>
-                                                    <td>{{grafico.alojamiento}}</td>
-                                                    <td>{{grafico.categoria}}</td>
-                                                    <td>{{grafico.cantidad}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--row-->
-                    </div>
-            </div>
-            </div>
-            </div>
-    
-            <!--  #########  TABLAS BD EXCURSIONES #################  -->
-            <div class="content">
-                    <div class="container-fluid">
-            <div class="row">
-                    <div ng-app ng-controller="TablaexcursionesController">
-                        <div class="container-fluid">
-                            <div class="col-md-8">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title">Excursiones por Empresa</h4>
-                                        <p class="category">Desde 2010 a 2018</p>
-                                    </div>
-                                    <div class="content table-responsive table-full-width">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                                <th>ID</th>
-                                                <th>Empresa</th>
-                                                <th>Tipo de Excursion</th>
-                                                <th>Cantidad de Excursiones</th>
-                                            </thead>
-                                            <tbody ng-repeat="grafico in graficos">
-                                                <tr>
-                                                    <td>{{$index+1}}</td>
-                                                    <td>{{grafico.empresa}}</td>
-                                                    <td>{{grafico.tipo}}</td>
-                                                    <td>{{grafico.cantidad}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--row-->
-                    </div>
-            </div>
-            </div>
-            </div>
-            
-    
-    
-    
-    
-    
-    
-    
-            <!-- Aca van los graficos y tablas -->
-            <div class="row">
-                    <div class="container">
-                            
-       
-        
-                        <h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-                        font-size: 24px; text-transform: uppercase;
-                        opacity: 0.9;">
-                        Turismo
-                        </h1>
-        
-                        <div class="content">
-                                <div class="container-fluid">
                         <div class="row">
-                            <!--GRAFICO 1-->
-                            <div class="col-md-3 col-centered text-center" ng-controller="GraficosController">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title" align="center">Nro de Turistas Alojados</h4>
-                                        <br>
-                                        <p class="category">Fecha Desde
-                                            <input id="bday-month" type="month" name="bday-month"
-                                            min="1900-01" max="1999-12" ng-model="data.fdesde">
-                                        </p>
-                                        <br>
-                                        <p class="category">Fecha Hasta 
-                                            <input id="bday-month" type="month" name="bday-month"
-                                            min="1900-01" max="1999-12" ng-model="data.fhasta">
-                                        </p>
-                                        <br>
-                                        <center><button type="button" class="btn btn-default">Filtrar</button></center>
-                                    </div>
-                                    <div class="content">
-                                        
-                                        <canvas id="pie" class="chart chart-bar"
-                                        chart-options="options" chart-data="data" chart-labels="labels"
-                                        chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                        </canvas>
-        
-                                        <div class="footer">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--GRAFICO 2-->
-                            <div class="col-md-3 text-center" ng-controller="GraficosController">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title" align="center">Excursiones por Mes</h4>
-                                        <br>
-                                        <p class="category">Fecha
-                                            <input id="bday-month" type="month" name="bday-month"
-                                            min="1900-01" max="1999-12" ng-model="data.fdesde">
-                                        </p>
-                                    </div>
-                                    <div class="content">
-                                        
-                                        <canvas id="pie" class="chart chart-bar"
-                                        chart-options="options" chart-data="data" chart-labels="labels"
-                                        chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                        </canvas>
-        
-                                        <div class="footer">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--GRAFICO 3-->
-                            <div class="col-md-3 text-center" ng-controller="GraficosController">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title" align="center">Crecimiento del Turismo por Año</h4>
-                                        <br>
-                                        <p align="center" class="category">
-                                            Desde 2010 Hasta 2018
-                                        </p>
-                                        <br>
-                                    </div>
-                                    <div class="content">
-                                        
-                                        <canvas id="pie" class="chart chart-line"
-                                        chart-options="options" chart-data="data" chart-labels="labels"
-                                        chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                        </canvas>
-        
-                                        <div class="footer">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--GRAFICO 4-->
-                            <div class="col-md-3 text-center" ng-controller="GraficosController">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title" align="center">Turismo por Nacionalidad</h4>
-                                        <br>
-                                        <p align="center" class="category">
-                                            Desde 2010 Hasta 2018
-                                        </p>
-                                        <br>
-                                    </div>
-                                    <div class="content">
-                                        
-                                        <canvas id="pie" class="chart chart-bar"
-                                        chart-options="options" chart-data="data" chart-labels="labels"
-                                        chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                        </canvas>
-        
-                                        <div class="footer">
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!--ROW-->
-                        </div>
-                        </div>
+                            <div ng-app ng-controller="TablaalojamientosController">
+                                <div class="container-fluid">
+                                    <!-- TABLA ALOJAMIENTOS -->
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title">Cantidad de Estadías por Hotel</h4>
+                                                <p class="category">Desde 2010 a 2018</p>
+                                            </div>
+                                            <div class="content table-responsive table-full-width">
+                                                <table class="table table-hover table-striped">
+                                                    <thead>
+                                                        <th class="text-center">ID</th>
+                                                        <th class="text-center">Alojamiento</th>
+                                                        <th class="text-center">Categoría</th>
+                                                        <th class="text-center">Cantidad de Estadías</th>
+                                                    </thead>
+                                                    <tbody ng-repeat="grafico in graficos">
+                                                        <tr>
+                                                            <td align="center">{{$index+1}}</td>
+                                                            <td align="center">{{grafico.alojamiento}}</td>
+                                                            <td align="center">{{grafico.categoria}}</td>
+                                                            <td align="center">{{grafico.cantidad}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                         
-                            
-        
-        
-        
-        
-        
-        
-        
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <!--GRAFICO 1-->
+                                    <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title" align="center">Nro de Turistas Alojados</h4>
+                                                    <br>
+                                                    <p class="category">Fecha Desde
+                                                        <input id="bday-month" type="month" name="bday-month"
+                                                        min="1900-01" max="1999-12" ng-model="data.fdesde">
+                                                    </p>
+                                                    <br>
+                                                    <p class="category">Fecha Hasta 
+                                                        <input id="bday-month" type="month" name="bday-month"
+                                                        min="1900-01" max="1999-12" ng-model="data.fhasta">
+                                                    </p>
+                                                    <br>
+                                                    <center><button type="button" class="btn btn-default">Filtrar</button></center>
+                                                </div>
+                                                <div class="content">
+                                                    
+                                                    <canvas id="pie" class="chart chart-bar"
+                                                    chart-options="options" chart-data="data" chart-labels="labels"
+                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                    </canvas>
+                    
+                                                    <div class="footer">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div><!--row-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="content">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div ng-app ng-controller="TablaexcursionesController">
+                                                <div class="container-fluid">
+                                                    <!-- TABLA EXCCURSIONES -->
+                                                    <div class="col-md-6">
+                                                        <div class="card">
+                                                            <div class="header">
+                                                                <h4 class="title">Excursiones por Empresa</h4>
+                                                                <p class="category">Desde 2010 a 2018</p>
+                                                            </div>
+                                                            <div class="content table-responsive table-full-width">
+                                                                <table class="table table-hover table-striped">
+                                                                    <thead>
+                                                                        <th class="text-center">ID</th>
+                                                                        <th class="text-center">Empresa</th>
+                                                                        <th class="text-center">Tipo de Excursion</th>
+                                                                        <th class="text-center">Cantidad de Excursiones</th>
+                                                                    </thead>
+                                                                    <tbody ng-repeat="grafico in graficos">
+                                                                        <tr>
+                                                                            <td align="center">{{$index+1}}</td>
+                                                                            <td align="center">{{grafico.empresa}}</td>
+                                                                            <td align="center">{{grafico.tipo}}</td>
+                                                                            <td align="center">{{grafico.cantidad}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <!--GRAFICO 2-->
+                                                    <div class="col-md-6 text-center" ng-controller="GraficosController">
+                                                            <div class="card">
+                                                                <div class="header">
+                                                                    <h4 class="title" align="center">Excursiones por Mes</h4>
+                                                                    <br>
+                                                                    <p class="category">Fecha
+                                                                        <input id="bday-month" type="month" name="bday-month"
+                                                                        min="1900-01" max="1999-12" ng-model="data.fdesde">
+                                                                    </p>
+                                                                </div>
+                                                                <div class="content">
+                                                                    
+                                                                    <canvas id="pie" class="chart chart-bar"
+                                                                    chart-options="options" chart-data="data" chart-labels="labels"
+                                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                                    </canvas>
+                                    
+                                                                    <div class="footer">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </div><!--row-->
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <!--GRAFICO 3-->
+                                <div class="col-md-6 text-center" ng-controller="GraficosController">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h4 class="title" align="center">Crecimiento del Turismo por Año</h4>
+                                            <br>
+                                            <p align="center" class="category">
+                                                Desde 2010 Hasta 2018
+                                            </p>
+                                            <br>
+                                        </div>
+                                        <div class="content">
+                                            
+                                            <canvas id="pie" class="chart chart-line"
+                                            chart-options="options" chart-data="data" chart-labels="labels"
+                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                            </canvas>
+            
+                                            <div class="footer">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--GRAFICO 4-->
+                                <div class="col-md-6 text-center" ng-controller="GraficosController">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h4 class="title" align="center">Turismo por Nacionalidad</h4>
+                                            <br>
+                                            <p align="center" class="category">
+                                                Desde 2010 Hasta 2018
+                                            </p>
+                                            <br>
+                                        </div>
+                                        <div class="content">
+                                            
+                                            <canvas id="pie" class="chart chart-bar"
+                                            chart-options="options" chart-data="data" chart-labels="labels"
+                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                            </canvas>
+            
+                                            <div class="footer">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+            </div>
     
-                    </div> <!--fin container fluid-->
-            </div><!--fin content-->
+            
+            
+    
+    
+    
+    
+    
+    
+    
+            
     
     
             <footer class="footer">
