@@ -73,7 +73,7 @@
             <nav class="navbar navbar-default navbar-fixed"  ng-controller="HeaderController as vm">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2"> <!--data-target="#navbar" aria-expanded="false" aria-controls="navbar"-->
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -81,11 +81,11 @@
                             </button>
                             <a class="navbar-brand" href="#"><b>Municipalidad de Springfield</b></a>
                         </div>
-                        <div class="collapse navbar-collapse">
+                        <div class="collapse navbar-collapse" id="menucito">
                                 <!-- Te muestra cada uno de los módulose: articulos, admin, chat (estan en HeadController)-->
                                 <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
                                         <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
-                                            <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                                            <a data-toggle="dropdown" ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
                                             <ul ng-switch-when="dropdown" class="dropdown-menu">
                                             <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
                                                 <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
@@ -108,19 +108,19 @@
                                 <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
                                         <li class="dropdown" uib-dropdown>
                                             <!-- Muestra imagen y nombre del usuario -->  
-                                            <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                                            <a data-toggle="dropdown" class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
                                             <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
                                             <b><span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b></b>
                                             </a>
                                             <!-- te muestra un drop menu con las opciones -->
                                             <ul class="dropdown-menu" role="menu">
-                                            <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
-                                                <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="/api/auth/signout" target="_self">Cerrar Sesión</a>
-                                            </li>
+                                                <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                                                    <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li> 
+                                                    <a href="/api/auth/signout" target="_self">Cerrar Sesión</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li class="separator hidden-lg"></li>

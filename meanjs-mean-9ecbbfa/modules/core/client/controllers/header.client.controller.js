@@ -14,12 +14,13 @@
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     vm.menu = menuService.getMenu('topbar');
-
+    
     $scope.$on('$stateChangeSuccess', stateChangeSuccess);
 
     function stateChangeSuccess() {
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
+      lbd.initRightMenu();
       /*if(vm.isCollapsed){
         vm.isCollapsed = false;
       }else{
