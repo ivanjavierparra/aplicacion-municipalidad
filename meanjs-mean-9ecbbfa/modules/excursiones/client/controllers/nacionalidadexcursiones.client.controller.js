@@ -73,7 +73,7 @@
 
               $scope.graficos = dict;
             
-        });//fin get nacionalidades
+        });//fin get nacionalidades de excursiones
     
   }//fin tipoalojamientoscontroller
 

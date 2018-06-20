@@ -174,84 +174,95 @@
                                             </div>
                                         </div>
                                         <!--GRAFICO 1-->
-                                        <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
-                                            <div class="card">
-                                                <div class="header">
-                                                    <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
-                                                    <br>
-                                                    <p class="category">Fecha Desde
-                                                        <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
-                                                        placeholder="yyyy-MM-dd"  required />-->
-                                                        <input id="bday-month" type="month" name="bday-month"
-                                                        min="2009-01" max="2020-12" ng-model="data.fdesde">
-                                                    </p>
-                                                    <br>
-                                                    <p class="category">Fecha Hasta 
+                                        <div class="col-md-4 col-centered text-center" ng-controller="InfraccionesController">
+                                                <div class="card">
+                                                    <div class="header">
+                                                        <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
+                                                        <br>
+                                                        <p class="category">Fecha Desde
+                                                            <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
+                                                            placeholder="yyyy-MM-dd"  required />-->
+                                                            <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fdesde">
+                                                        </p>
+                                                        <br>
+                                                        <p class="category">Fecha Hasta 
                                                         <!--<input type="date" id="fhasta" name="input" ng-model="data.fhasta"
                                                         placeholder="yyyy-MM-dd" required />-->
-                                                        <input id="bday-month" type="month" name="bday-month"
-                                                        min="2009-01" max="2020-12" ng-model="data.fhasta">
-                                                    </p>
-                                                    <br>
-                                                    <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
+                                                        <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fhasta">
+                                                        </p>
+                                                        <br>
+                                                        <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
+                                                    </div>
+                                                    <div class="content">
+                                                        
+                                                        <canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                        chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                        </canvas>
+            
+                                                    </div>
                                                 </div>
-                                                <div class="content">
-                                                    
-                                                    <canvas id="pie" class="chart chart-pie"
-                                                    chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                                    </canvas>
-                    
-                                                </div>
-                                            </div>
                                         </div>
                                     </div><!--row-->
                                 </div>
                             </div>
                             <div class="row">
                                     <!--GRAFICO 2-->
-                                    <div class="col-md-6 text-center" ng-controller="GraficosController">
+                                    <div class="col-md-4 text-center" ng-controller="SexoInfraccionesController">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title" align="center">Total Infracciones Masculino/Femenino</h4>
+                                                    <br>
+                                                    <p class="category">Fecha
+                                                        Desde 2010 Hasta 2018
+                                                    </p>
+                                                </div>
+                                                <div class="content">                                            
+                                                    <canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                    </canvas>
+                                                    <div class="footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-md-4 text-center" ng-controller="SexoInfraccionesController">
                                         <div class="card">
                                             <div class="header">
-                                                <h4 class="title" align="center">Infracciones Masculino/Femenino</h4>
+                                                <h4 class="title" align="center">Crecimiento Infracciones Masculino/Femenino</h4>
                                                 <br>
                                                 <p class="category">Fecha
                                                     Desde 2010 Hasta 2018
                                                 </p>
                                             </div>
-                                            <div class="content">
-                                                
-                                                <canvas id="pie" class="chart chart-bar"
-                                                chart-options="options" chart-data="" chart-labels=""
-                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                            <div class="content">                                            
+                                                <canvas id="bar" class="chart chart-bar" chart-options="options" chart-data="[datos_label_m, datos_label_f]" chart-labels="labels_f"
+                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="" chart-series="series">
                                                 </canvas>
-                
                                                 <div class="footer">
-                
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!--GRAFICO 3-->
-                                    <div class="col-md-6 text-center" ng-controller="CrecimientoInfraccionesController">
-                                        <div class="card">
-                                            <div class="header">
-                                                <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
-                                                <br>
-                                                <p align="center" class="category">
-                                                    Desde 2010 Hasta 2018
-                                                </p>
-                                                <br>
-                                            </div>
-                                            <div class="content">
-                                                
-                                                <canvas id="pie" class="chart chart-line"
-                                                chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                                </canvas>
-                
+                                    <div class="col-md-4 text-center" ng-controller="CrecimientoInfraccionesController">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
+                                                    <br>
+                                                    <p align="center" class="category">
+                                                        Desde 2010 Hasta 2018
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                                <div class="content">
+                                                    
+                                                    <canvas id="pie" class="chart chart-line"
+                                                    chart-options="options" chart-data="[datos_label]" chart-labels="labels" chart-series="series"
+                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                    </canvas>
+        
                                                 <div class="footer">
-                
+        
                                                 </div>
                                             </div>
                                         </div>

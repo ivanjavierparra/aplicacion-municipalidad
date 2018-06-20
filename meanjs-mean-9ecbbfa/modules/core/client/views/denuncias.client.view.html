@@ -160,52 +160,48 @@
                     <div class="container-fluid">
                         <div class="row">
                                 <!--GRAFICO 1-->
-                                <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Tipos de Denuncias más Frecuentes</h4>
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-pie"
-                                            chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                            <div class="footer">
+                                <div class="col-md-4 col-centered text-center" ng-controller="DenunciasController">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title" align="center">Tipos de Denuncias más Frecuentes</h4>
+                                            </div>
+                                            <div class="content">
                                                 
+                                                <canvas id="pie" class="chart chart-doughnut"
+                                                chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                </canvas>
+                                
+                                                <div class="footer">
+                                                   
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <!--GRAFICO 2-->
-                                <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">
-                                            Denuncias por Violencia de Género <br>
-                                            vs <br>
-                                            Muertes por Violencia de Género
-            
-                                            </h4>
-                                            <br>
-                                            <p align="center" class="category">
-                                                Desde 2010 hasta 2018
-                                            </p>
-                                            
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-line"
-                                            chart-options="options" chart-data="" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                            <div class="footer">
-            
+                                <div class="col-md-4 col-centered text-center" ng-controller="ViolenciasDenunciasController">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title" align="center">
+                                                  Denuncias por Violencia de Género <br>
+                                                  vs <br>
+                                                  Muertes por Violencia de Género
+                              
+                                                </h4>
+                                                <br>
+                                                <p align="center" class="category">
+                                                    Desde 2010 hasta 2018
+                                                </p>
+                                                
+                                            </div>
+                                            <div class="content">
+                                                
+                                                <canvas id="line" class="chart chart-line"
+                                                chart-options="options" chart-data="[datos_muertes, datos_denuncias]" chart-labels="labels"
+                                                chart-click="changeData" chart-series="series" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                </canvas>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                         </div><!--ROW-->
                     </div>

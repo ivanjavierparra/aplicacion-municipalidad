@@ -172,69 +172,53 @@
                                         </div>
                                     </div>
                                     <!--GRAFICO 1-->
-                                    <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Problemas de Salud más Frecuentes</h4>
-                                            <br>
-                                            <p class="category">
-                                                Desde 2010 hasta 2018
-                                            </p>
-                                            <br>
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-pie"
-                                            chart-options="options" chart-data="data" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                            <div class="footer">
-            
+                                    <div class="col-md-4 col-centered text-center" ng-controller="GraficosController">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title" align="center">Problemas de Salud más Frecuentes</h4>
+                                                    <br>
+                                                    <p class="category">
+                                                        Desde 2010 hasta 2018
+                                                    </p>
+                                                    <br>
+                                                </div>
+                                                <div class="content">
+                                                    
+                                                    <canvas id="pie" class="chart chart-pie"
+                                                    chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                    </canvas>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div><!--row-->
                             </div>
                         </div> 
                         <div class="row">
                             <!--GRAFICO 2-->
-                            <div class="col-md-6 col-centered text-center" ng-controller="GraficosController">
+                            <div class="col-md-4 col-centered text-center" ng-controller="ProblemasController">
                                     <div class="card">
                                         <div class="header">
                                             <h4 class="title" align="center">
-                                            Crecimiento de Problemas de Salud por Año
+                                              Crecimiento de Problemas de Salud por Año
                                             </h4>
                                             <br>
-                                            
-                                            <div ng-controller="ProblemasController">
-                                            
-                                                <p class="category">Problema 
-                                                    <select ng-model="data.problema" >
-                                                        <option id="combo" ng-repeat="problema in problemas" ng-value="problema._id">{{problema.nombre}}</option>
-                                                    </select>
-                                                </p>
-                                                <br>
-                                                <button id="1" ng-click="filtrar($event)" type="button" class="btn btn-default">Filtrar</button>
-                                                
-                                            </div>
-                                            <br>
-                                            
+                                              <p class="category">Problema 
+                                                  <select ng-model="data.problema" >
+                                                      <option id="combo" ng-repeat="problema in problemas" ng-value="problema._id">{{problema.nombre}}</option>
+                                                  </select>
+                                              </p>
+                                              <br>
+                                              <button id="1" ng-click="filtrar($event)" type="button" class="btn btn-default">Filtrar</button>
+                                            <br>                  
                                         </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-line"
-                                            chart-options="options" chart-data="data" chart-labels="labels"
+                                          <div class="content">
+                                          <canvas id="pie" class="chart chart-line" chart-options="options" chart-data="[datos_label]" chart-series="[series]" chart-labels="labels"
                                             chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-            
-                                            <div class="footer">
-            
-                                            </div>
+                                          </canvas>
                                         </div>
                                     </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
             </div>

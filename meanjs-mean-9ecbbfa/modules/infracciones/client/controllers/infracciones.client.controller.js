@@ -9,6 +9,7 @@
 
   function InfraccionesController($scope, $http) {
     $scope.data = {};
+
     $scope.filtrar = ($event) => {
       //console.log($scope);  
       //obtengo las fechas desde la view
@@ -80,9 +81,21 @@
                         }
                       }
                     }
+
                     
-                });
-            });
+                    $scope.labels = [];
+                    $scope.datos_label = [];
+                    
+                    var label;
+                    
+                    for (label in $scope.graficos){
+                      $scope.labels.push(label);
+                      $scope.datos_label.push($scope.graficos[label]);
+                    }
+                    
+                    
+                }); //FIN TIPOS
+            }); //FIN INFRACCIONES
 
       }//fin else
     }//fin filtrar

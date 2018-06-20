@@ -21,6 +21,7 @@
       // Collapsing the menu after navigation
       vm.isCollapsed = false;
       lbd.initRightMenu();
+      lbd.checkSidebarImage();
       /*if(vm.isCollapsed){
         vm.isCollapsed = false;
       }else{

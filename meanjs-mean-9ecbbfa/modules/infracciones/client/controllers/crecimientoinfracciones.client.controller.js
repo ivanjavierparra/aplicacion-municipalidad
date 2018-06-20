@@ -49,7 +49,18 @@
            }
         }
 
+        $scope.labels = [];
+        $scope.datos_label = [];
         
+        var label;
+        
+        for (label in $scope.graficos){
+          $scope.labels.push(label);
+          $scope.datos_label.push($scope.graficos[label]);
+        }
+
+        $scope.series = ["Infracciones"];
+
     });
   }
 

@@ -28,7 +28,7 @@
         //fdesde = new Date(fdesde);
         //fhasta = fhasta.substring(0,10);
 
-        $http.get('http://localhost:8080/api/excursiones/tipos/')
+        $http.get('http://localhost:8080/api/tiposexcursiones/')
             .then(function(response) {
                 var longitud_tipos_de_excursion = Object.keys(response.data).length;
                 var dict = {};
@@ -67,6 +67,16 @@
                         
                         
                         $scope.grafico = dict;
+
+                        $scope.labels = [];
+                        $scope.datos_label = [];
+                        
+                        var label;
+                        
+                        for (label in $scope.grafico){
+                          $scope.labels.push(label);
+                          $scope.datos_label.push($scope.grafico[label]);
+                        }
 
                         
 
