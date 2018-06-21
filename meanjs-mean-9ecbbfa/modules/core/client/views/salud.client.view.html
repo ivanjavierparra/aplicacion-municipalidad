@@ -146,7 +146,7 @@
                             <div ng-app ng-controller="TablamuertesController">
                                 <div class="container-fluid">
                                     <!-- TABLA PROBLEMAS DE SALUD -->
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="card">
                                             <div class="header">
                                                 <h4 class="title">Causas de Muertes más Frecuentes</h4>
@@ -155,9 +155,9 @@
                                             <div class="content table-responsive table-full-width">
                                                 <table class="table table-hover table-striped">
                                                     <thead>
-                                                        <th class="text-center">ID</th>
-                                                        <th class="text-center">Problema de Salud</th>
-                                                        <th class="text-center">Cantidad de Muertes</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">ID</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Problema de Salud</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Cantidad de Muertes</th>
                                                     </thead>
                                                     <tbody ng-repeat="(key,value) in graficos">
                                                         <tr>
@@ -172,7 +172,7 @@
                                         </div>
                                     </div>
                                     <!--GRAFICO 1-->
-                                    <div class="col-md-4 col-centered text-center" ng-controller="GraficosController">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-centered text-center" ng-controller="GraficosController">
                                             <div class="card">
                                                 <div class="header">
                                                     <h4 class="title" align="center">Problemas de Salud más Frecuentes</h4>
@@ -196,7 +196,7 @@
                         </div> 
                         <div class="row">
                             <!--GRAFICO 2-->
-                            <div class="col-md-4 col-centered text-center" ng-controller="ProblemasController">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-centered text-center" ng-controller="ProblemasController">
                                     <div class="card">
                                         <div class="header">
                                             <h4 class="title" align="center">

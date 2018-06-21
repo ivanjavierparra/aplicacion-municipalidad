@@ -152,7 +152,7 @@
                             <div ng-app ng-controller="TablaalojamientosController">
                                 <div class="container-fluid">
                                     <!-- TABLA ALOJAMIENTOS -->
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                         <div class="card">
                                             <div class="header">
                                                 <h4 class="title">Cantidad de Estadías por Hotel</h4>
@@ -161,10 +161,10 @@
                                             <div class="content table-responsive table-full-width">
                                                 <table class="table table-hover table-striped">
                                                     <thead>
-                                                        <th class="text-center">ID</th>
-                                                        <th class="text-center">Alojamiento</th>
-                                                        <th class="text-center">Categoría</th>
-                                                        <th class="text-center">Cantidad de Estadías</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">ID</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Alojamiento</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Categoría</th>
+                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Cantidad de Estadías</th>
                                                     </thead>
                                                     <tbody ng-repeat="grafico in graficos">
                                                         <tr>
@@ -180,10 +180,10 @@
                                         </div>
                                     </div>
                                     <!--GRAFICO 1-->
-                                    <div class="col-md-3 col-centered text-center" ng-controller="TiposAlojamientosController">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-centered text-center" ng-controller="TiposAlojamientosController">
                                             <div class="card">
                                                 <div class="header">
-                                                    <h4 class="title" align="center">Nro de Turistas Alojados por Categoría</h4>
+                                                    <h4 class="title" align="center">Cantidad de Turistas Alojados por Categoría</h4>
                                                     <br>
                                                     <p class="category">Fecha Desde
                                                         <input id="bday-month" type="month" name="bday-month"
@@ -217,7 +217,7 @@
                                             <div ng-app ng-controller="TablaexcursionesController">
                                                 <div class="container-fluid">
                                                     <!-- TABLA EXCURSIONES -->
-                                                    <div class="col-md-6">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                         <div class="card">
                                                             <div class="header">
                                                                 <h4 class="title">Excursiones por Empresa</h4>
@@ -226,10 +226,10 @@
                                                             <div class="content table-responsive table-full-width">
                                                                 <table class="table table-hover table-striped">
                                                                     <thead>
-                                                                        <th class="text-center">ID</th>
-                                                                        <th class="text-center">Empresa</th>
-                                                                        <th class="text-center">Tipo de Excursion</th>
-                                                                        <th class="text-center">Cantidad de Excursiones</th>
+                                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">ID</th>
+                                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Empresa</th>
+                                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Tipo de Excursion</th>
+                                                                        <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Cantidad de Excursiones</th>
                                                                     </thead>
                                                                     <tbody ng-repeat="grafico in graficos">
                                                                         <tr>
@@ -245,10 +245,10 @@
                                                         </div>
                                                     </div>
                                                     <!--GRAFICO 2-->
-                                                    <div class="col-md-3 text-center" ng-controller="TiposExcursionesController">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" ng-controller="TiposExcursionesController">
                                                         <div class="card">
                                                             <div class="header">
-                                                                <h4 class="title" align="center">Nro Excursiones</h4>
+                                                                <h4 class="title" align="center">Cantidad de Turistas por Excursión</h4>
                                                                 <br>
                                                                 <p class="category">Fecha Desde
                                                                     <input id="bday-month" type="month" name="bday-month"
@@ -284,10 +284,14 @@
                         </div>
                         <div class="row">
                                 <!--GRAFICO 3-->
-                                <div class="col-md-3 text-center" ng-controller="CrecimientoAlojamientosController">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" ng-controller="CrecimientoAlojamientosController">
                                         <div class="card">
                                             <div class="header">
                                                 <h4 class="title" align="center">Crecimiento del Turismo por Año</h4>
+                                                <br>
+                                                <p align="center" class="category">
+                                                        (Alojamientos y Excursiones)
+                                                </p>
                                                 <br>
                                                 <p align="center" class="category">
                                                     Desde 2010 Hasta 2018
@@ -308,10 +312,14 @@
                                         </div>
                                 </div>
                                 <!--GRAFICO 4-->
-                                <div class="col-md-6 text-center" ng-controller="ExtranjerosController">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" ng-controller="ExtranjerosController">
                                         <div class="card">
                                             <div class="header">
                                                 <h4 class="title" align="center">Turismo por Nacionalidad</h4>
+                                                <br>
+                                                <p align="center" class="category">
+                                                        (Alojamientos y Excursiones)
+                                                </p>
                                                 <br>
                                                 <p align="center" class="category">
                                                     Desde 2010 Hasta 2018
@@ -331,7 +339,8 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="row">
+                        <!-- Probando controlador.... -->
+                        <!--<div class="row">
                             <div ng-controller="ExtranjerosController">
                                     {{datos_alojamientos}} <br>
                                     {{datos_estadias}} <br>
@@ -341,7 +350,7 @@
                                     {{excursiones}} <br>
                                     {{datos_alojamientos2}} <br>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
             </div>
     

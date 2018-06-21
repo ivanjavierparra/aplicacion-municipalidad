@@ -112,7 +112,7 @@
             
 
 
-            $scope.series = ["Masculino", "Femenino",'Putaso'];
+            $scope.series = ["Masculino", "Femenino"];
            
            
 
