@@ -42,6 +42,8 @@
                   key = tipos_de_excursion[i].nombre;
                   dict[key] = 0 ;
                 }
+
+                console.log(JSON.stringify(dict));
                 
 
                 $http.get('http://localhost:8080/api/excursiones/')
@@ -50,20 +52,34 @@
                         var excursiones = response.data;
 
                         //recorro excursiones
+                        console.log("cantidad de excursiones: " + longitud_excursiones);
+                        //var contador = 0;
                         for(var i=0;i<longitud_excursiones;i++){
                               var fecha = new Date(excursiones[i].fecha);
                               fecha = fecha.getTime();
+                             // console.log("fecha: " + fecha)
                               if((fecha>=fdesde)&&(fecha<=fhasta)){
                                     var tipo = excursiones[i].tipo;
+                                    //contador++;
                                     for(var j=0;j<longitud_tipos_de_excursion;j++){
                                       if(tipo==tipos_de_excursion[j].id){
                                           var nombre = tipos_de_excursion[j].nombre;
                                           var cantidad_turistas = excursiones[i].turistas.length;
-                                          dict[nombre] = dict[nombre] + cantidad_turistas;
+                                          //console.log("cantidad de turistas: " + cantidad_turistas);
+                                          if(cantidad_turistas==0){
+                                            dict[nombre] = dict[nombre] + 1;
+                                          }
+                                          else{
+                                            dict[nombre] = dict[nombre] + cantidad_turistas;
+                                          }
+                                          //dict[nombre] = dict[nombre] + cantidad_turistas;
+                                          //dict[nombre] = dict[nombre] + 1;
+                                          break;
                                       }
                                     }
                               }
                         }
+                        //console.log("contador: " + contador);
                         
                         
                         $scope.grafico = dict;
@@ -78,6 +94,7 @@
                           $scope.datos_label.push($scope.grafico[label]);
                         }
 
+                        console.log(JSON.stringify($scope.grafico));
                         
 
                         

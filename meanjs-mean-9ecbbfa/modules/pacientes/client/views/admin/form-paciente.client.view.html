@@ -156,7 +156,16 @@
                                                     </div>
                                             </div>
 
-                                            <!-- nacionalidad -->
+                                            <!-- sexo -->
+                                            <div class="form-group" show-errors>
+                                                <label class="control-label" for="sexo">Sexo</label>
+                                                <input name="sexo" type="text" ng-model="vm.paciente.sexo" id="sexo" class="form-control" placeholder="sexo" required autofocus>
+                                                <div ng-messages="vm.form.pacienteForm.sexo.$error" role="alert">
+                                                    <p class="help-block error-text" ng-message="required">paciente sexo is required.</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- fechaNacimiento -->
                                             <div class="form-group" show-errors>
                                                     <label class="control-label" for="fechaNacimiento">Fecha de Nacimiento</label>
                                                     <input name="fechaNacimiento" type="date" ng-model="vm.paciente.fechaNacimiento" id="fechaNacimiento" class="form-control" placeholder="fechaNacimiento" required autofocus>

@@ -125,12 +125,12 @@
 
 
 
-                                                        console.log("que hay en: " + JSON.stringify(diccionario_alojamientos));
+                                                        //console.log("que hay en: " + JSON.stringify(diccionario_alojamientos));
                                 
                                 
-                                                        console.log("valor: " + diccionario_alojamientos["argentino"]);
+                                                        //console.log("valor: " + diccionario_alojamientos["argentino"]);
 
-                                                        console.log("valor: " + JSON.stringify(dict));
+                                                        //console.log("valor: " + JSON.stringify(dict));
 
 
                                                         /*  aca empieza la logica del grafico  */
