@@ -47,18 +47,24 @@
                   .then(function(response) {
                       var longitud_infracciones = Object.keys(response.data).length;
                       var infracciones = response.data;
-  
+
+                      
+
                       //recorro las infracciones
                       for(var i=0;i<longitud_infracciones;i++){
                           var id_tipo_infraccion = infracciones[i].tipo_id;
                           
-                          //recorro los tipos de infracciones
-                          for(var j=0;j<longitud_tipos_infracciones;j++){
-                              var id = tipos_infracciones[j].id;
-                              if(id_tipo_infraccion==id){
-                                  var nombre = tipos_infracciones[j].nombre;
-                                  dict[nombre] = dict[nombre] + 1;
-                                  break;
+                          var fecha = new Date(infracciones[i].fecha);
+                          fecha = fecha.getTime();
+                          if((fecha>=fdesde)&&(fecha<=fhasta)){
+                              //recorro los tipos de infracciones
+                              for(var j=0;j<longitud_tipos_infracciones;j++){
+                                var id = tipos_infracciones[j].id;
+                                if(id_tipo_infraccion==id){
+                                    var nombre = tipos_infracciones[j].nombre;
+                                    dict[nombre] = dict[nombre] + 1;
+                                    break;
+                                }
                               }
                           }
                       }
