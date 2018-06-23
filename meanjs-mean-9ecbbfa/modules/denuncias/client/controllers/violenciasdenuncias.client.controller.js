@@ -102,6 +102,22 @@
   
               $scope.series = ["Muertes","Denuncias"];
       
+              $scope.options = {
+                scales: {
+                  yAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Cantidad de Muertes/Denuncias'
+                    }
+                  }],
+                  xAxes: [{
+                    scaleLabel: {
+                      display: true,
+                      labelString: 'Años'
+                    }
+                  }]
+                }     
+              }
   
           });
           

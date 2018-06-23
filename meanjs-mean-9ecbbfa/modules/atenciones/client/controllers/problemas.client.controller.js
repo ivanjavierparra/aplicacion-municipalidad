@@ -60,6 +60,23 @@
                                 $scope.datos_label.push($scope.grafico[label]);
                               }
 
+                              $scope.options = {
+                                scales: {
+                                  yAxes: [{
+                                    scaleLabel: {
+                                      display: true,
+                                      labelString: 'Cantidad de Problemas'
+                                    }
+                                  }],
+                                  xAxes: [{
+                                    scaleLabel: {
+                                      display: true,
+                                      labelString: 'Años'
+                                    }
+                                  }]
+                                }     
+                              }
+
                           });
                 });
           }

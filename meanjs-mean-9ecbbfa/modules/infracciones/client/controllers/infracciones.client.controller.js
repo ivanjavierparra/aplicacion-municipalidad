@@ -29,7 +29,7 @@
         //fdesde = new Date(fdesde);
         //fhasta = fhasta.substring(0,10);
 
-        $http.get('http://localhost:8000/api/infracciones/tipos')
+        $http.get('http://localhost:8000/api/tiposinfracciones')
             .then(function(response) {
                 var longitud_tipos_infracciones = Object.keys(response.data).length;
                 var dict = {};
@@ -76,20 +76,29 @@
                       
                     $scope.labels = [];
                     $scope.datos_label = [];
+                    $scope.series = [];
                     
                     var label;
                     
                     
                     for (label in $scope.graficos){
-                    $scope.labels.push(label);
-                    $scope.datos_label.push($scope.graficos[label]);
+                      $scope.series.push(label);
+                      $scope.labels.push(label);
+                      $scope.datos_label.push($scope.graficos[label]);
                     }
                       
                     console.log(JSON.stringify($scope.labels));
 
 
-                    $scope.series = ["soborno", "buenas"];
-                    
+                    //$scope.series = ["soborno", "buenas"];
+                    $scope.options = {
+                      responsive: true,
+                      
+                      animation: {
+                          animateScale: true,
+                          animateRotate: true
+                      }
+                  }
 
                     console.log(JSON.stringify($scope.series));
                   }); //FIN TIPOS

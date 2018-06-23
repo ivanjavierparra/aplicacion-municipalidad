@@ -105,24 +105,28 @@
                          <div class="container-fluid">
              
                                  <div class="page-header">
-                                         <h1>Mi Perfil</h1>
+                                        <center><h1>Mi Perfil</h1></center>
                                        </div>
                                        <div class="row">
-                                         <nav class="col-sm-3 col-md-3">
+                                         <nav class="col-sm-3 col-md-3" style="background-color: white; border-radius: 5%;  border: 2px solid black; ">
+                                            <br>
                                            <ul class="nav nav-pills nav-stacked">
                                              <li ui-sref-active="active">
                                                <a ui-sref="settings.profile">Editar mi Perfil</a>
+                                               <hr/>
                                              </li>
-                                             <li ui-sref-active="active">
+                                             <li ui-sref-active="active" >
                                                <a ui-sref="settings.picture">Cambiar mi imagen de Perfil</a>
                                              </li>
+                                             <hr/>
                                              <li ui-sref-active="active" ng-show="vm.user.provider === 'local'">
                                                <a ui-sref="settings.password">Cambiar Password</a>
                                              </li>
-                                             <li ui-sref-active="active">
+                                             <!--<li ui-sref-active="active">
                                                <a ui-sref="settings.accounts">Gestionar mis redes sociales</a>
-                                             </li>
+                                             </li>-->
                                            </ul>
+                                           <br>
                                          </nav>
                                          <div class="col-sm-9 col-md-8 settings-view">
                                            <div ui-view></div>

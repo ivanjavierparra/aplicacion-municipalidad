@@ -109,7 +109,22 @@
                   $scope.datos_label.push($scope.graficos[label]);
                 }
     
-    
+                $scope.options = {
+                  scales: {
+                    yAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Cantidad de Alojamientos/Excursiones'
+                      }
+                    }],
+                    xAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Años'
+                      }
+                    }]
+                  }     
+                }
 
               });//fin get excursiones
     

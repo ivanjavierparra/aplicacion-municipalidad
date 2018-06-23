@@ -57,7 +57,7 @@
         $scope.contadorPagadas["2017"] = 0;
         $scope.contadorPagadas["2018"] = 0;
 
-        
+        //console.log("tam: " + $scope.infracciones.length);
         for(var i=0;i<$scope.infracciones.length;i++){
             var year = $scope.infracciones[i].fecha.toString();
             

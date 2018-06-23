@@ -10,7 +10,7 @@
   function ExtranjerosController($scope, $http) {
     
 
-    $http.get('http://localhost:8000/api/turistas/nacionalidades')
+    $http.get('http://localhost:8000/api/nacionalidades')
           .then(function(response) {
               var longitud_nacionalidades_alojamientos = Object.keys(response.data).length;
               var diccionario_alojamientos = {};
@@ -66,7 +66,7 @@
                               
                                /* ###### aca empieza excursiones ##### */
 
-                               $http.get('http://localhost:8080/api/turistas/nacionalidades/')
+                               $http.get('http://localhost:8080/api/nacionalidades/')
                                 .then(function(response) {
                                     var longitud_nacionalidad = Object.keys(response.data).length;
                                     var dict = {};
@@ -203,7 +203,23 @@
                                                         //$scope.alojamientos = [4,4,4,4,4,4,4]
                                                         //$scope.excursiones = [10,10,10,10,10,10,10]
                                                         $scope.series = ['Alojamientos', 'Excursiones'];
-
+                                                       
+                                                        $scope.options = {
+                                                            scales: {
+                                                              yAxes: [{
+                                                                scaleLabel: {
+                                                                  display: true,
+                                                                  labelString: 'Cantidad de Alojamientos/Excursiones'
+                                                                }
+                                                              }],
+                                                              xAxes: [{
+                                                                scaleLabel: {
+                                                                  display: true,
+                                                                  labelString: 'Nacionalidades'
+                                                                }
+                                                              }]
+                                                            }     
+                                                          }
 
                                                         
                                         

@@ -165,7 +165,7 @@
                                                                 <td align="center">{{$index+1}}</td>
                                                                 <td align="center">{{grafico.fecha}}</td>
                                                                 <td align="center">{{grafico.cantidad}}</td>
-                                                                <td align="center">Faltan pagar {{grafico.pagada}} infracciones</td>
+                                                                <td align="center"> {{grafico.pagada==0 ? 'Todas pagas' : 'Faltan pagar ' + grafico.pagada + ' infracciones'}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -192,13 +192,13 @@
                                                         <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fhasta">
                                                         </p>
                                                         <br>
-                                                        <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
+                                                        <center><button type="button" class="btn btn-default" style="background-color: black; color: whitesmoke" ng-click="filtrar($event)"><i class="pe-7s-search"></i>  Filtrar</button></center>
                                                     </div>
                                                     <div class="content">
-                                                        
-                                                            <canvas id="pie" class="chart chart-pie" chart-series="series" 
-                                                            chart-options="" chart-data="datos_label" chart-labels="labels"
-                                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                            
+                                                            <canvas id="pie" chart-labels="labels" class="chart chart-pie" chart-series="series" 
+                                                            chart-options="options" chart-data="datos_label" 
+                                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="12px">
                                                             </canvas>
             
                                                     </div>
@@ -219,7 +219,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="content">                                            
-                                                    <canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="datos_label" chart-labels="labels"
+                                                    <canvas id="pie" class="chart chart-pie" chart-series="series" chart-options="" chart-data="datos_label" chart-labels="labels"
                                                     chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
                                                     </canvas>
                                                     <div class="footer">

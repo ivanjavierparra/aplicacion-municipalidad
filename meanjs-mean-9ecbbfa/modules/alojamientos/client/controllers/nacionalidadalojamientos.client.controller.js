@@ -10,7 +10,7 @@
     function NacionalidadAlojamientosController($scope, $http) {
       
   
-      $http.get('http://localhost:8000/api/turistas/nacionalidades')
+      $http.get('http://localhost:8000/api/nacionalidades')
           .then(function(response) {
               var longitud_nacionalidad = Object.keys(response.data).length;
               var dict = {};

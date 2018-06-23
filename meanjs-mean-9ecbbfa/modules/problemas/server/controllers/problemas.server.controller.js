@@ -58,6 +58,7 @@ exports.update = function (req, res) {
         });
     } else {
         problema.nombre = req.body.nombre;
+        problema.id_problema = req.body.id_problema;
         problema.save();
     }
     return res.json(problema);

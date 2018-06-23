@@ -116,6 +116,22 @@
               $scope.datos_label_f.push($scope.graficosFemenino[label_f]);
             }
 
+            $scope.options = {
+              scales: {
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Cantidad de Infracciones'
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Años'
+                  }
+                }]
+              }     
+            }
             
 
 

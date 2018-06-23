@@ -58,6 +58,7 @@ exports.update = function (req, res) {
         });
     } else {
         if(!atencion) return res.json([]); //no encontro el objeto atenciond
+        if(req.body.id_atencion) atencion.id_atencion = req.body.id_atencion;
         if(req.body.fecha) atencion.fecha = req.body.fecha;
         if(req.body.paciente) atencion.paciente = req.body.paciente;
         if(req.body.doctor) atencion.doctor = req.body.doctor;

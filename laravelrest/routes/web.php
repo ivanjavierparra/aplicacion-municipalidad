@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 
 /*     APIS DE NACIONALIDADES  */
-Route::get('api/turistas/nacionalidades', 'NacionalidadController@index');
-Route::post('api/turistas/nacionalidades', 'NacionalidadController@store');
+Route::get('api/nacionalidades', 'NacionalidadController@index');
+Route::post('api/nacionalidades', 'NacionalidadController@store');
 
-Route::get('api/turistas/nacionalidades/{id?}', 'NacionalidadController@show');
-Route::put('api/turistas/nacionalidades/{id?}', 'NacionalidadController@update');
-Route::delete('api/turistas/nacionalidades/{id?}', 'NacionalidadController@destroy');
+Route::get('api/nacionalidades/{id?}', 'NacionalidadController@show');
+Route::put('api/nacionalidades/{id?}', 'NacionalidadController@update');
+Route::delete('api/nacionalidades/{id?}', 'NacionalidadController@destroy');
 
 /*     APIS DE TURISTAS   */
 Route::get('api/turistas', 'TuristaController@index');
@@ -49,9 +49,9 @@ Route::put('api/estadias/{id?}', 'EstadiaController@update');
 Route::delete('api/estadias/{id?}', 'EstadiaController@destroy');
 
 //filtros
-Route::get('api/estadias/alojamientos/{id?}', 'EstadiaController@readAlojamientos');
-Route::get('api/estadias/{id?}/alojamientos', 'EstadiaController@readAlojamiento');
-Route::get('api/estadias/{id?}/turistas', 'EstadiaController@readTurista');
+Route::get('api/estadias/alojamientos/{id?}', 'EstadiaController@readAlojamientos'); #todo los alojamientos cuyo id es {id} en que estan en estadias.
+Route::get('api/estadias/{id?}/alojamientos', 'EstadiaController@readAlojamiento'); #alojamiento de una estadia.
+Route::get('api/estadias/{id?}/turistas', 'EstadiaController@readTurista');#turista de una estadia.
 
 /*     APIS DE INFRACTORES   */
 Route::get('api/infractores', 'InfractorController@index');
@@ -62,12 +62,12 @@ Route::put('api/infractores/{id?}', 'InfractorController@update');
 Route::delete('api/infractores/{id?}', 'InfractorController@destroy');
 
 /*     APIS DE TIPOS DE INFRACCIONES   */
-Route::get('api/infracciones/tipos', 'TipoInfraccionController@index');
-Route::post('api/infracciones/tipos', 'TipoInfraccionController@store');
+Route::get('api/tiposinfracciones', 'TipoInfraccionController@index');
+Route::post('api/tiposinfracciones', 'TipoInfraccionController@store');
 
-Route::get('api/infracciones/tipos/{id?}', 'TipoInfraccionController@show');
-Route::put('api/infracciones/tipos/{id?}', 'TipoInfraccionController@update');
-Route::delete('api/infracciones/tipos/{id?}', 'TipoInfraccionController@destroy');
+Route::get('api/tiposinfracciones/{id?}', 'TipoInfraccionController@show');
+Route::put('api/tiposinfracciones/{id?}', 'TipoInfraccionController@update');
+Route::delete('api/tiposinfracciones/{id?}', 'TipoInfraccionController@destroy');
 
 /*     APIS DE INFRACCIONES   */
 //crud
@@ -79,6 +79,6 @@ Route::put('api/infracciones/{id?}', 'InfraccionController@update');
 Route::delete('api/infracciones/{id?}', 'InfraccionController@destroy');
 
 //filtros
-Route::get('api/infracciones/tipos/{id?}', 'InfraccionController@readTipos');
-Route::get('api/infracciones/{id?}/infractores', 'InfraccionController@readInfractor');
-Route::get('api/infracciones/{id?}/tipos', 'InfraccionController@readTipo');
+Route::get('api/infracciones/tipos/{id?}', 'InfraccionController@readTipos'); #todas las infracciones cuyo tipo de infraccino tiene {di}.
+Route::get('api/infracciones/{id?}/infractores', 'InfraccionController@readInfractor'); #infractor de una infraccion dada-
+Route::get('api/infracciones/{id?}/tipos', 'InfraccionController@readTipo'); #tipo de infraccion de una infraccion.

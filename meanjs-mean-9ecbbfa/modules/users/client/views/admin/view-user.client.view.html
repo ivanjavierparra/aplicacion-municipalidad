@@ -113,11 +113,11 @@
                                             <h1 ng-bind="vm.user.username"></h1>
                                           </div>
                                           <div class="col-md-4">
-                                            <a class="btn btn-default" ui-sref="admin.user-edit({userId: vm.user._id})">
+                                            <a class="btn btn-default" style="background-color: green; color: whitesmoke" ui-sref="admin.user-edit({userId: vm.user._id})">
                                                     <i class="pe-7s-check"></i>
                                                     Editar usuario
                                             </a>
-                                            <a class="btn btn-default" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
+                                            <a class="btn btn-default" style="background-color: red; color: whitesmoke" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
                                                     <i class="pe-7s-trash"></i>
                                                     Eliminar usuario
                                             </a>

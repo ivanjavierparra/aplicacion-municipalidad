@@ -34,9 +34,9 @@
       state: 'settings.password'
     });
 
-    menuService.addSubMenuItem('account', 'settings', {
-      title: 'Gestionar redes sociales',
-      state: 'settings.accounts'
-    });
+   // menuService.addSubMenuItem('account', 'settings', {
+     // title: 'Gestionar redes sociales',
+      //state: 'settings.accounts'
+    //});
   }
 }());

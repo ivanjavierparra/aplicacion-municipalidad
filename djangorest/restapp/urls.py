@@ -10,8 +10,8 @@ urlpatterns = [
     path('api/tiposexcursiones/', views.tipo_excursion_list),
     path('api/tiposexcursiones/<int:id>/', views.tipo_excursion_detail),
     #crud nacionalidades
-    path('api/turistas/nacionalidades/', views.nacionalidad_list),
-    path('api/turistas/nacionalidades/<int:id>/', views.nacionalidad_detail),
+    path('api/nacionalidades/', views.nacionalidad_list),
+    path('api/nacionalidades/<int:id>/', views.nacionalidad_detail),
     #crud turistas
     path('api/turistas/', views.turista_list),
     path('api/turistas/<int:id>/', views.turista_detail),

@@ -61,6 +61,24 @@
 
         $scope.series = ["Infracciones"];
 
+        $scope.options = {
+          responsive: true,
+          scales: {
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Cantidad de Infracciones'
+              }
+            }],
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Años'
+              }
+            }]
+          }     
+        }
+
     });
   }
 
