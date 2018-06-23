@@ -93,12 +93,20 @@
                     //$scope.series = ["soborno", "buenas"];
                     $scope.options = {
                       responsive: true,
-                      
+                      pieceLabel: {
+                        render: 'labels',
+                        fontColor: '#000',
+                        position: 'outside',
+                        segment: true
+                      },
                       animation: {
                           animateScale: true,
                           animateRotate: true
                       }
                   }
+
+               
+                  
 
                     console.log(JSON.stringify($scope.series));
                   }); //FIN TIPOS
