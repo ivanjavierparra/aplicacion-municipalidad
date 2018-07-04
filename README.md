@@ -18,3 +18,6 @@ Para poder ejecutar la aplicación:
 5. Ir a la carpeta "meanjs-mean-9ecbbfa", abrir una terminal y ejecutar: gulp
 6. En http://localhost:3000/ se encuentra la aplicación en ejecución.
 
+Integrantes del grupo:
+- De Marco, Emiliano.
+- Parra, Iván Javier.
