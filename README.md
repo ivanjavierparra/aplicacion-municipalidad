@@ -25,4 +25,4 @@ Integrantes del grupo:
 - Parra, Iván Javier.
 
 ## Pantalla Principal
-<img src="/docs/logo.png" alt="My cool logo"/>
+<img src="/principal.png" alt="Pantalla Principal"/>
