@@ -23,7 +23,7 @@ var AtencionSchema = new Schema({
     trim: true
   },
   paciente: {
-    type: Number,
+    type: String,
     default: 1,
     trim: true
   },

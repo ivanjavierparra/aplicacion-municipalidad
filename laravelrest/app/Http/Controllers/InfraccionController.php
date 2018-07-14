@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Infraccion;
+use App\TipoInfraccion;
+use App\Infractor;
 use Illuminate\Http\Request;
 
 class InfraccionController extends Controller
@@ -125,5 +127,60 @@ class InfraccionController extends Controller
             $resultado
         );
     }
+
+    /**
+     * Retorna todas las infracciones de un determinado tipo.
+     */
+    public function readTipos($id)
+    {
+        return response()->json(
+            Infraccion::where('tipo_id','=',$id)->get()
+        );
+    }
+
+    /**
+     * Retorna el tipo de una infraccion.
+     */
+    public function readTipo($id)
+    {
+
+        $infraccion = Infraccion::find($id);
+        if($infraccion){
+            $tipo = TipoInfraccion::where('id','=',$infraccion->tipo_id)->get(); 
+            return response()->json(
+                $tipo
+            );
+        }
+        else{
+            return response()->json(
+                $infraccion
+            );
+        }
+        
+    }
+
+
+    /**
+     * Retorna el infractor de una infraccion.
+     */
+    public function readInfractor($id)
+    {
+
+        $infraccion = Infraccion::find($id);
+        if($infraccion){
+            $infractor = Infractor::where('id','=',$infraccion->infractor_id)->get(); 
+            return response()->json(
+                $infractor
+            );
+        }
+        else{
+            return response()->json(
+                $infraccion
+            );
+        }
+        
+    }
+
+
 }
 

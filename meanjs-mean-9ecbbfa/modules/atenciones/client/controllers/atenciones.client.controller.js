@@ -2,137 +2,73 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('atenciones')
     .controller('AtencionesController', AtencionesController);
 
-  /*function HelloController($scope, $http) {
-    $http.get('http://rest-service.guides.spring.io/greeting').
-    then(function(response) {
-        $scope.greeting = response.data;
-    });
-  }*/
+  AtencionesController.$inject = ['$scope', 'atencionResolve', 'Authentication','$http'];
 
-  function AtencionesController($scope, $http) {
-    $scope.data = {};
- 
-        $http.get('http://localhost:3000/api/problemas/')
-            .then(function(response) {
-                var longitud_problemas = Object.keys(response.data).length;
-                var dict = {};
-                var key;
-                var len;
-                var problemas = response.data;
+  function AtencionesController($scope, atencion, Authentication,$http) {
+    var vm = this;
 
-                //diccionario cuya clave son los nombres de los problemas
-                for(var i=0;i<longitud_problemas;i++){
-                    key = problemas[i].nombre;
-                    dict[key] = 0 ;
-                }
-
-                  $http.get('http://localhost:3000/api/atenciones/')
-                  .then(function(response) {
-                      var longitud_atenciones = Object.keys(response.data).length;
-                      var atenciones = response.data;
-  
-                      //recorro las atenciones
-                      for(var i=0;i<longitud_atenciones;i++){
-                          var atencion_problema = atenciones[i].problema;
-                          
-                          //recorro los problemas
-                          for(var j=0;j<longitud_problemas;j++){
-                              var id = problemas[j].id_problema;
-                              if(atencion_problema==id){
-                                  var nombre = problemas[j].nombre;
-                                  dict[nombre] = dict[nombre] + 1;
-                                  break;
-                              }
-                          }
-                      }
-
-
-
-                    $scope.graficos = dict;
-  
-                      
-                    $scope.labels = [];
-                    $scope.datos_label = [];
-                    
-                    var label;
-                    
-                    for (label in $scope.graficos){
-                    $scope.labels.push(label);
-                    $scope.datos_label.push($scope.graficos[label]);
-                    }
-                      
-                      
-                  }); //FIN TIPOS
-              }); //FIN INFRACCIONES
-  
     
 
-  
-  
-      
-    }
-  
-  /*
-    $scope.data = {};
- 
-        $http.get('http://localhost:3000/api/problemas/')
+    $http.get('http://localhost:3000/api/problemas/')
             .then(function(response) {
-                var longitud_problemas = Object.keys(response.data).length;
-                var dict = {};
-                var key;
-                var len;
-                var problemas = response.data;
 
-                //diccionario cuya clave son los nombres de los problemas
-                for(var i=0;i<longitud_problemas;i++){
-                    key = problemas[i].nombre;
-                    dict[key] = 0 ;
+              vm.atencion = atencion;
+              vm.authentication = Authentication;
+
+              var longitud_problemas = Object.keys(response.data).length;
+              var problemas = response.data;
+
+              
+
+              for(var i=0;i<longitud_problemas;i++){
+                if(vm.atencion.problema==problemas[i].id_problema){
+                  vm.problema = problemas[i].nombre;
+                  break;
                 }
+              }
 
-                  $http.get('http://localhost:3000/api/atenciones/')
-                  .then(function(response) {
-                      var longitud_atenciones = Object.keys(response.data).length;
-                      var atenciones = response.data;
-  
-                      //recorro las atenciones
-                      for(var i=0;i<longitud_atenciones;i++){
-                          var atencion_problema = atenciones[i].problema;
-                          
-                          //recorro los problemas
-                          for(var j=0;j<longitud_problemas;j++){
-                              var id = problemas[j].id_problema;
-                              if(atencion_problema==id){
-                                  var nombre = problemas[j].nombre;
-                                  dict[nombre] = dict[nombre] + 1;
-                                  break;
-                              }
-                          }
+              if(vm.atencion.muerto){
+                vm.muerto = "Si";
+              }
+              else{
+                vm.muerto = "No";
+              }
+
+
+              $http.get('http://localhost:3000/api/sucesos/')
+                .then(function(response) {
+                   var longitud_sucesos = Object.keys(response.data).length;
+                   var sucesos = response.data;
+
+                    for(var i=0;i<longitud_sucesos;i++){
+                      if(vm.atencion.suceso==sucesos[i].id_suceso){
+                          vm.suceso = sucesos[i].nombre;
+                          break;
                       }
-
-
-
-                    $scope.graficos = dict;
-  
-                      
-                    $scope.labels = [];
-                    $scope.datos_label = [];
-                    
-                    var label;
-                    
-                    for (label in $scope.graficos){
-                    console.log("label " + label);
-                    $scope.labels.push(label);
-                    $scope.datos_label.push($scope.graficos[label]);
                     }
-                      
-                      
-                  }); //FIN TIPOS
-              }); //FIN INFRACCIONES
-      
-    }
-  */
 
+                    $http.get('http://localhost:3000/api/pacientes/')
+                    .then(function(response) {
+                      var longitud_pacientes = Object.keys(response.data).length;
+                      var pacientes = response.data;
+
+                      for(var i=0;i<longitud_pacientes;i++){
+                        if(vm.atencion.paciente==pacientes[i]._id){
+                          vm.paciente = pacientes[i].nombre + " " + pacientes[i].apellido;
+                          break;
+                        }
+                      }
+                    });
+
+                });
+
+
+
+
+            });
+
+  }
 }());

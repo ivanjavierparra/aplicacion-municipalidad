@@ -50,22 +50,25 @@
             $scope.graficosFemenino["2018"] = 0;
 
 
+            //console.log("cantidad de infracciones: " + longitud_infracciones);
+            
             //recorro mis infracciones, y las acumulo en mi diccionario
             for(var i=0;i<longitud_infracciones;i++){
                 //recorro los infractores
 
                 var fecha = infracciones[i].fecha.toString().substring(0,4);
+                //console.log("fecha: " + fecha)
                 var year = parseInt(fecha);
 
                 if((year>2009)&&(year<2019)){
                   
-                    for(var j=0;i<longitud_infractores+10;j++){
+                    for(var j=0;j<longitud_infractores+10;j++){
                         if(infracciones[i].infractor_id == infractores[j].id){
                               if(infractores[j].sexo == "masculino"){
                                 $scope.graficos["masculino"] = $scope.graficos["masculino"] + 1;
                                 $scope.graficosMasculino[fecha] = $scope.graficosMasculino[fecha] + 1;
                               }
-                              if(infractores[j].sexo == "femenino"){
+                              else{
                                 $scope.graficos["femenino"] = $scope.graficos["femenino"] + 1;
                                 $scope.graficosFemenino[fecha] = $scope.graficosFemenino[fecha] + 1;
                               }
@@ -74,6 +77,10 @@
                      }
                 }
             }
+
+           // console.log(JSON.stringify($scope.graficos));
+            //console.log(JSON.stringify($scope.graficosFemenino));
+            //console.log(JSON.stringify($scope.graficosMasculino));
 
 
 
@@ -109,7 +116,27 @@
               $scope.datos_label_f.push($scope.graficosFemenino[label_f]);
             }
 
+            $scope.options = {
+              scales: {
+                yAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Cantidad de Infracciones'
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Años'
+                  }
+                }]
+              }     
+            }
+            
+
+
             $scope.series = ["Masculino", "Femenino"];
+           
            
 
         });

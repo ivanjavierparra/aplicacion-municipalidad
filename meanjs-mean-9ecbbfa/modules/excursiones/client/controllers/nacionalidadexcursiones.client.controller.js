@@ -10,7 +10,7 @@
   function NacionalidadExcursionesController($scope, $http) {
     
 
-    $http.get('http://127.0.0.1:8080/api/turistas/nacionalidades/')
+    $http.get('http://localhost:8080/api/nacionalidades/')
         .then(function(response) {
             var longitud_nacionalidad = Object.keys(response.data).length;
             var dict = {};
@@ -84,7 +84,7 @@
               }
   
             
-        });//fin get nacionalidades
+        });//fin get nacionalidades de excursiones
     
   }//fin tipoalojamientoscontroller
 

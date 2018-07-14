@@ -71,7 +71,22 @@
                       $scope.datos_label.push($scope.grafico[label]);
                     }
 
-
+                    $scope.options = {
+                      scales: {
+                        yAxes: [{
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Cantidad de Alojamientos'
+                          }
+                        }],
+                        xAxes: [{
+                          scaleLabel: {
+                            display: true,
+                            labelString: 'Categorías de Hoteles'
+                          }
+                        }]
+                      }     
+                    }
 
                 });//fin get alojamientos
 

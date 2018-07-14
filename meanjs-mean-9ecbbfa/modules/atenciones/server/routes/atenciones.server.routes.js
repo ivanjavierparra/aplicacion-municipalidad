@@ -16,12 +16,21 @@ module.exports = function(app) {
     .put(atenciones.update)
     .delete(atenciones.delete);
 
+  //filtro: todas las atenciones de un problema dado.
   app.route('/api/atenciones/problemas/:problemaId')
     .get(atenciones.readproblema)
   
+  //filtro: todas las atenciones de un suceso dado.
   app.route('/api/atenciones/sucesos/:sucesoId')
     .get(atenciones.readsuceso)
 
+  //filtro: todas las atenciones de un paciente dado.
+  app.route('/api/atenciones/pacientes/:pacienteId')
+    .get(atenciones.readpaciente)
+  
+  app.route('/api/atenciones/:atencionId/pacientes')
+    .get(atenciones.readPacienteAtendido)
+  
   // Finish by binding the article middleware
   //app.param('pacienteId', pacientes.articleByID);
 };

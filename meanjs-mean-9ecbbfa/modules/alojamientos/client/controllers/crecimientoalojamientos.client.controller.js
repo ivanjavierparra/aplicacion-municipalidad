@@ -52,7 +52,7 @@
             }
 
 
-            $http.get('http://127.0.0.1:8080/api/excursiones')
+            $http.get('http://localhost:8080/api/excursiones')
             .then(function(response) {
                 var longitud_excursiones = Object.keys(response.data).length;
                 var dict = {};
@@ -109,7 +109,22 @@
                   $scope.datos_label.push($scope.graficos[label]);
                 }
     
-    
+                $scope.options = {
+                  scales: {
+                    yAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Cantidad de Alojamientos/Excursiones'
+                      }
+                    }],
+                    xAxes: [{
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Años'
+                      }
+                    }]
+                  }     
+                }
 
               });//fin get excursiones
     

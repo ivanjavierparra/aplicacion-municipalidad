@@ -1,549 +1,323 @@
-<section style="margin-left: 20px;margin-right: 20px;">
-  
-<div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">   
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
-                </a>
-            </div>
-        </div>
-    </div>
+<section>
+
+    
+        <!-- Wrapper -->
+        <div class="wrapper">
+            
+            <!-- Barra Laterial -->
+            <div class="sidebar" data-color="azure" data-image="/modules/users/client/img/profile/sidebar-5.jpg">
+        
+                <!--
+        
+                    Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+                    Tip 2: you can also add an image using data-image tag
+        
+                -->
+                
+                    <div class="sidebar-wrapper">
+                        <div class="logo" ng-controller="CasaController">
+                             <!--  <img src="/modules/users/client/img/profile/homero.png" width="42" height="42"/>-->
+                            <a href="/" class="simple-text">
+                                Menú de Opciones
+                            </a>
+                            <!--<button ng-click="go('/')">Menú de Opciones</button>-->
+                        </div>
+                        <!-- cuando es por celular -->
+                        <!--<ul class="nav nav-mobile-menu">
+                               
+                            
+            
+                            
+                        </ul>-->
+                        <ul class="nav ng-scope">
+                            <li class="active">
+                                <a ui-sref="infracciones">
+                                    <i class="pe-7s-car"></i>
+                                    <p>Infracciones de Tránsito</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="denuncias">
+                                    <i class="pe-7s-note2"></i>
+                                    <p>Denuncias</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="salud">
+                                    <i class="pe-7s-id"></i>
+                                    <p>Salud</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="turismo">
+                                    <i class="pe-7s-plane"></i>
+                                    <p>Turismo</p>
+                                </a>
+                            </li>
+                           
+                            <li class="active-pro">
+                                <a ui-sref="acercade">
+                                    <i class="pe-7s-rocket"></i>
+                                    <p>Acerca de</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+            </div> <!--Fin Barra Laterial -->
+            
+        
+            <!-- Main -->
             <div class="main-panel">
+        
+                <!-- Menu de Arriba -->
+                <nav class="navbar navbar-default navbar-fixed"  ng-controller="HeaderController as vm">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2"> <!--data-target="#navbar" aria-expanded="false" aria-controls="navbar"-->
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#"><b>Municipalidad de Springfield</b></a>
+                            </div>
+                            <div class="collapse navbar-collapse" id="menucito">
+                                    <!-- Te muestra cada uno de los módulose: articulos, admin, chat (estan en HeadController)-->
+                                    <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+                                            <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+                                                <a data-toggle="dropdown" ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                                                <ul ng-switch-when="dropdown" class="dropdown-menu">
+                                                <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+                                                    <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+                                                </li>
+                                                </ul>
+                                                <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                            </li>
+                                    </ul>
+                                    <!-- Cuando el usuario no ha iniciado sesión te muestra "Registrarse" y "Iniciar Sesión" -->
+                                    <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+                                            <li ui-sref-active="active">
+                                                <a ui-sref="authentication.signup">Registrarse</a>
+                                            </li>
+                                            <li class="divider-vertical"></li>
+                                            <li ui-sref-active="active">
+                                                <a ui-sref="authentication.signin">Iniciar Sesión</a>
+                                            </li>
+                                    </ul>
+                                    <!--cuando el usuario ha iniciado sesión -->
+                                    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+                                            <li class="dropdown" uib-dropdown>
+                                                <!-- Muestra imagen y nombre del usuario -->  
+                                                <a data-toggle="dropdown" class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                                                <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+                                                <b><span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b></b>
+                                                </a>
+                                                <!-- te muestra un drop menu con las opciones -->
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                                                        <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li> 
+                                                        <a href="/api/auth/signout" target="_self">Cerrar Sesión</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="separator hidden-lg"></li>
+                                    </ul>
+                            </div>
+                        </div>
+                </nav> <!-- Fin Menu -->
+                 
+                <br>
+                
+        
+               
+                   
+                
+        
+            
+                
+        
+                <!--  #########  TABLAS BD INFRACCIONES #################  -->
                 <div class="content">
                         <div class="container-fluid">
-                            <h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-                            font-size: 24px; text-transform: uppercase;
-                            opacity: 0.9;">
-                                Infracciones de Tránsito
-                            </h1>
-                            <!--ACA ESTA EL GRAFICO:  el controlador esta en modules/atenciones/client/controllers/atenciones.client.controller.js -->
                             <div class="row">
-                                <!--GRAFICO 1-->
-                                <div class="col-md-4 col-centered text-center" ng-controller="InfraccionesController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
-                                            <br>
-                                            <p class="category">Fecha Desde
-                                                <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
-                                                placeholder="yyyy-MM-dd"  required />-->
-                                                <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fdesde">
-                                            </p>
-                                            <br>
-                                            <p class="category">Fecha Hasta 
-                                            <!--<input type="date" id="fhasta" name="input" ng-model="data.fhasta"
-                                            placeholder="yyyy-MM-dd" required />-->
-                                            <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fhasta">
-                                            </p>
-                                            <br>
-                                            <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
+                                <div ng-app ng-controller="TablainfraccionesController">
+                                    <div class="container-fluid">
+                                        <!-- TABLA DE INFRACCIONES -->
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title">Infracciones no Pagadas </h4>
+                                                    <p class="category">Desde 2010 a 2018</p>
+                                                </div>
+                                                <div class="content table-responsive table-full-width">
+                                                    <table class="table table-hover table-striped">
+                                                        <thead>
+                                                            <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Id</th>
+                                                            <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Año</th>
+                                                            <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Cantidad de Infracciones</th>
+                                                            <th class="text-center" style="font-size: 12px; color: black; font-weight: bold">Cantidad de Infracciones NO Pagadas</th>
+                                                        </thead>
+                                                        <tbody ng-repeat="grafico in graficos">
+                                                            <tr>
+                                                                <td align="center">{{$index+1}}</td>
+                                                                <td align="center">{{grafico.fecha}}</td>
+                                                                <td align="center">{{grafico.cantidad}}</td>
+                                                                <td align="center"> {{grafico.pagada==0 ? 'Todas pagas' : 'Faltan pagar ' + grafico.pagada + ' infracciones'}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                            
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-
+                                        <!--GRAFICO 1-->
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-centered text-center" ng-controller="InfraccionesController">
+                                                <div class="card">
+                                                    <div class="header">
+                                                        <h4 class="title" align="center">Tipos de Infracciones más Frecuentes</h4>
+                                                        <p class="category" style="text-align: left"></p>
+                                                        <br>
+                                                        <p class="category">Fecha Desde
+                                                            <!--<input type="date" id="fdesde" name="input" ng-model="data.fdesde"
+                                                            placeholder="yyyy-MM-dd"  required />-->
+                                                            <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fdesde">
+                                                        </p>
+                                                        <br>
+                                                        <p class="category">Fecha Hasta 
+                                                        <!--<input type="date" id="fhasta" name="input" ng-model="data.fhasta"
+                                                        placeholder="yyyy-MM-dd" required />-->
+                                                        <input id="bday-month" type="month" name="bday-month" min="2009-01" max="2020-12" ng-model="data.fhasta">
+                                                        </p>
+                                                        <br>
+                                                        <center><button type="button" class="btn btn-default" style="background-color: black; color: whitesmoke" ng-click="filtrar($event)"><i class="pe-7s-search"></i>  Filtrar</button></center>
+                                                    </div>
+                                                    <div class="content">
+                                                            
+                                                            <canvas id="pie" chart-labels="labels" class="chart chart-pie" chart-series="series" 
+                                                            chart-options="options" chart-data="datos_label" 
+                                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="12px">
+                                                            </canvas>
+            
+                                                    </div>
+                                                </div>
                                         </div>
-                                    </div>
+                                    </div><!--row-->
                                 </div>
-                                <!--GRAFICO 2-->
-                                <div class="col-md-4 text-center" ng-controller="SexoInfraccionesController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Total Infracciones Masculino/Femenino</h4>
-                                            <br>
-                                            <p class="category">Fecha
-                                                Desde 2010 Hasta 2018
-                                            </p>
-                                        </div>
-                                        <div class="content">                                            
-                                            <canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="datos_label" chart-labels="labels"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-                                            <div class="footer">
+                            </div>
+                            <div class="row">
+                                    <!--GRAFICO 2-->
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" ng-controller="SexoInfraccionesController">
+                                            <div class="card">
+                                                <div class="header">
+                                                    <h4 class="title" align="center">Total Infracciones Masculino/Femenino</h4>
+                                                    <br>
+                                                    <p class="category">
+                                                        Desde 2010 Hasta 2018
+                                                    </p>
+                                                </div>
+                                                <div class="content">                                            
+                                                    <canvas id="pie" class="chart chart-pie" chart-series="series" chart-options="" chart-data="datos_label" chart-labels="labels"
+                                                    chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                    </canvas>
+                                                    <div class="footer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" ng-controller="SexoInfraccionesController">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title" align="center">Crecimiento Infracciones Masculino/Femenino</h4>
+                                                <br>
+                                                <p class="category">
+                                                    Desde 2010 Hasta 2018
+                                                </p>
+                                            </div>
+                                            <div class="content">                                            
+                                                <canvas id="bar" class="chart chart-bar" chart-options="options" chart-data="[datos_label_m, datos_label_f]" chart-labels="labels_f"
+                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="" chart-series="series">
+                                                </canvas>
+                                                <div class="footer">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4 text-center" ng-controller="SexoInfraccionesController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Crecimiento Infracciones Masculino/Femenino</h4>
-                                            <br>
-                                            <p class="category">Fecha
-                                                Desde 2010 Hasta 2018
-                                            </p>
-                                        </div>
-                                       <div class="content">                                            
-                                            <canvas id="bar" class="chart chart-bar" chart-options="options" chart-data="[datos_label_m, datos_label_f]" chart-labels="labels_f"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="" chart-series="series">
-                                            </canvas>
-                                            <div class="footer">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            </div>
+                            <div class="row">
                                 <!--GRAFICO 3-->
-                                <div class="col-md-4 text-center" ng-controller="CrecimientoInfraccionesController">
-                                    <div class="card">
-                                        <div class="header">
-                                            <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
-                                            <br>
-                                            <p align="center" class="category">
-                                                Desde 2010 Hasta 2018
-                                            </p>
-                                            <br>
-                                        </div>
-                                        <div class="content">
-                                            
-                                            <canvas id="pie" class="chart chart-line"
-                                            chart-options="options" chart-data="[datos_label]" chart-labels="labels" chart-series="series"
-                                            chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                                            </canvas>
-
-                                        <div class="footer">
-
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center" ng-controller="CrecimientoInfraccionesController">
+                                        <div class="card">
+                                            <div class="header">
+                                                <h4 class="title" align="center">Crecimiento de Infracciones por Año</h4>
+                                                <br>
+                                                <p align="center" class="category">
+                                                    Desde 2010 Hasta 2018
+                                                </p>
+                                                <br>
+                                            </div>
+                                            <div class="content">
+                                                
+                                                <canvas id="pie" class="chart chart-line"
+                                                chart-options="options" chart-data="[datos_label]" chart-labels="labels" chart-series="series"
+                                                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
+                                                </canvas>
+    
+                                            <div class="footer">
+    
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-            <div class="container-fluid">
-           
-  <h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-  font-size: 24px; text-transform: uppercase;
-  opacity: 0.9;">
-  Denuncias
-  </h1>
-
-  <div class="row">
-    <!--GRAFICO 1-->
-    <div class="col-md-4 col-centered text-center" ng-controller="DenunciasController">
-        <div class="card">
-            <div class="header">
-                <h4 class="title" align="center">Tipos de Denuncias más Frecuentes</h4>
-            </div>
-            <div class="content">
-                
-                <canvas id="pie" class="chart chart-doughnut"
-                chart-options="options" chart-data="datos_label" chart-labels="labels"
-                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                </canvas>
-
-                <div class="footer">
-                   
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-      <!--GRAFICO 2-->
-      <div class="col-md-4 col-centered text-center" ng-controller="ViolenciasDenunciasController">
-          <div class="card">
-              <div class="header">
-                  <h4 class="title" align="center">
-                    Denuncias por Violencia de Género <br>
-                    vs <br>
-                    Muertes por Violencia de Género
-
-                  </h4>
-                  <br>
-                  <p align="center" class="category">
-                      Desde 2010 hasta 2018
-                  </p>
-                  
-              </div>
-              <div class="content">
-                  
-                  <canvas id="line" class="chart chart-line"
-                  chart-options="options" chart-data="[datos_muertes, datos_denuncias]" chart-labels="labels"
-                  chart-click="changeData" chart-series="series" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                  </canvas>
-              </div>
-          </div>
-      </div>
-</div><!--ROW-->
-
-
-
-
-
-<h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-   font-size: 24px; text-transform: uppercase;
-  opacity: 0.9;">
-      Salud
-  </h1>
-
-  <div class="row">
-      <!--GRAFICO 1-->
-      <div class="col-md-4 col-centered text-center" ng-controller="AtencionesController">
-          <div class="card">
-              <div class="header">
-                  <h4 class="title" align="center">Problemas de Salud más Frecuentes</h4>
-                  <br>
-                  <p class="category">
-                      Desde 2010 hasta 2018
-                  </p>
-                  <br>
-              </div>
-              <div class="content">
-                  
-                  <canvas id="pie" class="chart chart-pie"
-                  chart-options="options" chart-data="datos_label" chart-labels="labels"
-                  chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                  </canvas>
-              </div>
-          </div>
-      </div>
-      <!--GRAFICO 2-->
-      
-      <div class="col-md-4 col-centered text-center" ng-controller="ProblemasController">
-          <div class="card">
-              <div class="header">
-                  <h4 class="title" align="center">
-                    Crecimiento de Problemas de Salud por Año
-                  </h4>
-                  <br>
-                    <p class="category">Problema 
-                        <select ng-model="data.problema" >
-                            <option id="combo" ng-repeat="problema in problemas" ng-value="problema._id">{{problema.nombre}}</option>
-                        </select>
-                    </p>
-                    <br>
-                    <button id="1" ng-click="filtrar($event)" type="button" class="btn btn-default">Filtrar</button>
-                  <br>                  
-              </div>
-                <div class="content">
-                <canvas id="pie" class="chart chart-line" chart-options="options" chart-data="[datos_label]" chart-series="[series]" chart-labels="labels"
-                  chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                </canvas>
-              </div>
-          </div>
-      </div>
-</div><!--ROW-->
-
-
-
-<h1 align="center" style="font-weight: 700; color: rgb(102, 102, 102); 
-   font-size: 24px; text-transform: uppercase;
-  opacity: 0.9;">
-      Turismo
-</h1>
-
-
-<div class="row">
-    <!--GRAFICO 1-->
-    <div class="col-md-3 col-centered text-center" ng-controller="TiposAlojamientosController">
-        <div class="card">
-            <div class="header">
-                <h4 class="title" align="center">Nro de Turistas Alojados por Categoría</h4>
-                <br>
-                <p class="category">Fecha Desde
-                    <input id="bday-month" type="month" name="bday-month"
-                    min="2010-01" max="2020-12" ng-model="data.fdesde">
-                </p>
-                <br>
-                <p class="category">Fecha Hasta 
-                    <input id="bday-month" type="month" name="bday-month"
-                    min="2010-01" max="2020-12" ng-model="data.fhasta">
-                </p>
-                <br>
-                <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
-            </div>
-            <div class="content">
-                <canvas id="pie" class="chart chart-bar"
-                chart-options="options" chart-data="datos_label" chart-labels="labels"
-                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                </canvas>
-                <div class="footer">                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--GRAFICO 2-->
-    <div class="col-md-3 text-center" ng-controller="TiposExcursionesController">
-        <div class="card">
-            <div class="header">
-                <h4 class="title" align="center">Nro Excursiones</h4>
-                <br>
-                <p class="category">Fecha Desde
-                    <input id="bday-month" type="month" name="bday-month"
-                    min="2010-01" max="2020-12" ng-model="data.fdesde">
-                </p>
-                <br>
-                <p class="category">Fecha Hasta 
-                    <input id="bday-month" type="month" name="bday-month"
-                    min="2010-01" max="2020-12" ng-model="data.fhasta">
-                </p>
-                <br>
-                <center><button type="button" class="btn btn-default" ng-click="filtrar($event)">Filtrar</button></center>
-                
-            </div>
-            <div class="content">
-                
-                <canvas id="pie" class="chart chart-bar"
-                chart-options="options" chart-data="datos_label" chart-labels="labels"
-                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                </canvas>
-
-                <div class="footer">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--GRAFICO 3-->
-    <div class="col-md-3 text-center" ng-controller="CrecimientoAlojamientosController">
-        <div class="card">
-            <div class="header">
-                <h4 class="title" align="center">Crecimiento del Turismo por Año</h4>
-                <br>
-                <p align="center" class="category">
-                    Desde 2010 Hasta 2018
-                </p>
-                <br>
-            </div>
-            <div class="content">
-                
-                <canvas id="pie" class="chart chart-line"
-                chart-options="options" chart-data="[datos_label, datos_excursiones]" chart-labels="labels" chart-series="['Alojamientos', 'Excursiones']"
-                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                </canvas>
-
-                <div class="footer">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--GRAFICO 4-->
-    <div class="col-md-3 text-center" ng-controller="NacionalidadAlojamientosController">
-        <div class="card">
-            <div class="header">
-                <h4 class="title" align="center">Turismo por Nacionalidad</h4>
-                <br>
-                <p align="center" class="category">
-                    Desde 2010 Hasta 2018
-                </p>
-                <br>
-            </div>
-            <div class="content">
-                
-                <canvas id="pie" class="chart chart-polar-area"
-                chart-options="options" chart-data="datos_a" chart-labels="labels"
-                chart-click="changeData" chart-backgroundColor="" chart-borderColor="" chart-borderWidth="">
-                </canvas>
-
-                <div class="footer">
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!--ROW-->
-
-
-<!--
-<!-- DATOS DE PRUEBA --
-<div ng-controller="AtencionesController">
-        <p>The ID is {{saludo}}</p>
-        <p>The ID is {{datos1}}</p>
-        <p>The ID is {{prob}}</p>
-        <p>The ID is {{problemas}}</p>
-      </div>
-      
-    
-      <!--grafico 1: cantidad problemas--
-      <h1>SALUD - GRAFICO 1</h1>
-      <p>The button has been clicked {{id}} times.</p>
-      <div ng-app ng-controller="AtencionesController">
-        <div ng-repeat="(key,value) in graficos">
-          
-          <p>Problema: {{key}}</p>
-          <p>Cantidad: {{value}}</p>
-                 
-          
-        </div>
-      </div>
-    
-    
-      <div ng-controller="ProblemasController">
         
-        <p>The button has been clicked {{id}} times.</p>
-    </div>
-    
-    <!--grafico 2: problema por año --
-    <h1>SALUD - GRAFICO 2</h1>
-    <div ng-controller="ProblemasController">
-          <select ng-model="data.problema">
-            <option id="combo" ng-repeat="problema in problemas" ng-value="problema._id">{{problema.nombre}}</option>
-          </select>
-    
-            <button id="1" ng-click="filtrar($event)">Buscar</button>
-          <p>You selected: {{grafico}}</p>
-    </div>
-    
-    
-    
-    <!--grafico 3: muertes por violencia de generro por año vs denuncias pr violencia de genero  --
-    <h1>SALUD - GRAFICO 3</h1>
-    <div ng-controller="SucesosController">
-      Muertes por violencia de genero: {{grafico}}
-    </div>
-    <div ng-controller="ViolenciasDenunciasController">
-      Denuncias por violencia de genero:  {{grafico}}
-    </div>
-    
-    
-    
-    <h1>INFRACCIONES - GRAFICO 1</h1>
-    <div ng-controller="InfraccionesController">
-      {{graficos}}
-      <br>
-      fecha desde <input id="bday-month" type="month" name="bday-month"
-      min="2010-01" max="2018-12" ng-model="data.fdesde">
-      <br>
-      fecha hasta <input id="bday-month" type="month" name="bday-month"
-      min="2010-01" max="2018-12" ng-model="data.fhasta">
-      <br>
-      <button id="1" ng-click="filtrar($event)">Filtrar</button>
-      {{labels}}
-      {{datos_label}}
-    </div>
-    <h1>INFRACCIONES - GRAFICO 2</h1>
-    <div ng-controller="SexoInfraccionesController">
-        total: {{graficos}} <br>
-        total masculino: {{graficosMasculino}} <br>
-        total femenino: {{graficosFemenino}} <br>
-    </div>
-    
-    
-    
-    <h1>INFRACCIONES - GRAFICO 3</h1>
-    <div ng-controller="CrecimientoInfraccionesController">
-    {{graficos}}
-    
-    </div>
-
-            <h1>TURISMO - ALOJAMIENTO - GRAFICO 1</h1>
-            <div ng-controller="TiposAlojamientosController">
-            
-                {{grafico}}
-            <br>
-            fecha desde <input id="bday-month" type="month" name="bday-month"
-            min="2010-01" max="2018-12" ng-model="data.fdesde">
-            <br>
-            fecha hasta <input id="bday-month" type="month" name="bday-month"
-            min="2010-01" max="2018-12" ng-model="data.fhasta">
-            <br>
-            <button id="1" ng-click="filtrar($event)">Filtrar</button>
-            </div>
-
-            
-            <h1>TURISMO - EXCURSIONES - GRAFICO 2</h1>
-            <div ng-controller="TiposExcursionesController">
-            
-                {{grafico}}
-            <br>
-            fecha desde <input id="bday-month" type="month" name="bday-month"
-            min="2010-01" max="2020-12" ng-model="data.fdesde">
-            <br>
-            fecha hasta <input id="bday-month" type="month" name="bday-month"
-            min="2010-01" max="2020-12" ng-model="data.fhasta">
-            <br>
-            <button id="1" ng-click="filtrar($event)">Filtrar</button>
-            </div>
-
-
-
-            <h1>TURISMO - ALOJAMIENTO - GRAFICO 3</h1>
-            <div ng-controller="CrecimientoAlojamientosController">
-            
-            Crecimiento Alojamientos:  {{graficos}}
-            
-            </div>
-            <div ng-controller="CrecimientoExcursionesController">
-            
-            Crecimiento Excursiones:  {{graficos}}
-            
-            </div>
-            
-            
-            <h1>TURISMO - ALOJAMIENTO - GRAFICO 4</h1>
-            <div ng-controller="NacionalidadAlojamientosController">
-            
-                Alojamientos por nacionalidad:   {{graficos}}
-            
-            </div>
-            <div ng-controller="NacionalidadExcursionesController">
-            
-                Excursiones por nacionalidad: {{graficos}}
-            
-            </div>
-
-
-
-            <h1>DENUNCIAS - GRAFICO 1</h1>
-            <div ng-controller="DenunciasController">
-            {{graficos}}
-            <br>
-            </div>
-
-        <!-- FIN DATOS DE PRUEBA-->
-
-        <!--
-        <div ng-controller="AlertasController">
-            <script type="text/ng-template" id="alert.html">
-            <div ng-transclude></div>
-            </script>
         
-            <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert($index)">{{alert.msg}}</div>
-            <div uib-alert template-url="alert.html" style="background-color:#fa39c3;color:white">A happy alert!</div>
-            <button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>
-        </div>
-            </div> <!--fin container fluid--
-                    </div><!--fin content--
-                    <footer class="footer">
-                            <div class="container-fluid">
-                                <nav class="pull-left">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                Home
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Company
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Portfolio
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                               Blog
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                                <p class="copyright pull-right">
-                                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                                </p>
+                
+        
+        
+              
+        
+        
+        
+        
+        
+        
+        
+        
+                
+                        
                                 
-                            </div>
-                        </footer> <!--fin footer--
-            </div> <!--fin main panel --
-</div><!--fin wrapper--
--->
-
-</section>
-
+                                
+                                
+                               
+                            
+            
+            
+            
+           
+        
+               
+        
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <center>
+                            <p class="copyright">
+                                &copy; Copyright  De Marco Andrada - Parra 2018
+                            </p>
+                        </center>
+                    </div>
+                </footer>
+        
+            </div> <!-- Fin Main -->
+            
+        </div> <!-- Fin Wrapper -->
+        
+        
+           
+        
+        </section>
+        

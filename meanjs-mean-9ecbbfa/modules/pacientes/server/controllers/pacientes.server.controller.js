@@ -60,6 +60,7 @@ exports.update = function (req, res) {
           if(req.body.nacionalidad) paciente.nacionalidad = req.body.nacionalidad;
           if(req.body.fecha) paciente.fechaNacimiento = req.body.fechaNacimiento;
           if(req.body.sexo) paciente.sexo = req.body.sexo;
+          if(req.body.dni) paciente.dni = req.body.dni;
           paciente.save();
       }
       return res.json(paciente);

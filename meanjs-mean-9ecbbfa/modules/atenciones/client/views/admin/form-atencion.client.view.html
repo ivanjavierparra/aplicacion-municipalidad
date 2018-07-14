@@ -1,0 +1,232 @@
+<section>
+
+<!-- Wrapper -->
+<div class="wrapper">
+     
+      <!-- Barra Laterial -->
+     <div class="sidebar" data-color="azure" data-image="/modules/users/client/img/profile/sidebar-5.jpg">
+
+      <!--
+
+          Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+          Tip 2: you can also add an image using data-image tag
+
+      -->
+            
+          <div class="sidebar-wrapper">
+              <div class="logo">
+                   <!--  <img src="/modules/users/client/img/profile/homero.png" width="42" height="42"/>-->
+                  <a href="/" class="simple-text">
+                      Menú de Opciones
+                  </a>
+              </div>
+              <!-- cuando es por celular -->
+              <!--<ul class="nav nav-mobile-menu">
+                     
+              </ul>-->
+              <ul class="nav ng-scope">
+                  <li class="active">
+                      <a href="/">
+                          <i class="pe-7s-home"></i>
+                          <p>Home</p>
+                      </a>
+                  </li>
+              </ul>
+         </div> <!--Fin Barra Laterial -->
+    </div>
+
+     <!-- Main -->
+    <div class="main-panel">
+        
+        <!-- Menu de Arriba -->
+        <nav class="navbar navbar-default navbar-fixed"  ng-controller="HeaderController as vm">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2"> <!--data-target="#navbar" aria-expanded="false" aria-controls="navbar"-->
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><b>Municipalidad de Springfield</b></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="menucito">
+                            <!-- Te muestra cada uno de los módulose: articulos, admin, chat (estan en HeadController)-->
+                            <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+                                    <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+                                        <a data-toggle="dropdown" ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                                        <ul ng-switch-when="dropdown" class="dropdown-menu">
+                                        <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+                                            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+                                        </li>
+                                        </ul>
+                                        <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                    </li>
+                            </ul>
+                            <!-- Cuando el usuario no ha iniciado sesión te muestra "Registrarse" y "Iniciar Sesión" -->
+                            <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+                                    <li ui-sref-active="active">
+                                        <a ui-sref="authentication.signup">Registrarse</a>
+                                    </li>
+                                    <li class="divider-vertical"></li>
+                                    <li ui-sref-active="active">
+                                        <a ui-sref="authentication.signin">Iniciar Sesión</a>
+                                    </li>
+                            </ul>
+                            <!--cuando el usuario ha iniciado sesión -->
+                            <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+                                    <li class="dropdown" uib-dropdown>
+                                        <!-- Muestra imagen y nombre del usuario -->  
+                                        <a data-toggle="dropdown" class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                                        <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+                                        <b><span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b></b>
+                                        </a>
+                                        <!-- te muestra un drop menu con las opciones -->
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                                                <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li> 
+                                                <a href="/api/auth/signout" target="_self">Cerrar Sesión</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="separator hidden-lg"></li>
+                            </ul>
+                    </div>
+                </div>
+        </nav> <!-- Fin Menu -->
+
+        <!-- Aca van los graficos y tablas -->
+        <div class="content">
+            <div class="container-fluid">
+
+                
+                
+                <div class="page-header">
+                   <center> <h1>{{vm.atencion._id ? 'Editar Atención Médica' : 'Nueva Atención Médica'}}</h1></center>
+                  </div>
+                  <div class="pull-right">
+                    <a ng-show="vm.atencion._id" class="btn btn-default" ng-click="vm.remove()" style="background-color: red; color: whitesmoke">
+                            <i class="pe-7s-trash"></i>
+                            Eliminar atención médica
+                    </a>
+                  </div>
+                  
+                  <div class="col-md-12">
+                    <form name="vm.form.atencionForm" class="form-horizontal" ng-submit="vm.save(vm.form.atencionForm.$valid)" novalidate>
+                      <fieldset>
+                        <!-- id_atencion -->
+                        <div class="form-group" show-errors>
+                          <label class="control-label" for="id_atencion">Id de la atención</label>
+                          <input name="id_atencion" type="number" ng-model="vm.atencion.id_atencion" id="id_atencion" class="form-control" placeholder="id_atencion" required autofocus>
+                          <div ng-messages="vm.form.atencionForm.id_atencion.$error" role="alert">
+                            <p class="help-block error-text" ng-message="required">atencion id_atencion is required.</p>
+                          </div>
+                        </div>
+
+                        <!-- fecha -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="fecha">Fecha</label>
+                                <input name="fecha" type="date" ng-model="vm.atencion.fecha" id="fecha" class="form-control" placeholder="fecha" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.fecha.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion fecha is required.</p>
+                                </div>
+                        </div>
+
+                        <!-- suceso -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="suceso">Suceso</label>
+                                <input name="suceso" type="number" ng-model="vm.atencion.suceso" id="suceso" class="form-control" placeholder="suceso" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.suceso.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion suceso is required.</p>
+                                </div>
+                        </div>
+
+                        <!-- problema -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="problema">Problema</label>
+                                <input name="problema" type="number" ng-model="vm.atencion.problema" id="problema" class="form-control" placeholder="problema" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.problema.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion problema is required.</p>
+                                </div>
+                        </div>
+
+                        <!-- muerto -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="muerto">Muerto</label>
+                                <input name="muerto" type="text" ng-model="vm.atencion.muerto" id="muerto" class="form-control" placeholder="muerto" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.muerto.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion muerto is required.</p>
+                                </div>
+                        </div>
+
+                        <!-- descripcion -->
+                        <div class="form-group">
+                          <label class="control-label" for="descripcion">Descripción</label>
+                          <textarea name="descripcion" data-ng-model="vm.atencion.descripcion" id="descripcion" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+                        </div>
+
+                        <!-- lugar -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="lugar">Lugar</label>
+                                <input name="lugar" type="text" ng-model="vm.atencion.lugar" id="lugar" class="form-control" placeholder="lugar" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.lugar.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion lugar is required.</p>
+                                </div>
+                        </div>
+
+                        <!-- doctor -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="doctor">Doctor</label>
+                                <input name="doctor" type="text" ng-model="vm.atencion.doctor" id="doctor" class="form-control" placeholder="doctor" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.doctor.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion doctor is required.</p>
+                                </div>
+                        </div>
+
+                        <!-- paciente -->
+                        <div class="form-group" show-errors>
+                                <label class="control-label" for="paciente">Paciente</label>
+                                <input name="paciente" type="text" ng-model="vm.atencion.paciente" id="paciente" class="form-control" placeholder="paciente" required autofocus>
+                                <div ng-messages="vm.form.atencionForm.paciente.$error" role="alert">
+                                  <p class="help-block error-text" ng-message="required">atencion paciente is required.</p>
+                                </div>
+                        </div>
+
+                        <div class="form-group">
+                          <center><button type="submit" style="background-color: black; color: whitesmoke" class="btn btn-default"><i class="pe-7s-angle-right-circle"></i> {{vm.atencion._id ? 'Editar' : 'Crear'}}</button></center>
+                        </div>
+                      </fieldset>
+                    </form>
+                  </div>
+
+
+
+
+
+
+            </div> <!--fin container fluid-->
+        </div><!--fin content-->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <center>
+                    <p class="copyright">
+                        &copy; Copyright  De Marco Andrada - Parra 2018
+                    </p>
+                </center>
+            </div>
+        </footer>
+
+    </div> <!-- Fin Main -->
+
+
+    
+
+
+
+
+</div><!--Fin  Wrapper -->
+</section>

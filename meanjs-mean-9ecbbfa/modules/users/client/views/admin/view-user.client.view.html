@@ -1,51 +1,190 @@
 <section>
-  <div class="page-header">
-    <div class="row">
-      <div class="col-md-6">
-        <h1 ng-bind="vm.user.username"></h1>
-      </div>
-      <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.user-edit({userId: vm.user._id})">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-primary" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
-          <i class="glyphicon glyphicon-trash"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-3"><strong>First Name</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.firstName"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Last Name</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.lastName"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Email</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.email"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Provider</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.provider"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Created</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.created"></div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Roles</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.roles"></div>
-      </div>
-    </div>
-  </div>
+  
+    
+        <!-- Wrapper -->
+        <div class="wrapper">
+            
+            <!-- Barra Laterial -->
+            <div class="sidebar" data-color="azure" data-image="/modules/users/client/img/profile/sidebar-5.jpg">
+        
+                <!--
+        
+                    Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+                    Tip 2: you can also add an image using data-image tag
+        
+                -->
+                
+                    <div class="sidebar-wrapper">
+                        <div class="logo">
+                             <!--  <img src="/modules/users/client/img/profile/homero.png" width="42" height="42"/>-->
+                            <a href="/" class="simple-text">
+                                Menú de Opciones
+                            </a>
+                        </div>
+                        <!-- cuando es por celular -->
+                        <!--<ul class="nav nav-mobile-menu">
+                               
+                        </ul>-->
+                        <ul class="nav ng-scope">
+                            <li class="active">
+                                <a href="/">
+                                    <i class="pe-7s-home"></i>
+                                    <p>Home</p>
+                                </a>
+                            </li>
+                        </ul>
+                   </div> <!--Fin Barra Laterial -->
+            </div> <!--Fin Barra Laterial -->
+            
+        
+            <!-- Main -->
+            <div class="main-panel">
+        
+                <!-- Menu de Arriba -->
+                <nav class="navbar navbar-default navbar-fixed"  ng-controller="HeaderController as vm">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2"> <!--data-target="#navbar" aria-expanded="false" aria-controls="navbar"-->
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#"><b>Municipalidad de Springfield</b></a>
+                            </div>
+                            <div class="collapse navbar-collapse" id="menucito">
+                                    <!-- Te muestra cada uno de los módulose: articulos, admin, chat (estan en HeadController)-->
+                                    <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+                                            <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+                                                <a data-toggle="dropdown" ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
+                                                <ul ng-switch-when="dropdown" class="dropdown-menu">
+                                                <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+                                                    <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+                                                </li>
+                                                </ul>
+                                                <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                            </li>
+                                    </ul>
+                                    <!-- Cuando el usuario no ha iniciado sesión te muestra "Registrarse" y "Iniciar Sesión" -->
+                                    <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+                                            <li ui-sref-active="active">
+                                                <a ui-sref="authentication.signup">Registrarse</a>
+                                            </li>
+                                            <li class="divider-vertical"></li>
+                                            <li ui-sref-active="active">
+                                                <a ui-sref="authentication.signin">Iniciar Sesión</a>
+                                            </li>
+                                    </ul>
+                                    <!--cuando el usuario ha iniciado sesión -->
+                                    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+                                            <li class="dropdown" uib-dropdown>
+                                                <!-- Muestra imagen y nombre del usuario -->  
+                                                <a data-toggle="dropdown" class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+                                                <img ng-src="{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+                                                <b><span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b></b>
+                                                </a>
+                                                <!-- te muestra un drop menu con las opciones -->
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
+                                                        <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li> 
+                                                        <a href="/api/auth/signout" target="_self">Cerrar Sesión</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="separator hidden-lg"></li>
+                                    </ul>
+                            </div>
+                        </div>
+                </nav> <!-- Fin Menu -->
+                
+        
+                <!-- Aca van los graficos y tablas -->
+                <div class="content">
+                        <div class="container-fluid">
+            
+                                
+                               
+                                <div class="page-header">
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                            <h1 ng-bind="vm.user.username"></h1>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <a class="btn btn-default" style="background-color: green; color: whitesmoke" ui-sref="admin.user-edit({userId: vm.user._id})">
+                                                    <i class="pe-7s-check"></i>
+                                                    Editar usuario
+                                            </a>
+                                            <a class="btn btn-default" style="background-color: red; color: whitesmoke" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
+                                                    <i class="pe-7s-trash"></i>
+                                                    Eliminar usuario
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    
+                                      <div class="row">
+                                        <div class="col-md-8">
+                                          <div class="row">
+                                            <div class="col-md-3"><strong>Nombre</strong></div>
+                                            <div class="col-md-6" ng-bind="vm.user.firstName"></div>
+                                          </div>
+                                          <hr/>
+                                          <div class="row">
+                                            <div class="col-md-3"><strong>Apellido</strong></div>
+                                            <div class="col-md-6" ng-bind="vm.user.lastName"></div>
+                                          </div>
+                                          <hr/>
+                                          <div class="row">
+                                            <div class="col-md-3"><strong>Email</strong></div>
+                                            <div class="col-md-6" ng-bind="vm.user.email"></div>
+                                          </div>
+                                          <hr/>
+                                          <div class="row">
+                                            <div class="col-md-3"><strong>Provider</strong></div>
+                                            <div class="col-md-6" ng-bind="vm.user.provider"></div>
+                                          </div>
+                                          <hr/>
+                                          <div class="row">
+                                            <div class="col-md-3"><strong>Created</strong></div>
+                                            <div class="col-md-6" ng-bind="vm.user.created"></div>
+                                          </div>
+                                          <hr/>
+                                          <div class="row">
+                                            <div class="col-md-3"><strong>Roles</strong></div>
+                                            <div class="col-md-6" ng-bind="vm.user.roles"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+            
+            
+            
+            
+            
+            
+            
+                        </div> <!--fin container fluid-->
+                </div><!--fin content-->
+        
+        
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <center>
+                            <p class="copyright">
+                                &copy; Copyright  De Marco Andrada - Parra 2018
+                            </p>
+                        </center>
+                    </div>
+                </footer>
+        
+            </div> <!-- Fin Main -->
+            
+        </div> <!-- Fin Wrapper -->
+        
+        
+           
+  
+        
 </section>

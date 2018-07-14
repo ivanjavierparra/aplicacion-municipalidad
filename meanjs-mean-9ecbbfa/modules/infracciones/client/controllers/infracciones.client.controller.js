@@ -9,7 +9,7 @@
 
   function InfraccionesController($scope, $http) {
     $scope.data = {};
-
+    
     $scope.filtrar = ($event) => {
       //console.log($scope);  
       //obtengo las fechas desde la view
@@ -29,78 +29,96 @@
         //fdesde = new Date(fdesde);
         //fhasta = fhasta.substring(0,10);
 
-        $http.get('http://localhost:8000/api/infracciones')
+        $http.get('http://localhost:8000/api/tiposinfracciones')
             .then(function(response) {
-                var longitud = Object.keys(response.data).length;
+                var longitud_tipos_infracciones = Object.keys(response.data).length;
                 var dict = {};
                 var key;
                 var len;
-                var datos = response.data;
+                var tipos_infracciones = response.data;
 
-                $http.get('http://localhost:8000/api/infracciones/tipos')
-                .then(function(response) {
-                    len = Object.keys(response.data).length;
-                    //dict = new Array(len);
+                //diccionario cuya clave son los nombres de los problemas
+                for(var i=0;i<longitud_tipos_infracciones;i++){
+                  key = tipos_infracciones[i].nombre;
+                  dict[key] = 0 ;
+                }
 
-                    //creo un diccionario: clave=id del tipo de infraccion ; valor = 0
-                    for(var i=0;i<len;i++){
-                      key = parseInt(response.data[i].id);
-                      dict[key] = 0 ;
-                    }
+                $http.get('http://localhost:8000/api/infracciones/')
+                  .then(function(response) {
+                      var longitud_infracciones = Object.keys(response.data).length;
+                      var infracciones = response.data;
 
-                    //recorro mis infracciones, y las acumulo en mi diccionario
-                    for(var j=0;j<longitud;j++){
-                      //aca comparo las fechas
-                      var fecha = new Date(datos[j].fecha);
-                      fecha = fecha.getTime();
-                      //console.log("fecha: " + fecha.getTime());
-                      if((fecha>=fdesde)&&(fecha<=fhasta)){
-                          key = parseInt(datos[j].tipo_id);
-                          dict[key] = dict[key] + 1;
+                      
+
+                      //recorro las infracciones
+                      for(var i=0;i<longitud_infracciones;i++){
+                          var id_tipo_infraccion = infracciones[i].tipo_id;
+                          
+                          var fecha = new Date(infracciones[i].fecha);
+                          fecha = fecha.getTime();
+                          if((fecha>=fdesde)&&(fecha<=fhasta)){
+                              //recorro los tipos de infracciones
+                              for(var j=0;j<longitud_tipos_infracciones;j++){
+                                var id = tipos_infracciones[j].id;
+                                if(id_tipo_infraccion==id){
+                                    var nombre = tipos_infracciones[j].nombre;
+                                    dict[nombre] = dict[nombre] + 1;
+                                    break;
+                                }
+                              }
+                          }
                       }
-                    }
 
-                    //creo un nuevo diccionario, clave = nombre del tipo de infraccion ;  valor= valor del diccionario anterior
-                    var resultado = {};
-                    for (key in dict) {
-                      // Hacer algo con la clave key
-                      for(var i=0;i<len;i++){
-                        if(response.data[i].id==key){
-                          resultado[response.data[i].nombre] = dict[key];
-                        }
-                      }
-                    }
 
-                    //creo un nuevo diccionario, clave = nombre del tipo de infraccion ;  valor= valor del diccionario anterior
-                    $scope.graficos = {};
-                    for (key in dict) {
-                      // Hacer algo con la clave key
-                      for(var i=0;i<len;i++){
-                        if(response.data[i].id==key){
-                          $scope.graficos[response.data[i].nombre] = dict[key];
-                        }
-                      }
-                    }
 
-                    
+                    $scope.graficos = dict;
+  
+                      
                     $scope.labels = [];
                     $scope.datos_label = [];
+                    $scope.series = [];
                     
                     var label;
                     
+                    
                     for (label in $scope.graficos){
+                      $scope.series.push(label);
                       $scope.labels.push(label);
                       $scope.datos_label.push($scope.graficos[label]);
                     }
-                    
-                    
-                }); //FIN TIPOS
-            }); //FIN INFRACCIONES
+                      
+                    console.log(JSON.stringify($scope.labels));
+
+
+                    //$scope.series = ["soborno", "buenas"];
+                    $scope.options = {
+                      responsive: true,
+                      pieceLabel: {
+                        render: 'labels',
+                        fontColor: '#000',
+                        position: 'outside',
+                        segment: true
+                      },
+                      animation: {
+                          animateScale: true,
+                          animateRotate: true
+                      }
+                  }
+
+               
+                  
+
+                    console.log(JSON.stringify($scope.series));
+                  }); //FIN TIPOS
+
+                
+            }); //Fin get tipo infracciones
 
       }//fin else
     }//fin filtrar
 
-
+    
+    
     
   }
 

@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Atencion = mongoose.model('Atencion'),
+  Paciente = mongoose.model('Paciente'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -32,7 +33,7 @@ exports.create = function (req, res) {
           message: errorHandler.getErrorMessage(err)
         });
       } else {
-        res.json(atencion);
+        return res.json(atencion);
       }
     });
 };
@@ -57,6 +58,7 @@ exports.update = function (req, res) {
         });
     } else {
         if(!atencion) return res.json([]); //no encontro el objeto atenciond
+        if(req.body.id_atencion) atencion.id_atencion = req.body.id_atencion;
         if(req.body.fecha) atencion.fecha = req.body.fecha;
         if(req.body.paciente) atencion.paciente = req.body.paciente;
         if(req.body.doctor) atencion.doctor = req.body.doctor;
@@ -153,32 +155,87 @@ exports.list = function (req, res) {
 };
 
 /**
- * List of Atenciones
+ * Devuelve todas las atenciones de un problema.
  */
 exports.readproblema = function (req, res) {
-  Atencion.find({problema : req.params.problemaId}).exec(function (err, atenciones) {
+  Atencion.find({ problema : req.params.problemaId }).exec(function (err, atenciones) {
     if (err) {
       return res.json({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(atenciones);
+      return res.json(atenciones);
     }
   });
 };
 
 
 /**
- * List of Atenciones
+ * Devuelve todas las atenciones de un suceso.
  */
 exports.readsuceso = function (req, res) {
-  Atencion.find({suceso : req.params.sucesoId}).exec(function (err, atenciones) {
+  Atencion.find({ suceso : req.params.sucesoId }).exec(function (err, atenciones) {
     if (err) {
       return res.json({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(atenciones);
+      return res.json(atenciones);
+    }
+  });
+};
+
+
+/**
+ * Devuelve todas las atenciones de un paciente.
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.readpaciente = function (req, res) {
+  Atencion.find({ paciente : req.params.pacienteId}).exec(function (err, atenciones) {
+    if (err) {
+      return res.json({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+     return res.json(atenciones);
+    }
+  });
+};
+
+/**
+ * Dada una atencion medica, devuelvo el paciente atendido.
+ * @param {*} req 
+ * @param {*} res 
+ */
+exports.readPacienteAtendido = function (req, res) {
+  Atencion.find({ _id : req.params.atencionId }).exec(function (err, atenciones) {
+    if (err) {
+      res.json({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+        console.log("################## "  + typeof atenciones );
+        //console.log("################## "  +  JSON.stringify(atenciones) );
+        atenciones = JSON.stringify(atenciones);
+        atenciones = JSON.parse(atenciones);
+        console.log("################## "  + atenciones[0].paciente );
+        
+        
+        
+        
+
+        Paciente.find({ _id : atenciones[0].paciente }).exec(function (err, pacientes) {
+            if (err) {
+              res.json({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              console.log("################## "  +  pacientes );
+              res.json(pacientes);
+            }  
+        
+        });
     }
   });
 };
