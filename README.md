@@ -18,7 +18,11 @@ Para poder ejecutar la aplicación:
 4. Ir a la carpeta "djangoRest", abrir una terminal y ejecutar: python manage.py runserver 8080
 5. Ir a la carpeta "meanjs-mean-9ecbbfa", abrir una terminal y ejecutar: gulp
 6. En http://localhost:3000/ se encuentra la aplicación en ejecución.
+7. Nota: Para que la aplicación funcione debe estar habilitado el CORS (Cross-origin resource sharing - Intercambio de recursos de origen cruzado). Nosotros usamos la siguiente extensión para Chrome: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi
 
 Integrantes del grupo:
 - De Marco, Emiliano.
 - Parra, Iván Javier.
+
+## Pantalla Principal
+<img src="/docs/logo.png" alt="My cool logo"/>
